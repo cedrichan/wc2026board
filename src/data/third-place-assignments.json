@@ -1,0 +1,6437 @@
+[
+  {
+    "qualifyingGroups": "EFGHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DFGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DEGHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DEFHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DEFGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DEFGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DEFGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "DEFGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "DEFGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CFGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CEGHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CEFHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CEFGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CEFGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CEFGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CEFGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "CEFGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDFHIJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDFGIJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDFGHJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDFGHIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDFGHIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "CDFGHIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFIJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFHJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFHIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFHIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFHIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGHKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGHJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGHJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGHIL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGHIK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "CDEFGHIJ",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BFGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BEGHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "B",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BEFHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BEFGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BEFGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BEFGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BEFGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BEFGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDFHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDFGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDFGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDFGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDFGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BDFGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGHKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGHIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGHIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BDEFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCFHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCFGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCFGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCFGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCFGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCFGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGHKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGHIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGHIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCEFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFIJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFHJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFHIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFHIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFHIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGHKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGHJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGHIL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGHIK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGHKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGHIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGHIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFHKL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFHJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFHJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFHIL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFHIK",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFHIJ",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGIL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGIK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGIJ",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGHL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGHK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "BCDEFGHI",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "AFGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "AEGHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "AEFHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "AEFGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "AEFGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "AEFGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "AEFGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "AEFGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADFHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADFGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADFGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADFGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADFGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ADFGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ADEFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACFHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACFGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACFGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACFGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACFGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACFGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACEFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFIJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGHJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "H"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGIL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGIK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGIJ",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGHL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGHK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ACDEFGHI",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABGHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABFHIJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABFGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABFGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABFGHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABFGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABFGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEHIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEGIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEGHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEGHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEGHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEGHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGHKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGHIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGHIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABEFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDHIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDGHIKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGJKL",
+    "slots": {
+      "1A": "F",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGIKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGIJL",
+    "slots": {
+      "1A": "F",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGIJK",
+    "slots": {
+      "1A": "F",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGHKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGHIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGHIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGIJ",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGHL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGHK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABDEFGHI",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCHIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCGIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCGHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCGHIKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCGHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCGHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGIKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCFGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEIJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "C",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEHJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEHIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEHIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEHIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "C",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGHKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGHIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGHIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGIJ",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGHL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGHK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCEFGHI",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDIJKL",
+    "slots": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDHJKL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDHIKL",
+    "slots": {
+      "1A": "H",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDHIJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDHIJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGIKL",
+    "slots": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDGHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFJKL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFIKL",
+    "slots": {
+      "1A": "C",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFIJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFIJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFHJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "H"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGKL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGJL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGJK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGIL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGIK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGIJ",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGHL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "H"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGHK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDFGHI",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEJKL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEIKL",
+    "slots": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEIJL",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEIJK",
+    "slots": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEHKL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEHJL",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEHJK",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEHIL",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEHIK",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEHIJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGKL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGJL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGJK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGIL",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGIK",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGIJ",
+    "slots": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGHL",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGHK",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEGHI",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFKL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFJL",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFJK",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFIL",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFIK",
+    "slots": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFIJ",
+    "slots": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFHL",
+    "slots": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFHK",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFHJ",
+    "slots": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFHI",
+    "slots": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFGL",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFGK",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFGJ",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFGI",
+    "slots": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "qualifyingGroups": "ABCDEFGH",
+    "slots": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  }
+]
