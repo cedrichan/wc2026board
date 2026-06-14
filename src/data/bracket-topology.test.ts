@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { BRACKET_TOPOLOGY } from "./bracket-topology";
+import { BRACKET_TOPOLOGY, BRACKET_TOPOLOGY_SOURCE } from "./bracket-topology";
 import type { BracketMatchDefinition, SlotSource } from "../domain/bracket";
 import type { GroupId, TournamentRound } from "../domain/common";
 
@@ -32,6 +32,15 @@ function roundOf(matchNumber: number): Exclude<TournamentRound, "GROUP_STAGE"> {
 // ── 1. Coverage ───────────────────────────────────────────────────────────
 
 describe("coverage", () => {
+  it("records the authoritative regulations edition and articles", () => {
+    expect(BRACKET_TOPOLOGY_SOURCE).toEqual({
+      document: "Regulations for the FIFA World Cup 26",
+      edition: "May 2026",
+      articles: ["12.6", "12.7", "12.8", "12.9", "12.10", "12.11"],
+      url: "https://digitalhub.fifa.com/m/636f5c9c6f29771f/original/FWC2026_regulations_EN.pdf",
+    });
+  });
+
   it("has exactly 32 match definitions", () => {
     expect(BRACKET_TOPOLOGY).toHaveLength(32);
   });
@@ -152,6 +161,24 @@ describe("winner feeds", () => {
     }
   });
 
+  it("winner feed metadata matches every MATCH_WINNER source", () => {
+    for (const target of BRACKET_TOPOLOGY) {
+      const sources = [
+        { source: target.homeSource, side: "HOME" },
+        { source: target.awaySource, side: "AWAY" },
+      ] as const;
+
+      for (const { source, side } of sources) {
+        if (source.type !== "MATCH_WINNER") continue;
+
+        const feeder = BRACKET_TOPOLOGY.find((def) => def.matchNumber === source.matchNumber);
+        expect(feeder, `M${target.matchNumber} references missing M${source.matchNumber}`).toBeDefined();
+        expect(feeder!.winnerFeedsMatch, `M${source.matchNumber} does not feed M${target.matchNumber}`).toBe(target.matchNumber);
+        expect(feeder!.winnerFeedsSide, `M${source.matchNumber} feeds the wrong side of M${target.matchNumber}`).toBe(side);
+      }
+    }
+  });
+
   it("every non-terminal match has a winnerFeedsMatch and winnerFeedsSide", () => {
     for (const def of BRACKET_TOPOLOGY) {
       if (def.round !== "FINAL" && def.round !== "THIRD_PLACE") {
@@ -255,68 +282,51 @@ describe("source slot validity", () => {
 // ── 5. Golden assertions ──────────────────────────────────────────────────
 
 /**
- * Golden assertions verifying specific known pairings from the official
- * FIFA WC2026 bracket structure.
- *
- * Source: FIFA World Cup 2026™ Competition Regulations, Annex A
- * (bracket draw structure, group-position pairings).
- * See also: https://www.sportsreference.com/soccer/international/worldcup/2026/bracket/
+ * Golden assertions for every home/away source in article 12.6-12.11 of the
+ * May 2026 Regulations for the FIFA World Cup 26.
  */
-describe("golden assertions (official bracket pairings)", () => {
-  it("M73 home source is Group A winner and away source is a third-place team", () => {
-    const m73 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 73)!;
-    expect(m73.homeSource).toEqual({ type: "GROUP_WINNER", group: "A" });
-    expect(m73.awaySource.type).toBe("THIRD_PLACE");
-  });
+describe("golden assertions (official article 12 bracket)", () => {
+  const expectedSources: Readonly<Record<number, readonly [SlotSource, SlotSource]>> = {
+    73: [{ type: "GROUP_RUNNER_UP", group: "A" }, { type: "GROUP_RUNNER_UP", group: "B" }],
+    74: [{ type: "GROUP_WINNER", group: "E" }, { type: "THIRD_PLACE", groups: "A/B/C/D/F" }],
+    75: [{ type: "GROUP_WINNER", group: "F" }, { type: "GROUP_RUNNER_UP", group: "C" }],
+    76: [{ type: "GROUP_WINNER", group: "C" }, { type: "GROUP_RUNNER_UP", group: "F" }],
+    77: [{ type: "GROUP_WINNER", group: "I" }, { type: "THIRD_PLACE", groups: "C/D/F/G/H" }],
+    78: [{ type: "GROUP_RUNNER_UP", group: "E" }, { type: "GROUP_RUNNER_UP", group: "I" }],
+    79: [{ type: "GROUP_WINNER", group: "A" }, { type: "THIRD_PLACE", groups: "C/E/F/H/I" }],
+    80: [{ type: "GROUP_WINNER", group: "L" }, { type: "THIRD_PLACE", groups: "E/H/I/J/K" }],
+    81: [{ type: "GROUP_WINNER", group: "D" }, { type: "THIRD_PLACE", groups: "B/E/F/I/J" }],
+    82: [{ type: "GROUP_WINNER", group: "G" }, { type: "THIRD_PLACE", groups: "A/E/H/I/J" }],
+    83: [{ type: "GROUP_RUNNER_UP", group: "K" }, { type: "GROUP_RUNNER_UP", group: "L" }],
+    84: [{ type: "GROUP_WINNER", group: "H" }, { type: "GROUP_RUNNER_UP", group: "J" }],
+    85: [{ type: "GROUP_WINNER", group: "B" }, { type: "THIRD_PLACE", groups: "E/F/G/I/J" }],
+    86: [{ type: "GROUP_WINNER", group: "J" }, { type: "GROUP_RUNNER_UP", group: "H" }],
+    87: [{ type: "GROUP_WINNER", group: "K" }, { type: "THIRD_PLACE", groups: "D/E/I/J/L" }],
+    88: [{ type: "GROUP_RUNNER_UP", group: "D" }, { type: "GROUP_RUNNER_UP", group: "G" }],
+    89: [{ type: "MATCH_WINNER", matchNumber: 74 }, { type: "MATCH_WINNER", matchNumber: 77 }],
+    90: [{ type: "MATCH_WINNER", matchNumber: 73 }, { type: "MATCH_WINNER", matchNumber: 75 }],
+    91: [{ type: "MATCH_WINNER", matchNumber: 76 }, { type: "MATCH_WINNER", matchNumber: 78 }],
+    92: [{ type: "MATCH_WINNER", matchNumber: 79 }, { type: "MATCH_WINNER", matchNumber: 80 }],
+    93: [{ type: "MATCH_WINNER", matchNumber: 83 }, { type: "MATCH_WINNER", matchNumber: 84 }],
+    94: [{ type: "MATCH_WINNER", matchNumber: 81 }, { type: "MATCH_WINNER", matchNumber: 82 }],
+    95: [{ type: "MATCH_WINNER", matchNumber: 86 }, { type: "MATCH_WINNER", matchNumber: 88 }],
+    96: [{ type: "MATCH_WINNER", matchNumber: 85 }, { type: "MATCH_WINNER", matchNumber: 87 }],
+    97: [{ type: "MATCH_WINNER", matchNumber: 89 }, { type: "MATCH_WINNER", matchNumber: 90 }],
+    98: [{ type: "MATCH_WINNER", matchNumber: 93 }, { type: "MATCH_WINNER", matchNumber: 94 }],
+    99: [{ type: "MATCH_WINNER", matchNumber: 91 }, { type: "MATCH_WINNER", matchNumber: 92 }],
+    100: [{ type: "MATCH_WINNER", matchNumber: 95 }, { type: "MATCH_WINNER", matchNumber: 96 }],
+    101: [{ type: "MATCH_WINNER", matchNumber: 97 }, { type: "MATCH_WINNER", matchNumber: 98 }],
+    102: [{ type: "MATCH_WINNER", matchNumber: 99 }, { type: "MATCH_WINNER", matchNumber: 100 }],
+    103: [{ type: "MATCH_LOSER", matchNumber: 101 }, { type: "MATCH_LOSER", matchNumber: 102 }],
+    104: [{ type: "MATCH_WINNER", matchNumber: 101 }, { type: "MATCH_WINNER", matchNumber: 102 }],
+  };
 
-  it("M89 is the Round-of-16 match fed by winners of M73 and M74", () => {
-    const m73 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 73)!;
-    const m74 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 74)!;
-    expect(m73.winnerFeedsMatch).toBe(89);
-    expect(m73.winnerFeedsSide).toBe("HOME");
-    expect(m74.winnerFeedsMatch).toBe(89);
-    expect(m74.winnerFeedsSide).toBe("AWAY");
-  });
-
-  it("M97 is the quarter-final fed by winners of M89 and M90", () => {
-    const m89 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 89)!;
-    const m90 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 90)!;
-    expect(m89.winnerFeedsMatch).toBe(97);
-    expect(m90.winnerFeedsMatch).toBe(97);
-  });
-
-  it("M101 semi-final feeds M104 (Final) as HOME and M103 (3rd place) as loser source", () => {
-    const m101 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 101)!;
-    expect(m101.winnerFeedsMatch).toBe(104);
-    expect(m101.winnerFeedsSide).toBe("HOME");
-
-    const m103 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 103)!;
-    expect(m103.homeSource).toEqual({ type: "MATCH_LOSER", matchNumber: 101 });
-  });
-
-  it("M102 semi-final feeds M104 (Final) as AWAY and M103 (3rd place) as loser source", () => {
-    const m102 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 102)!;
-    expect(m102.winnerFeedsMatch).toBe(104);
-    expect(m102.winnerFeedsSide).toBe("AWAY");
-
-    const m103 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 103)!;
-    expect(m103.awaySource).toEqual({ type: "MATCH_LOSER", matchNumber: 102 });
-  });
-
-  it("M104 Final home source is winner of M101 and away source is winner of M102", () => {
-    const m104 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 104)!;
-    expect(m104.homeSource).toEqual({ type: "MATCH_WINNER", matchNumber: 101 });
-    expect(m104.awaySource).toEqual({ type: "MATCH_WINNER", matchNumber: 102 });
-  });
-
-  it("upper-half QF (M97) feeds SF M101, lower-half QF (M99) feeds SF M102", () => {
-    const m97 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 97)!;
-    const m98 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 98)!;
-    const m99 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 99)!;
-    const m100 = BRACKET_TOPOLOGY.find((d) => d.matchNumber === 100)!;
-    expect(m97.winnerFeedsMatch).toBe(101);
-    expect(m98.winnerFeedsMatch).toBe(101);
-    expect(m99.winnerFeedsMatch).toBe(102);
-    expect(m100.winnerFeedsMatch).toBe(102);
+  it("matches every official home and away source", () => {
+    for (const def of BRACKET_TOPOLOGY) {
+      expect(
+        [def.homeSource, def.awaySource],
+        `M${def.matchNumber} sources differ from article 12`,
+      ).toEqual(expectedSources[def.matchNumber]);
+    }
   });
 });

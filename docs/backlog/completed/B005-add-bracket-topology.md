@@ -8,6 +8,13 @@
 
 Versioned static configuration describing official matches M73-M104 and all winner feeds.
 
+## Authoritative Source
+
+- **Document:** Regulations for the FIFA World Cup 26
+- **Edition:** May 2026
+- **Provisions:** Article 12.6-12.11
+- **URL:** https://digitalhub.fifa.com/m/636f5c9c6f29771f/original/FWC2026_regulations_EN.pdf
+
 ## Scope
 
 - Define bracket source-slot types.
@@ -22,10 +29,10 @@ Versioned static configuration describing official matches M73-M104 and all winn
 - Keep topology independent from rendering order, CSS grid position, qualification calculation, and ESPN response ordering.
 - Preserve `Winner Mxx` source information so unresolved future participants can be displayed accurately.
 
-## Ambiguities / Decisions Required
+## Resolved Decisions
 
-- The PRD does not include the complete official M73-M104 topology or cite a specific regulations edition. Obtain and record the approved official source/version before entering topology; ask if no source is designated.
-- Confirm whether the third-place match consumes semi-final losers via explicit loser feeds or a separate placement source type before finalizing the schema.
+- The May 2026 regulations and Article 12.6-12.11 are the approved source for the complete M73-M104 topology.
+- M103 consumes the runners-up of M101 and M102 through explicit `MATCH_LOSER` sources.
 
 ## Acceptance Criteria
 
