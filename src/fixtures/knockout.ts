@@ -3,7 +3,7 @@
  *   - finished-normal: match FINISHED in normal time
  *   - finished-aet: FINISHED_AFTER_EXTRA_TIME
  *   - finished-pens: FINISHED_AFTER_PENALTIES with penalty scores separate from match score
- *   - knockout-advancement: a finished Round-of-16 match where winner feeds next slot
+ *   - knockout-advancement: finished Round-of-16 matches whose winners feed the next slot
  */
 import type { TournamentSnapshot } from "../domain";
 
@@ -124,7 +124,7 @@ export const finishedPens: TournamentSnapshot = {
  * knockout-advancement — a finished Round-of-16 match where the winner (USA)
  * advances and feeds the home slot of the subsequent Quarter-final.
  * The snapshot contains both the finished R16 match and the downstream QF
- * which is still scheduled with no participants yet confirmed.
+ * with both participants confirmed.
  */
 export const knockoutAdvancement: TournamentSnapshot = {
   generatedAt: "2026-07-05T20:00:00Z",
@@ -136,7 +136,7 @@ export const knockoutAdvancement: TournamentSnapshot = {
     // R16 match — finished, USA won
     {
       id: "ko1",
-      matchNumber: 73,
+      matchNumber: 89,
       round: "ROUND_OF_16",
       kickoffUtc: "2026-07-01T18:00:00Z",
       venue: "AT&T Stadium",
@@ -151,7 +151,7 @@ export const knockoutAdvancement: TournamentSnapshot = {
     // Concurrent R16 match — also finished
     {
       id: "ko2",
-      matchNumber: 74,
+      matchNumber: 90,
       round: "ROUND_OF_16",
       kickoffUtc: "2026-07-02T18:00:00Z",
       venue: "MetLife Stadium",
@@ -163,11 +163,10 @@ export const knockoutAdvancement: TournamentSnapshot = {
       winnerTeamId: "fra",
       updatedAt: "2026-07-02T19:55:00Z",
     },
-    // QF fed by m73 (home) and m74 (away) — teams not yet assigned by datasource
-    // The bracket definition maps matchNumber 73 → home, 74 → away
+    // QF fed by M89 (home) and M90 (away)
     {
       id: "qf1",
-      matchNumber: 89,
+      matchNumber: 97,
       round: "QUARTER_FINAL",
       kickoffUtc: "2026-07-08T18:00:00Z",
       venue: "SoFi Stadium",

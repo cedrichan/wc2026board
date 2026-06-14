@@ -35,7 +35,21 @@ export interface ThirdPlaceRankingRow {
   // undefined means conduct data is unavailable; display as "—" in UI
   conductScore?: number;
   points: number;
-  qualifying: boolean;
+  // null means an unresolved tied set spans the qualification boundary
+  qualifying: boolean | null;
   provisional: boolean;
   tiebreakerUsed?: string;
+}
+
+export interface ThirdPlaceRankingDiagnostic {
+  teamIds: string[];
+  criterion: string;
+  affectsQualification: boolean;
+}
+
+export interface ThirdPlaceRanking {
+  rows: ThirdPlaceRankingRow[];
+  qualificationBoundary: 8;
+  boundaryResolved: boolean;
+  diagnostics: ThirdPlaceRankingDiagnostic[];
 }

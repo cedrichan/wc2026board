@@ -24,7 +24,10 @@ The third-place finisher from each group is ranked using cross-group criteria an
 
 ## Ambiguities / Decisions Required
 
-- The PRD does not define UI/domain status when the tie spanning positions 8 and 9 cannot be resolved. Ask whether both sides should be marked unresolved, and do not assign Annex C slots until clarified.
+- **Approved decision:** When an unresolved tie spans positions 8 and 9, mark every
+  team in that tied set `UNRESOLVED`. Teams conclusively above remain qualifying
+  and teams conclusively below remain outside. Do not emit a definitive top-eight
+  set.
 
 ## Acceptance Criteria
 

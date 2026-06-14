@@ -1,3 +1,5 @@
+import type { GroupId } from "./common";
+
 export interface FifaRankingEntry {
   teamId: string;
   fifaCode: string;
@@ -26,4 +28,36 @@ export interface ThirdPlaceAssignment {
     "1K": string;
     "1L": string;
   };
+}
+
+export type ThirdPlaceWinnerSlot = keyof ThirdPlaceAssignment["slots"];
+
+export interface AssignedThirdPlaceQualifier {
+  groupId: GroupId;
+  teamId: string;
+}
+
+export interface ResolvedThirdPlaceAssignment {
+  qualifyingGroups: string;
+  slots: Record<ThirdPlaceWinnerSlot, AssignedThirdPlaceQualifier>;
+}
+
+export type ThirdPlaceAssignmentDiagnosticCode =
+  | "UNRESOLVED_QUALIFICATION_BOUNDARY"
+  | "INVALID_QUALIFIER_COUNT"
+  | "DUPLICATE_QUALIFYING_GROUP"
+  | "DUPLICATE_QUALIFYING_TEAM"
+  | "INVALID_QUALIFYING_GROUP"
+  | "MISSING_ANNEX_C_ROW"
+  | "NON_UNIQUE_ANNEX_C_ROW"
+  | "INVALID_ANNEX_C_ROW";
+
+export interface ThirdPlaceAssignmentDiagnostic {
+  code: ThirdPlaceAssignmentDiagnosticCode;
+  message: string;
+}
+
+export interface ThirdPlaceAssignmentResult {
+  assignment?: ResolvedThirdPlaceAssignment;
+  diagnostics: ThirdPlaceAssignmentDiagnostic[];
 }

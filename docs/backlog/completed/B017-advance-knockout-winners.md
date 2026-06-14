@@ -24,8 +24,11 @@ A pure advancement function populates future bracket slots only from final knock
 
 ## Ambiguities / Decisions Required
 
-- The example topology models winner feeds but the third-place match requires semi-final losers. Ask for the approved loser/placement-feed representation before implementing that path.
-- Ask whether a final status plus derivable score is sufficient to determine a winner when `winnerTeamId` is missing, especially after penalties; do not guess shootout winners from incomplete data.
+- **Approved decision:** Use the existing target-side `MATCH_LOSER` topology sources
+  for the third-place match. Do not add separate loser-feed metadata.
+- **Approved decision:** Advance only a valid explicit `winnerTeamId` from a final
+  match. Do not derive a winner from scores when `winnerTeamId` is missing or
+  invalid.
 
 ## Acceptance Criteria
 

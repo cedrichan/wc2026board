@@ -18,6 +18,8 @@ export type {
   StandingRow,
   GroupStandings,
   ThirdPlaceRankingRow,
+  ThirdPlaceRankingDiagnostic,
+  ThirdPlaceRanking,
 } from "./standings";
 
 export type {
@@ -31,12 +33,19 @@ export type {
   ParticipantSlotState,
   ParticipantSlot,
   BracketMatchDefinition,
+  BracketProjectionMatch,
 } from "./bracket";
 
 export type {
   FifaRankingEntry,
   FifaRankingEdition,
   ThirdPlaceAssignment,
+  ThirdPlaceWinnerSlot,
+  AssignedThirdPlaceQualifier,
+  ResolvedThirdPlaceAssignment,
+  ThirdPlaceAssignmentDiagnosticCode,
+  ThirdPlaceAssignmentDiagnostic,
+  ThirdPlaceAssignmentResult,
 } from "./ranking";
 
 export type { TournamentDataSource } from "./datasource";

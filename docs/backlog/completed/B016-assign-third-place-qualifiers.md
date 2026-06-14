@@ -24,7 +24,10 @@ The top eight third-place groups select exactly one Annex C row and populate the
 
 ## Ambiguities / Decisions Required
 
-- The PRD does not define whether provisional/unresolved top-eight rankings may produce provisional Annex C assignments. Ask before assigning when the qualification boundary is unresolved.
+- **Approved decision:** Annex C assignment is allowed when top-eight membership is
+  definitive, even if ordering wholly within the top eight or bottom four remains
+  provisional. Do not assign Annex C slots when uncertainty spans the qualification
+  boundary.
 
 ## Acceptance Criteria
 

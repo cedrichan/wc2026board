@@ -25,8 +25,13 @@ A bracket-projection function combines group standings, Annex C assignments, and
 
 ## Ambiguities / Decisions Required
 
-- The PRD does not define the exact condition that makes a group-stage participant "confirmed" before the group stage is complete. Ask for the confirmation rule before labeling any placement confirmed.
-- Ask how unresolved qualification-boundary ties should appear in individual Round-of-32 slots and whether a provisional team may be shown there.
+- **Approved decision:** A group winner or runner-up is confirmed only when every
+  match in that group is final and its placement is non-provisional. A third-place
+  participant is confirmed only when all groups are complete, the qualification
+  boundary is resolved, and Annex C assignment succeeds.
+- **Approved decision:** Do not show a provisional team in an unresolved individual
+  slot. Preserve its source placeholder with an unresolved explanation. When the
+  third-place boundary is unresolved, all Annex C-dependent slots are unresolved.
 
 ## Acceptance Criteria
 

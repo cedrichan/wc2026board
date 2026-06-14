@@ -24,8 +24,13 @@ Provider-independent view models for the bracket, group cards, third-place table
 
 ## Ambiguities / Decisions Required
 
-- The PRD lists stage labels but does not define the exact derivation when stages overlap or fixtures are incomplete. Ask for the stage-priority rule.
-- Ask whether date/time formatting belongs in view models or components if repository conventions do not settle it.
+- **Approved decision:** Derive stage in this order: tournament complete when the
+  final is finished; otherwise the highest-progress live round; otherwise the
+  earliest upcoming scheduled/pre-match round; otherwise the highest-progress
+  finished round; otherwise unknown.
+- **Approved decision:** User-facing date/time formatting belongs in view models.
+  Keep UTC ISO values alongside formatted labels and inject locale, display mode,
+  and current time for deterministic tests.
 
 ## Acceptance Criteria
 

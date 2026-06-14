@@ -8,16 +8,23 @@ export type SlotSource =
   | { type: "MATCH_LOSER"; matchNumber: number };
 
 // Participant slot state for a bracket entry
-export type ParticipantSlotState = "PLACEHOLDER" | "PROJECTED" | "CONFIRMED" | "SUPERSEDED";
+export type ParticipantSlotState =
+  | "PLACEHOLDER"
+  | "PROJECTED"
+  | "CONFIRMED"
+  | "UNRESOLVED"
+  | "SUPERSEDED";
 
 export interface ParticipantSlot {
   state: ParticipantSlotState;
   // Set when a team is identified (PROJECTED, CONFIRMED, or SUPERSEDED)
   teamId?: string;
-  // Human-readable label for PLACEHOLDER slots, e.g. "Winner M73", "1E", "3A/B/C/D/F"
+  // Human-readable source label for PLACEHOLDER or UNRESOLVED slots
   label?: string;
-  // Set for PROJECTED slots, e.g. "Projected winner of Group E"
+  // Human-readable placement source, e.g. "Projected winner of Group E"
   qualificationSource?: string;
+  // Explains why no individual team can be shown in an UNRESOLVED slot
+  unresolvedReason?: string;
 }
 
 export interface BracketMatchDefinition {
@@ -28,4 +35,11 @@ export interface BracketMatchDefinition {
   // Match number that the winner feeds into
   winnerFeedsMatch?: number;
   winnerFeedsSide?: "HOME" | "AWAY";
+}
+
+export interface BracketProjectionMatch {
+  matchNumber: number;
+  round: Exclude<TournamentRound, "GROUP_STAGE">;
+  homeParticipant: ParticipantSlot;
+  awayParticipant: ParticipantSlot;
 }
