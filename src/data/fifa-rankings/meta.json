@@ -1,0 +1,13 @@
+{
+  "bundledEditions": ["2026-04"],
+  "mostRecent": "2026-04",
+  "editionDetails": {
+    "2026-04": {
+      "rankingScheduleId": "FRS_Male_Football_20260401",
+      "status": "complete",
+      "teamCount": 48,
+      "notes": "48 WC2026 participants only. Source: FIFA API."
+    }
+  },
+  "notes": "Single edition bundled. April 2026 ranking is used as the sole tiebreaker; residual ties after this edition are marked Provisional. teamId equals fifaCode; ESPN adapter maps via FIFA code."
+}
