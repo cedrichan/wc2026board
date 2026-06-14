@@ -14,6 +14,18 @@ Measured improvements keep scrolling smooth and avoid unnecessary rerenders or o
 - Inspect production bundle and lazy-load nonessential rules/help content.
 - Check image sizing and duplicate network requests.
 
+## Product Requirements
+
+- Keep horizontal scrolling smooth on mid-range mobile hardware and prevent a single score update from rerendering every match card.
+- Target LCP below 2.5 seconds on typical broadband after static assets are cached.
+- Keep initial JavaScript appropriate for one dashboard page and lazy-load nonessential rules/help content.
+- Use small optimized flag assets; avoid full-resolution artwork.
+- Deduplicate ESPN requests through TanStack Query, avoid unnecessary date-range prefetching, and document remaining LCP/mobile risks.
+
+## Ambiguities / Decisions Required
+
+- The PRD does not define a bundle-size budget, test device/browser, uncached LCP target, or quantitative smooth-scrolling threshold. Ask for measurement conditions before treating the audit as pass/fail.
+
 ## Acceptance Criteria
 
 - A single score change does not rerender every match card.

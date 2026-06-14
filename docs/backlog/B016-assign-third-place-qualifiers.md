@@ -14,8 +14,20 @@ The top eight third-place groups select exactly one Annex C row and populate the
 - Resolve each assigned third-place team by group.
 - Return explicit diagnostics for a missing or invalid assignment.
 
+## Product Requirements
+
+- Take the resolved top eight third-place teams, sort their group letters alphabetically, and select exactly one matching official Annex C row.
+- Populate the eight applicable Round-of-32 opponents for winner slots `1A`, `1B`, `1D`, `1E`, `1G`, `1I`, `1K`, and `1L`.
+- Ensure each selected third-place team appears exactly once and no group winner receives an opponent from an invalid group.
+- Treat missing, duplicate, invalid, or non-unique Annex C rows as explicit diagnostic failures; never infer a greedy assignment.
+- Keep assignment logic pure and independent from rendering and ESPN.
+
+## Ambiguities / Decisions Required
+
+- The PRD does not define whether provisional/unresolved top-eight rankings may produce provisional Annex C assignments. Ask before assigning when the qualification boundary is unresolved.
+
 ## Acceptance Criteria
 
-- Exactly eight unique teams are assigned once each.
+- For a resolved top eight, exactly eight unique teams are assigned once each; an unresolved boundary follows the product-owner decision instead of being guessed.
 - No winner receives an invalid third-place opponent.
 - Tests cover a known combination and a changed qualification combination.

@@ -8,6 +8,10 @@ This backlog decomposes `docs/product.md` into tasks sized for one person to com
 - `None` means the task can start immediately.
 - Parallelization describes the safest concurrent work, not a hard scheduling rule.
 - Every task should leave the main branch buildable and its acceptance criteria demonstrably satisfied.
+- `Product Requirements` restates the task-specific behavior from `docs/product.md`; it is part of the task definition, not optional background.
+- `Ambiguities / Decisions Required` identifies choices that `docs/product.md` does not settle. Ask the product owner before implementation when one of these decisions is required; do not silently choose a value or behavior.
+- If implementation uncovers a new ambiguity that could change user-visible behavior, tournament results, provider behavior, security, accessibility, or release readiness, stop and ask before making an assumption.
+- FIFA regulations are authoritative for ranking, tiebreaking, and bracket rules. ESPN is authoritative only for runtime match state. Neither ESPN ordering nor visual bracket position may be used as a substitute for local rules/configuration.
 
 ## Recommended Delivery Waves
 
