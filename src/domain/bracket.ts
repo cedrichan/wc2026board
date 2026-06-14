@@ -4,7 +4,8 @@ export type SlotSource =
   | { type: "GROUP_WINNER"; group: GroupId }
   | { type: "GROUP_RUNNER_UP"; group: GroupId }
   | { type: "THIRD_PLACE"; groups: string }  // e.g. "A/B/C/D/F"
-  | { type: "MATCH_WINNER"; matchNumber: number };
+  | { type: "MATCH_WINNER"; matchNumber: number }
+  | { type: "MATCH_LOSER"; matchNumber: number };
 
 // Participant slot state for a bracket entry
 export type ParticipantSlotState = "PLACEHOLDER" | "PROJECTED" | "CONFIRMED" | "SUPERSEDED";
