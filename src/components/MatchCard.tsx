@@ -204,7 +204,7 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
     return (
       <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minWidth: 0, flex: 1 }}>
         <Tooltip title={participant.sourceExplanation} arrow>
-          <Box sx={{ minWidth: 0 }}>
+          <Box>
             {nameEl}
           </Box>
         </Tooltip>
