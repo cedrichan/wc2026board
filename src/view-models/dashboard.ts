@@ -7,6 +7,7 @@ import {
   type GroupId,
   type GroupStandings,
   type Match,
+  type MatchClock,
   type MatchScore,
   type NormalizedMatchStatus,
   type ParticipantSlot,
@@ -752,7 +753,7 @@ function buildTickerItem(
     ? `Group ${match.group}`
     : TICKER_ROUND_LABELS[match.round];
 
-  const clockLabel = buildTickerClockLabel(match.status, match.elapsedMinutes);
+  const clockLabel = buildTickerClockLabel(match.status, match.clock, match.elapsedMinutes);
   const homeName = home?.shortName ?? "TBD";
   const awayName = away?.shortName ?? "TBD";
   const scoreStr = homeScore === null ? "vs" : `${homeScore}–${awayScore}`;
@@ -776,15 +777,26 @@ function buildTickerItem(
   };
 }
 
-function buildTickerClockLabel(status: NormalizedMatchStatus, elapsedMinutes: number | undefined): string | undefined {
+function buildTickerClockLabel(
+  status: NormalizedMatchStatus,
+  clock: MatchClock | undefined,
+  elapsedMinutes: number | undefined,
+): string | undefined {
+  // Prefer ESPN's pre-formatted display string; fall back to computing from
+  // elapsed seconds; then from the legacy elapsedMinutes field.
+  const timeStr =
+    clock?.displayValue ??
+    (clock?.elapsedSeconds !== undefined ? `${Math.floor(clock.elapsedSeconds / 60)}′` : undefined) ??
+    (elapsedMinutes !== undefined ? `${elapsedMinutes}′` : undefined);
+
   switch (status) {
-    case "FIRST_HALF":    return elapsedMinutes !== undefined ? `1H ${elapsedMinutes}′` : "1H";
-    case "HALF_TIME":     return "HT";
-    case "SECOND_HALF":   return elapsedMinutes !== undefined ? `2H ${elapsedMinutes}′` : "2H";
-    case "EXTRA_TIME":    return elapsedMinutes !== undefined ? `ET ${elapsedMinutes}′` : "ET";
+    case "FIRST_HALF":       return timeStr !== undefined ? `1H ${timeStr}` : "1H";
+    case "HALF_TIME":        return "HT";
+    case "SECOND_HALF":      return timeStr !== undefined ? `2H ${timeStr}` : "2H";
+    case "EXTRA_TIME":       return timeStr !== undefined ? `ET ${timeStr}` : "ET";
     case "EXTRA_TIME_BREAK": return "ET HT";
     case "PENALTY_SHOOTOUT": return "PKs";
-    default:              return undefined;
+    default:                 return undefined;
   }
 }
 
