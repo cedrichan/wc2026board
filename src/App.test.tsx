@@ -63,7 +63,7 @@ describe("App dashboard", () => {
     renderApp(fixtureSource());
 
     expect(
-      await screen.findByText(/ESPN is the only data source/i),
+      await screen.findByText(/live ESPN scores/i),
     ).toBeInTheDocument();
 
     const footer = screen.getByRole("contentinfo");
