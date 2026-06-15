@@ -13,6 +13,7 @@ import BracketSection from "./BracketSection";
 import BracketSkeleton from "./BracketSkeleton";
 import DashboardFooter from "./DashboardFooter";
 import DashboardHeader from "./DashboardHeader";
+import EventLog from "./EventLog";
 import GroupCardStripSkeleton from "./GroupCardSkeleton";
 import GroupCardStrip from "./GroupCardStrip";
 import MatchTicker from "./MatchTicker";
@@ -122,6 +123,9 @@ export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
 function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX.Element {
   return (
     <>
+      {/* Recent events log */}
+      <EventLog log={viewModel.eventLog} />
+
       {/* 2. Horizontally scrolling group tables */}
       <Box component="section" aria-label="Group tables">
         <SectionHeading>Group tables</SectionHeading>
