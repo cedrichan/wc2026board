@@ -319,6 +319,8 @@ describe("buildDashboardViewModel", () => {
         accessibleLabel: "score unavailable",
       },
     });
+    expect(match.home.advancing).toBe(false);
+    expect(match.away.advancing).toBe(false);
   });
 
   it("formats kickoff in the selected local timezone while retaining UTC ISO", () => {

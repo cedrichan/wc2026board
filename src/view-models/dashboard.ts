@@ -385,7 +385,7 @@ function buildParticipant(
     ?? slot.qualificationSource
     ?? (slot.state === "PLACEHOLDER" ? `Awaiting ${baseLabel}` : undefined);
   const currentlyAhead = ahead === side;
-  const advancing = team?.id === winnerTeamId;
+  const advancing = winnerTeamId !== undefined && team?.id === winnerTeamId;
   return {
     id: `match-${matchNumber}-${side.toLowerCase()}`,
     side,
