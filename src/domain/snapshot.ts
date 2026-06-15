@@ -9,6 +9,14 @@ export interface UnresolvedTiebreaker {
   criterion: string;
 }
 
+export interface DataDiagnostic {
+  code: string;
+  message: string;
+  path?: string;
+  matchId?: string;
+  field?: string;
+}
+
 export interface DataDiagnostics {
   // Always "espn" in production for this MVP
   provider: "espn";
@@ -16,6 +24,8 @@ export interface DataDiagnostics {
   warnings: string[];
   unresolvedTiebreakers: UnresolvedTiebreaker[];
   missingFields: string[];
+  // Machine-readable diagnostics are optional for compatibility with existing snapshots.
+  issues?: DataDiagnostic[];
 }
 
 export interface TournamentSnapshot {

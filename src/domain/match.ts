@@ -6,6 +6,12 @@ export interface MatchScore {
   away: number | null;
 }
 
+export interface MatchClock {
+  elapsedSeconds?: number;
+  displayValue?: string;
+  period?: number;
+}
+
 export type CardType =
   | "YELLOW"
   | "RED_INDIRECT"   // second yellow
@@ -20,6 +26,8 @@ export interface DisciplinaryEvent {
   minute?: number;
 }
 
+export type DisciplinaryCoverage = "COMPLETE" | "INCOMPLETE" | "UNAVAILABLE";
+
 export interface Match {
   id: string;
   matchNumber: number;
@@ -29,6 +37,8 @@ export interface Match {
   venue?: string;
   city?: string;
   status: NormalizedMatchStatus;
+  clock?: MatchClock;
+  // Retained for existing consumers while structured clock support is adopted.
   elapsedMinutes?: number;
   homeTeamId?: string;
   awayTeamId?: string;
@@ -38,5 +48,6 @@ export interface Match {
   penalties?: MatchScore;
   winnerTeamId?: string;
   disciplinaryEvents?: DisciplinaryEvent[];
+  disciplinaryCoverage?: DisciplinaryCoverage;
   updatedAt?: string;
 }

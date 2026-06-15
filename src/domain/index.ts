@@ -9,9 +9,16 @@ export {
   INTERRUPTED_STATUSES,
 } from "./common";
 
-export type { Team } from "./team";
+export type { PartialTeam, Team } from "./team";
 
-export type { MatchScore, CardType, DisciplinaryEvent, Match } from "./match";
+export type {
+  MatchScore,
+  MatchClock,
+  CardType,
+  DisciplinaryEvent,
+  DisciplinaryCoverage,
+  Match,
+} from "./match";
 
 export type {
   QualificationStatus,
@@ -24,6 +31,7 @@ export type {
 
 export type {
   UnresolvedTiebreaker,
+  DataDiagnostic,
   DataDiagnostics,
   TournamentSnapshot,
 } from "./snapshot";
