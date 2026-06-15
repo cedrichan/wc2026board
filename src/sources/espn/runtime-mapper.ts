@@ -146,6 +146,7 @@ function mapMatchEvents(competition: EspnCompetition): EspnMatchEventInput[] {
     clockDisplay: detail.clock?.displayValue,
     teamId: detail.team?.id,
     primaryPlayerName: detail.athletesInvolved?.[0]?.displayName ?? detail.athletesInvolved?.[0]?.shortName,
+    scoreValue: detail.scoreValue,
     scoringPlay: detail.scoringPlay,
     yellowCard: detail.yellowCard,
     redCard: detail.redCard,

@@ -361,6 +361,7 @@ describe("buildDashboardViewModel", () => {
               type: "GOAL",
               teamId: "team-A-1",
               primaryPlayerName: "Alex Morgan",
+              scoreValue: 1,
               clockSeconds: 720,
               clockDisplay: "12′",
             },
@@ -381,11 +382,107 @@ describe("buildDashboardViewModel", () => {
 
     expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-goal-1-GOAL"))
       .toMatchObject({
-        description: "Alex Morgan of 🏳️ A1 scores a goal.",
+        description: "Alex Morgan of 🏳️ Team A1 scores a goal. Score: 1–0.",
       });
     expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-red-1-RED_CARD"))
       .toMatchObject({
-        description: "Sam Player of 🏳️ A2 receives a red card.",
+        description: "Sam Player of 🏳️ Team A2 receives a red card.",
+      });
+  });
+
+  it("attributes own goals to the opposing player team in recent events", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "group-live",
+          matchNumber: 1,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "SECOND_HALF",
+          elapsedMinutes: 67,
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-2",
+          normalTime: { home: 1, away: 0 },
+          events: [
+            {
+              id: "own-goal-1",
+              type: "OWN_GOAL",
+              teamId: "team-A-1",
+              primaryPlayerName: "Sam Player",
+              clockSeconds: 900,
+              clockDisplay: "15′",
+            },
+          ],
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-own-goal-1-OWN_GOAL"))
+      .toMatchObject({
+        description: "Sam Player of 🏳️ Team A2 scores an own goal. Score: 1–0.",
+      });
+  });
+
+  it("shows the running scoreline for scoring events", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "group-live",
+          matchNumber: 1,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "SECOND_HALF",
+          elapsedMinutes: 67,
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-2",
+          normalTime: { home: 2, away: 1 },
+          events: [
+            {
+              id: "goal-1",
+              type: "GOAL",
+              teamId: "team-A-1",
+              primaryPlayerName: "Player 1",
+              clockSeconds: 300,
+              clockDisplay: "5′",
+            },
+            {
+              id: "goal-2",
+              type: "GOAL",
+              teamId: "team-A-2",
+              primaryPlayerName: "Player 2",
+              clockSeconds: 1500,
+              clockDisplay: "25′",
+            },
+            {
+              id: "goal-3",
+              type: "PENALTY_GOAL",
+              teamId: "team-A-1",
+              primaryPlayerName: "Player 3",
+              clockSeconds: 3600,
+              clockDisplay: "60′",
+            },
+          ],
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-goal-1-GOAL"))
+      .toMatchObject({
+        description: "Player 1 of 🏳️ Team A1 scores a goal. Score: 1–0.",
+      });
+    expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-goal-2-GOAL"))
+      .toMatchObject({
+        description: "Player 2 of 🏳️ Team A2 scores a goal. Score: 1–1.",
+      });
+    expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-goal-3-PENALTY_GOAL"))
+      .toMatchObject({
+        description: "Player 3 of 🏳️ Team A1 scores a penalty. Score: 2–1.",
       });
   });
 

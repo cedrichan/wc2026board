@@ -50,6 +50,7 @@ export interface EspnMatchEventInput {
   clockDisplay?: string | null;
   teamId?: string | null;
   primaryPlayerName?: string | null;
+  scoreValue?: number | null;
   scoringPlay?: boolean | null;
   yellowCard?: boolean | null;
   redCard?: boolean | null;
@@ -221,6 +222,7 @@ function normalizeMatchEvents(input: EspnMatchInput): MatchEvent[] | undefined {
       ...(ev.clockDisplay ? { clockDisplay: ev.clockDisplay } : {}),
       ...(ev.teamId ? { teamId: ev.teamId } : {}),
       ...(ev.primaryPlayerName ? { primaryPlayerName: ev.primaryPlayerName } : {}),
+      ...(typeof ev.scoreValue === "number" && ev.scoreValue >= 0 ? { scoreValue: ev.scoreValue } : {}),
     });
   }
   return events.length > 0 ? events : undefined;

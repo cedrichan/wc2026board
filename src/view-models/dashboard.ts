@@ -8,6 +8,7 @@ import {
   type GroupStandings,
   type Match,
   type MatchClock,
+  type MatchEvent,
   type MatchEventType,
   type MatchScore,
   type NormalizedMatchStatus,
@@ -226,6 +227,7 @@ export interface MatchTickerViewModel {
 export interface EventLogParticipant {
   fifaCode: string;
   flagEmoji: string;
+  name: string;
   shortName: string;
 }
 
@@ -742,26 +744,28 @@ function fulltimeSortOffset(match: Match): number {
 
 function eventSubject(
   playerName: string | undefined,
-  participant: Pick<EventLogParticipant, "flagEmoji" | "shortName"> | undefined,
+  participant: Pick<EventLogParticipant, "flagEmoji" | "name"> | undefined,
 ): string {
-  const teamLabel = participant === undefined ? "the team" : `${participant.flagEmoji} ${participant.shortName}`;
+  const teamLabel = participant === undefined ? "the team" : `${participant.flagEmoji} ${participant.name}`;
   if (playerName) return `${playerName} of ${teamLabel}`;
   return `${teamLabel}`;
 }
 
 function inGameDescription(
   type: MatchEventType,
-  participant: Pick<EventLogParticipant, "flagEmoji" | "shortName"> | undefined,
+  participant: Pick<EventLogParticipant, "flagEmoji" | "name"> | undefined,
   playerName: string | undefined,
+  scoreline: string | undefined,
 ): string {
   const subject = eventSubject(playerName, participant);
+  const scoreSuffix = scoreline === undefined ? "" : ` Score: ${scoreline}.`;
   switch (type) {
     case "GOAL":
-      return `${subject} scores a goal.`;
+      return `${subject} scores a goal.${scoreSuffix}`;
     case "OWN_GOAL":
-      return `${subject} scores an own goal.`;
+      return `${subject} scores an own goal.${scoreSuffix}`;
     case "PENALTY_GOAL":
-      return `${subject} scores a penalty.`;
+      return `${subject} scores a penalty.${scoreSuffix}`;
     case "YELLOW_CARD":
       return `${subject} receives a yellow card.`;
     case "RED_CARD":
@@ -776,8 +780,51 @@ function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMa
   return {
     fifaCode: team?.fifaCode ?? "—",
     flagEmoji: flagEmojiForFifaCode(team?.fifaCode),
+    name: team?.name ?? team?.shortName ?? team?.fifaCode ?? "Unknown team",
     shortName: team?.shortName ?? team?.fifaCode ?? "Unknown team",
   };
+}
+
+function participantForEvent(
+  event: MatchEvent,
+  match: Match,
+  home: EventLogParticipant,
+  away: EventLogParticipant,
+  teamsById: ReadonlyMap<string, Team>,
+): EventLogParticipant | undefined {
+  if (event.type === "OWN_GOAL") {
+    if (event.teamId === match.homeTeamId) return away;
+    if (event.teamId === match.awayTeamId) return home;
+  }
+
+  if (event.teamId === match.homeTeamId) return home;
+  if (event.teamId === match.awayTeamId) return away;
+  if (event.teamId !== undefined) return buildEventParticipant(event.teamId, teamsById);
+  return undefined;
+}
+
+function isScoringEvent(type: MatchEventType): boolean {
+  return type === "GOAL" || type === "OWN_GOAL" || type === "PENALTY_GOAL";
+}
+
+function scorelineForEvent(
+  event: MatchEvent,
+  match: Match,
+  runningScore: MatchScore,
+): string | undefined {
+  if (!isScoringEvent(event.type)) return undefined;
+
+  if (event.teamId === match.homeTeamId) {
+    runningScore.home = event.scoreValue ?? ((runningScore.home ?? 0) + 1);
+    return scoreLabel(runningScore);
+  }
+
+  if (event.teamId === match.awayTeamId) {
+    runningScore.away = event.scoreValue ?? ((runningScore.away ?? 0) + 1);
+    return scoreLabel(runningScore);
+  }
+
+  return undefined;
 }
 
 function buildEventLog(
@@ -808,23 +855,18 @@ function buildEventLog(
     });
 
     // In-game events (goals, cards)
+    const runningScore: MatchScore = { home: 0, away: 0 };
     for (const event of match.events ?? []) {
       const clockSeconds = event.clockSeconds ?? 0;
-      const participant =
-        event.teamId === match.homeTeamId
-          ? home
-          : event.teamId === match.awayTeamId
-            ? away
-            : event.teamId !== undefined
-              ? buildEventParticipant(event.teamId, teamsById)
-              : undefined;
+      const participant = participantForEvent(event, match, home, away, teamsById);
+      const scoreline = scorelineForEvent(event, match, runningScore);
       entries.push({
         id: `event-log-${match.matchNumber}-${event.id ?? clockSeconds}-${event.type}`,
         sortKey: kickoffMs + clockSeconds * 1000,
         clockDisplay: event.clockDisplay ?? `${Math.floor(clockSeconds / 60)}′`,
         type: event.type,
         home, away,
-        description: inGameDescription(event.type, participant, event.primaryPlayerName),
+        description: inGameDescription(event.type, participant, event.primaryPlayerName, scoreline),
         isLive,
       });
     }

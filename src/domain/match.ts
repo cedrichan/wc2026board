@@ -53,6 +53,7 @@ export interface MatchEvent {
   clockDisplay?: string;
   teamId?: string;
   primaryPlayerName?: string;
+  scoreValue?: number;
 }
 
 export interface Match {
