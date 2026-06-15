@@ -752,7 +752,7 @@ function buildTickerItem(
     ? `Group ${match.group}`
     : TICKER_ROUND_LABELS[match.round];
 
-  const clockLabel = buildClockLabel(match.status, match.elapsedMinutes);
+  const clockLabel = buildTickerClockLabel(match.status, match.elapsedMinutes);
   const homeName = home?.shortName ?? "TBD";
   const awayName = away?.shortName ?? "TBD";
   const scoreStr = homeScore === null ? "vs" : `${homeScore}–${awayScore}`;
@@ -774,6 +774,18 @@ function buildTickerItem(
     penaltiesLabel,
     accessibleName: `${contextLabel}, ${homeName} ${scoreStr} ${awayName}, ${STATUS_LABELS[match.status]}${clockLabel === undefined ? "" : ` ${clockLabel}`}`,
   };
+}
+
+function buildTickerClockLabel(status: NormalizedMatchStatus, elapsedMinutes: number | undefined): string | undefined {
+  switch (status) {
+    case "FIRST_HALF":    return elapsedMinutes !== undefined ? `1H ${elapsedMinutes}′` : "1H";
+    case "HALF_TIME":     return "HT";
+    case "SECOND_HALF":   return elapsedMinutes !== undefined ? `2H ${elapsedMinutes}′` : "2H";
+    case "EXTRA_TIME":    return elapsedMinutes !== undefined ? `ET ${elapsedMinutes}′` : "ET";
+    case "EXTRA_TIME_BREAK": return "ET HT";
+    case "PENALTY_SHOOTOUT": return "PKs";
+    default:              return undefined;
+  }
 }
 
 function buildTickerTeam(team: Team | undefined): MatchTickerTeamViewModel {
