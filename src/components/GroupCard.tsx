@@ -36,7 +36,7 @@ export default function GroupCard({ group }: GroupCardProps): JSX.Element {
         <Table size="small" aria-label={`${group.label} standings`}>
           <TableHead>
             <TableRow>
-              <TableCell scope="col" sx={{ p: 0.5, width: 28, textAlign: "center", fontSize: "0.7rem" }}>Pos</TableCell>
+              <TableCell scope="col" sx={{ p: 0.5, width: 28, fontSize: "0.7rem" }}>Pos</TableCell>
               <TableCell scope="col" sx={{ p: 0.5, fontSize: "0.7rem" }}>Team</TableCell>
               <TableCell scope="col" align="right" sx={{ p: 0.5, width: 24, fontSize: "0.7rem" }}>P</TableCell>
               <TableCell scope="col" align="right" sx={{ p: 0.5, width: 44, fontSize: "0.7rem" }}>W-D-L</TableCell>
@@ -70,8 +70,8 @@ function GroupTableRow({ row }: { row: GroupRowViewModel }): JSX.Element {
           "& td": { borderBottom: "none" },
         }}
       >
-        <TableCell align="center" sx={{ p: 0.5, fontSize: "0.75rem" }}>
-          <Stack direction="row" alignItems="center" justifyContent="center" spacing={0.25}>
+        <TableCell sx={{ p: 0.5, fontSize: "0.75rem" }}>
+          <Stack direction="row" alignItems="center" spacing={0.25}>
             <span>{row.position}</span>
             {posIndicator !== undefined && (
               <Typography
@@ -89,7 +89,7 @@ function GroupTableRow({ row }: { row: GroupRowViewModel }): JSX.Element {
         <TableCell sx={{ p: 0.5 }}>
           <Stack direction="row" alignItems="center" spacing={0.75}>
             <TeamFlag team={row.team} />
-            <Box sx={{ minWidth: 0 }}>
+            <Box sx={{ minWidth: 0, maxWidth: "100px" }}>
               <Typography
                 variant="caption"
                 component="span"
