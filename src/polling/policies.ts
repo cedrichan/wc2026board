@@ -1,9 +1,9 @@
 import { FINISHED_STATUSES, LIVE_STATUSES } from "../domain";
 import type { Match, TournamentSnapshot } from "../domain";
 
-export const LIVE_POLL_INTERVAL_MS = 30_000;
+export const LIVE_POLL_INTERVAL_MS = 15_000;
 export const MATCHDAY_POLL_INTERVAL_MS = 60_000;
-export const OUTSIDE_WINDOW_POLL_INTERVAL_MS = 10 * 60 * 1_000;
+export const OUTSIDE_WINDOW_POLL_INTERVAL_MS = 60_000;
 
 // Group stage: 90 min play + 20 min halftime + 20 min stoppage buffer
 const GROUP_MATCH_DURATION_MS = 130 * 60 * 1_000;

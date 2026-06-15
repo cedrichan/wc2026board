@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
@@ -7,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import type { HeaderViewModel } from "../view-models/dashboard";
+import { relativeUpdatedLabel } from "../view-models/dashboard";
 import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 interface DashboardHeaderProps {
@@ -17,6 +19,13 @@ interface DashboardHeaderProps {
 
 export default function DashboardHeader({ header, isRefreshing, onRefresh }: DashboardHeaderProps): JSX.Element {
   const RefreshIcon = VIEW_ICONS.refresh.value;
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const updatedIso = header.sourceUpdatedAtIso ?? header.generatedAtIso;
+  const updatedLabel = relativeUpdatedLabel(updatedIso, now);
 
   return (
     <AppBar position="static" component="header">
@@ -57,7 +66,7 @@ export default function DashboardHeader({ header, isRefreshing, onRefresh }: Das
             aria-label={header.updatedAccessibleLabel}
             sx={{ opacity: 0.85, whiteSpace: "nowrap" }}
           >
-            {header.updatedLabel}
+            {updatedLabel}
           </Typography>
 
           <IconButton
