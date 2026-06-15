@@ -75,13 +75,24 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
         px: 1.5,
         py: 0.75,
         bgcolor: entry.isLive ? "action.hover" : undefined,
+        gridTemplateColumns: {
+          xs: "minmax(0, 1fr) auto",
+          sm: EVENT_LOG_COLUMNS,
+        },
+        gridTemplateAreas: {
+          xs: `
+            "match clock"
+            "description type"
+          `,
+          sm: `"match clock type description"`,
+        },
       }}
-      style={{ gridTemplateColumns: EVENT_LOG_COLUMNS }}
     >
       {/* Countries involved */}
       <Typography
         variant="body2"
         sx={{
+          gridArea: "match",
           minWidth: 0,
           overflow: "hidden",
           textOverflow: "ellipsis",
@@ -99,7 +110,12 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
       <Typography
         variant="caption"
         color="text.disabled"
-        sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
+        sx={{
+          gridArea: "clock",
+          whiteSpace: "nowrap",
+          fontVariantNumeric: "tabular-nums",
+          justifySelf: "end",
+        }}
       >
         {entry.clockDisplay}
       </Typography>
@@ -108,13 +124,13 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
         variant="caption"
         color={isLifecycle ? "text.disabled" : "text.secondary"}
         sx={{
+          gridArea: "type",
           minWidth: 0,
-          overflow: "hidden",
-          textOverflow: "ellipsis",
           fontWeight: 700,
           letterSpacing: 0.6,
           textTransform: "uppercase",
           whiteSpace: "nowrap",
+          justifySelf: { xs: "end", sm: "start" },
         }}
       >
         {typeLabel}
@@ -124,7 +140,12 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
       <Typography
         variant="body2"
         color={isLifecycle ? "text.disabled" : entry.isLive ? "error.main" : "text.secondary"}
-        sx={{ minWidth: 0, fontWeight: isGoal ? 600 : 400 }}
+        sx={{
+          gridArea: "description",
+          minWidth: 0,
+          fontWeight: isGoal ? 600 : 400,
+          overflowWrap: "anywhere",
+        }}
       >
         {entry.description}
       </Typography>

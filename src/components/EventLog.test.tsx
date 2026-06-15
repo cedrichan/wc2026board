@@ -33,7 +33,7 @@ const log: EventLogViewModel = {
 };
 
 describe("EventLog", () => {
-  it("renders event rows with stable shared columns", () => {
+  it("renders event rows with match metadata and descriptions", () => {
     render(
       <ThemeProvider theme={theme}>
         <EventLog log={log} />
@@ -53,9 +53,9 @@ describe("EventLog", () => {
     expect(rows).toHaveLength(2);
     rows.forEach((row) => {
       expect(row).not.toBeNull();
-      expect(row).toHaveStyle({
-        gridTemplateColumns: "minmax(7.5rem, 12rem) 4rem minmax(5.5rem, 7.5rem) minmax(0, 1fr)",
-      });
     });
+
+    expect(rows[0]).toHaveTextContent(/USA vs .*MEX/);
+    expect(screen.getByText("12'")).toBeInTheDocument();
   });
 });
