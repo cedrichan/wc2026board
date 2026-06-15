@@ -31,6 +31,7 @@ function row(teamId: string, position: number, provisional = false): StandingRow
 function standings(winnerA = "winner-A"): GroupStandings[] {
   return GROUPS.map((groupId) => ({
     groupId,
+    complete: true,
     rows: [
       row(groupId === "A" ? winnerA : `winner-${groupId}`, 1),
       row(`runner-${groupId}`, 2),

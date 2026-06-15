@@ -29,6 +29,7 @@ function standing(
   };
   return {
     groupId,
+    complete: true,
     rows: [
       { ...third, teamId: `winner-${groupId}`, position: 1, points: 9, qualification: "DIRECT" },
       { ...third, teamId: `runner-${groupId}`, position: 2, points: 6, qualification: "DIRECT" },
