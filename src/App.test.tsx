@@ -48,13 +48,13 @@ describe("App dashboard", () => {
     });
 
     // Sections appear in the PRD-mandated vertical order.
-    expect(bracket.compareDocumentPosition(thirdPlace)).toBe(
+    expect(groups.compareDocumentPosition(thirdPlace)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
-    expect(thirdPlace.compareDocumentPosition(groups)).toBe(
+    expect(thirdPlace.compareDocumentPosition(bracket)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
-    expect(groups.compareDocumentPosition(disclosure)).toBe(
+    expect(bracket.compareDocumentPosition(disclosure)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
   });

@@ -115,10 +115,10 @@ export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
 function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX.Element {
   return (
     <>
-      {/* 2. Knockout bracket */}
-      <Box component="section" aria-label="Knockout bracket">
-        <SectionHeading>Knockout bracket</SectionHeading>
-        <BracketSection rounds={viewModel.bracket} />
+      {/* 2. Horizontally scrolling group tables */}
+      <Box component="section" aria-label="Group tables">
+        <SectionHeading>Group tables</SectionHeading>
+        <GroupCardStrip groups={viewModel.groups} />
       </Box>
 
       {/* 3. Best third-place ranking */}
@@ -126,10 +126,10 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
         <ThirdPlaceTable thirdPlace={viewModel.thirdPlace} />
       </Box>
 
-      {/* 4. Horizontally scrolling group tables */}
-      <Box component="section" aria-label="Group tables">
-        <SectionHeading>Group tables</SectionHeading>
-        <GroupCardStrip groups={viewModel.groups} />
+      {/* 4. Knockout bracket */}
+      <Box component="section" aria-label="Knockout bracket">
+        <SectionHeading>Knockout bracket</SectionHeading>
+        <BracketSection rounds={viewModel.bracket} />
       </Box>
     </>
   );
@@ -138,13 +138,13 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
 function LoadingFallback(): JSX.Element {
   return (
     <>
-      <Box component="section" aria-label="Knockout bracket">
-        <SectionHeading>Knockout bracket</SectionHeading>
-        <BracketSkeleton />
-      </Box>
       <Box component="section" aria-label="Group tables">
         <SectionHeading>Group tables</SectionHeading>
         <GroupCardStripSkeleton />
+      </Box>
+      <Box component="section" aria-label="Knockout bracket">
+        <SectionHeading>Knockout bracket</SectionHeading>
+        <BracketSkeleton />
       </Box>
     </>
   );
