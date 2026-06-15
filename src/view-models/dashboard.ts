@@ -713,7 +713,6 @@ function selectRound(matches: readonly Match[], direction: "lowest" | "highest")
   })[0];
 }
 
-const EVENT_LOG_SIZE = 30;
 const FIRST_HALF_SECONDS = 45 * 60;
 const FIRST_HALF_STOPPAGE_WINDOW_SECONDS = 15 * 60;
 const FULL_TIME_BUFFER_SECONDS = 1;
@@ -868,7 +867,6 @@ function buildEventLog(
   }
 
   entries.sort((a, b) => b.sortKey - a.sortKey);
-  entries.splice(EVENT_LOG_SIZE);
 
   return {
     id: "event-log",

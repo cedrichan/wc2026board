@@ -468,4 +468,35 @@ describe("buildDashboardViewModel", () => {
       entryIds.indexOf("event-log-1-et-stoppage-goal-GOAL"),
     );
   });
+
+  it("retains the full known event history without truncating older entries", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "match-1",
+          matchNumber: 1,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "FINISHED",
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-2",
+          normalTime: { home: 16, away: 15 },
+          events: Array.from({ length: 31 }, (_, index) => ({
+            id: `goal-${index + 1}`,
+            type: "GOAL" as const,
+            teamId: index % 2 === 0 ? "team-A-1" : "team-A-2",
+            primaryPlayerName: `Player ${index + 1}`,
+            clockSeconds: (index + 1) * 60,
+            clockDisplay: `${index + 1}′`,
+          })),
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    expect(model.eventLog.entries).toHaveLength(34);
+    expect(model.eventLog.entries.at(-1)?.id).toBe("event-log-1-kickoff");
+  });
 });
