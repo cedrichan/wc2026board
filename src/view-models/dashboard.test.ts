@@ -497,6 +497,6 @@ describe("buildDashboardViewModel", () => {
     }, OPTIONS);
 
     expect(model.eventLog.entries).toHaveLength(34);
-    expect(model.eventLog.entries.at(-1)?.id).toBe("event-log-1-kickoff");
+    expect(model.eventLog.entries[model.eventLog.entries.length - 1]?.id).toBe("event-log-1-kickoff");
   });
 });
