@@ -96,7 +96,8 @@ export function assignThirdPlaceQualifiers(
   const slots = Object.fromEntries(
     WINNER_SLOTS.map((slot) => {
       const groupId = annexRow.slots[slot] as GroupId;
-      return [slot, { groupId, teamId: qualifierByGroup.get(groupId)!.teamId }];
+      const qualifier = qualifierByGroup.get(groupId)!;
+      return [slot, { groupId, teamId: qualifier.teamId, provisional: qualifier.provisional }];
     }),
   ) as ResolvedThirdPlaceAssignment["slots"];
 

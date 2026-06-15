@@ -33,8 +33,8 @@ describe("assignThirdPlaceQualifiers", () => {
 
     expect(result.diagnostics).toEqual([]);
     expect(result.assignment?.qualifyingGroups).toBe("ABCDEFGH");
-    expect(result.assignment?.slots["1A"]).toEqual({ groupId: "H", teamId: "team-H" });
-    expect(result.assignment?.slots["1G"]).toEqual({ groupId: "A", teamId: "team-A" });
+    expect(result.assignment?.slots["1A"]).toEqual({ groupId: "H", teamId: "team-H", provisional: false });
+    expect(result.assignment?.slots["1G"]).toEqual({ groupId: "A", teamId: "team-A", provisional: false });
     expect(new Set(Object.values(result.assignment!.slots).map(({ teamId }) => teamId)).size).toBe(8);
   });
 

@@ -35,6 +35,7 @@ export type ThirdPlaceWinnerSlot = keyof ThirdPlaceAssignment["slots"];
 export interface AssignedThirdPlaceQualifier {
   groupId: GroupId;
   teamId: string;
+  provisional: boolean;
 }
 
 export interface ResolvedThirdPlaceAssignment {

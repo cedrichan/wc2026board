@@ -166,6 +166,9 @@ Participant slots support these states:
   `3A/B/C/D/F`.
 * **Projected:** Show the team name, flag, a `Projected` chip, and a tooltip that
   explains the qualification source.
+* **Provisional:** When a specific team is known but its placement still depends
+  on an unresolved tiebreaker, render it like the other identified participants
+  while keeping the participant labeled provisional rather than confirmed.
 * **Confirmed:** The group stage or prior knockout match has conclusively placed
   the team in the slot.
 * **Eliminated or superseded:** Replace a former projection without animation
@@ -443,4 +446,3 @@ ESPN schemas, empty event arrays, cached-snapshot outage behavior, stale-data
 behavior, visibility restoration, request overlap prevention, manual refresh
 during retry delays, responsive horizontal scrolling, and keyboard/screen-reader
 accessibility.
-

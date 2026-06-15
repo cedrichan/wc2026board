@@ -19,6 +19,8 @@ export interface ParticipantSlot {
   state: ParticipantSlotState;
   // Set when a team is identified (PROJECTED, CONFIRMED, or SUPERSEDED)
   teamId?: string;
+  // Indicates the team is known but its placement is still provisional
+  provisional?: boolean;
   // Human-readable source label for PLACEHOLDER or UNRESOLVED slots
   label?: string;
   // Human-readable placement source, e.g. "Projected winner of Group E"

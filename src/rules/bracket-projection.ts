@@ -57,7 +57,7 @@ function resolveDirectParticipant(
   if (candidates.length === 0) {
     return { state: "PLACEHOLDER", label };
   }
-  if (candidates.length !== 1 || candidates[0].provisional) {
+  if (candidates.length !== 1) {
     return {
       state: "UNRESOLVED",
       label,
@@ -66,6 +66,14 @@ function resolveDirectParticipant(
   }
 
   const row = candidates[0];
+  if (row.provisional) {
+    return {
+      state: "UNRESOLVED",
+      teamId: row.teamId,
+      provisional: true,
+      unresolvedReason: `The ${placement} of Group ${source.group} is provisional`,
+    };
+  }
   const confirmed = isGroupComplete(source.group, matches);
   return {
     state: confirmed ? "CONFIRMED" : "PROJECTED",
@@ -108,6 +116,15 @@ function resolveThirdPlaceParticipant(
       state: "UNRESOLVED",
       label,
       unresolvedReason: "Annex C assignment does not resolve this bracket slot",
+    };
+  }
+
+  if (assigned.provisional) {
+    return {
+      state: "UNRESOLVED",
+      teamId: assigned.teamId,
+      provisional: true,
+      unresolvedReason: `The third-place qualifier from Group ${assigned.groupId} is provisional`,
     };
   }
 

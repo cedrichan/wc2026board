@@ -79,6 +79,7 @@ export interface ParticipantViewModel {
   id: string;
   side: "HOME" | "AWAY";
   state: ParticipantSlot["state"];
+  provisional: boolean;
   label: string;
   team?: TeamViewModel;
   sourceExplanation?: string;
@@ -376,17 +377,20 @@ function buildParticipant(
 ): ParticipantViewModel {
   const team = slot.teamId === undefined ? undefined : teamsById.get(slot.teamId);
   const teamModel = team === undefined ? undefined : buildTeam(team);
-  const label = teamModel?.name ?? slot.label ?? "Team unavailable";
-  const stateLabel = participantStateLabel(slot.state);
+  const provisional = slot.provisional === true;
+  const baseLabel = teamModel?.name ?? slot.label ?? "Team unavailable";
+  const label = baseLabel;
+  const stateLabel = participantStateLabel(slot);
   const sourceExplanation = slot.unresolvedReason
     ?? slot.qualificationSource
-    ?? (slot.state === "PLACEHOLDER" ? `Awaiting ${label}` : undefined);
+    ?? (slot.state === "PLACEHOLDER" ? `Awaiting ${baseLabel}` : undefined);
   const currentlyAhead = ahead === side;
   const advancing = team?.id === winnerTeamId;
   return {
     id: `match-${matchNumber}-${side.toLowerCase()}`,
     side,
     state: slot.state,
+    provisional,
     label,
     team: teamModel,
     sourceExplanation,
@@ -394,7 +398,8 @@ function buildParticipant(
     currentlyAhead,
     advancing,
     accessibleName: [
-      label,
+      baseLabel,
+      provisional ? "provisional placement" : undefined,
       stateLabel,
       sourceExplanation,
       currentlyAhead ? "currently ahead" : undefined,
@@ -580,8 +585,9 @@ function buildClockLabel(status: NormalizedMatchStatus, elapsedMinutes: number |
   return `${status === "EXTRA_TIME" ? "ET " : ""}${elapsedMinutes}′`;
 }
 
-function participantStateLabel(state: ParticipantSlot["state"]): string {
-  switch (state) {
+function participantStateLabel(slot: ParticipantSlot): string {
+  if (slot.provisional) return "Provisional";
+  switch (slot.state) {
     case "PLACEHOLDER": return "Awaiting participant";
     case "PROJECTED": return "Projected";
     case "CONFIRMED": return "Confirmed";

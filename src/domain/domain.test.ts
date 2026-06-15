@@ -158,6 +158,17 @@ describe("ParticipantSlot states", () => {
     expect(slot.qualificationSource).toBeUndefined();
   });
 
+  it("provisional unresolved slot can retain a known team", () => {
+    const slot: ParticipantSlot = {
+      state: "UNRESOLVED",
+      teamId: "usa",
+      provisional: true,
+      unresolvedReason: "The winner of Group A is provisional",
+    };
+    expect(slot.teamId).toBe("usa");
+    expect(slot.provisional).toBe(true);
+  });
+
   it("superseded slot retains previous teamId", () => {
     const slot: ParticipantSlot = {
       state: "SUPERSEDED",

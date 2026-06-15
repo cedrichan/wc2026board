@@ -189,10 +189,59 @@ describe("buildDashboardViewModel", () => {
     });
     expect(projected.away).toMatchObject({
       state: "UNRESOLVED",
+      provisional: false,
       stateLabel: "Unresolved",
       sourceExplanation: "Annex C assignment requires definitive top-eight membership",
     });
     expect(projected.away.accessibleName).toContain("Unresolved");
+  });
+
+  it("renders known provisional bracket participants like other identified teams", () => {
+    const ranking = thirdPlaceRanking();
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([]),
+      groupStandings: standings(),
+      thirdPlaceRanking: {
+        ...ranking,
+        boundaryResolved: true,
+        rows: ranking.rows.map((row, index) => ({
+          ...row,
+          qualifying: index < 8,
+          provisional: row.groupId === "A",
+        })),
+      },
+      bracketProjection: [{
+        matchNumber: 74,
+        round: "ROUND_OF_32",
+        homeParticipant: {
+          state: "UNRESOLVED",
+          teamId: "team-A-1",
+          provisional: true,
+          unresolvedReason: "The winner of Group A is provisional",
+        },
+        awayParticipant: {
+          state: "UNRESOLVED",
+          teamId: "team-A-3",
+          provisional: true,
+          unresolvedReason: "The third-place qualifier from Group A is provisional",
+        },
+      }],
+    }, OPTIONS);
+
+    const match = model.bracket[0].matches.find((entry) => entry.matchNumber === 74)!;
+    expect(match.home).toMatchObject({
+      label: "Team A1",
+      provisional: true,
+      stateLabel: "Provisional",
+      sourceExplanation: "The winner of Group A is provisional",
+    });
+    expect(match.home.accessibleName).toContain("provisional placement");
+    expect(match.away).toMatchObject({
+      label: "Team A3",
+      provisional: true,
+      stateLabel: "Provisional",
+      sourceExplanation: "The third-place qualifier from Group A is provisional",
+    });
   });
 
   it("keeps score phases separate and distinguishes live ahead from advancing", () => {

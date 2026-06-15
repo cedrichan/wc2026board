@@ -113,8 +113,9 @@ describe("buildBracketProjection", () => {
 
     expect(projectedMatch(buildBracketProjection(input, ranking(), []), 79).homeParticipant).toEqual({
       state: "UNRESOLVED",
-      label: "1A",
-      unresolvedReason: "The winner of Group A is unresolved",
+      teamId: "provisional-winner-A",
+      provisional: true,
+      unresolvedReason: "The winner of Group A is provisional",
     });
   });
 
@@ -166,6 +167,18 @@ describe("buildBracketProjection", () => {
 
     expect(projectedMatch(projected, 74).awayParticipant.state).toBe("PROJECTED");
     expect(projectedMatch(confirmed, 74).awayParticipant.state).toBe("CONFIRMED");
+  });
+
+  it("retains a known third-place team when its qualification line is provisional", () => {
+    const input = ranking();
+    input.rows[0].provisional = true;
+
+    expect(projectedMatch(buildBracketProjection(standings(), input, []), 82).awayParticipant).toEqual({
+      state: "UNRESOLVED",
+      teamId: "third-A",
+      provisional: true,
+      unresolvedReason: "The third-place qualifier from Group A is provisional",
+    });
   });
 
   it("uses only finished knockout results for later-round participants", () => {

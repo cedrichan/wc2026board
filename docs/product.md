@@ -281,6 +281,17 @@ Display:
 * A small `Projected` chip.
 * Tooltip explaining the qualification source, such as `Projected winner of Group E`.
 
+#### Provisional
+
+A specific team may be known while its placement remains provisional because an
+unresolved tiebreaker still affects that slot.
+
+Display:
+
+* Team name.
+* Team flag.
+* Provisional labeling rather than confirmed status.
+
 #### Confirmed
 
 The group stage or prior knockout match has conclusively placed the team in the slot.

@@ -171,9 +171,10 @@ function TeamFlag({ team }: { team: TeamViewModel | undefined }): JSX.Element {
 
 function ParticipantName({ participant }: { participant: ParticipantViewModel }): JSX.Element {
   const isProjected = participant.state === "PROJECTED";
+  const isProjectedStyle = isProjected || participant.provisional;
   const isPlaceholder = participant.state === "PLACEHOLDER";
   const isSuperseded = participant.state === "SUPERSEDED";
-  const isUnresolved = participant.state === "UNRESOLVED";
+  const isUnresolved = participant.state === "UNRESOLVED" && !participant.provisional;
 
   const label = participant.label;
 
@@ -181,7 +182,7 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
     <Typography
       variant="caption"
       sx={{
-        fontWeight: isProjected ? 500 : 400,
+        fontWeight: isProjectedStyle ? 500 : 400,
         color: isPlaceholder || isSuperseded ? "text.disabled" : "text.primary",
         overflow: "hidden",
         textOverflow: "ellipsis",
@@ -199,7 +200,7 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
     </Typography>
   );
 
-  if (isProjected && participant.sourceExplanation !== undefined) {
+  if (isProjectedStyle && participant.sourceExplanation !== undefined) {
     return (
       <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minWidth: 0, flex: 1 }}>
         <Tooltip title={participant.sourceExplanation} arrow>
