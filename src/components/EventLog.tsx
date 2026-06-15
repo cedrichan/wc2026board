@@ -36,7 +36,10 @@ export default function EventLog({ log }: EventLogProps): JSX.Element {
       <Paper
         variant="outlined"
         sx={{
-          maxHeight: 400,
+          maxHeight: {
+            xs: 280,
+            sm: 400,
+          },
           overflowY: "auto",
           overflowX: "hidden",
         }}
