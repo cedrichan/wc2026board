@@ -21,7 +21,7 @@ export default function GroupCard({ group }: GroupCardProps): JSX.Element {
   return (
     <Card
       aria-label={group.accessibleName}
-      sx={{ width: { xs: "88vw", md: 320 }, flexShrink: 0 }}
+      sx={{ flex: "1 1 280px", maxWidth: 360 }}
     >
       <CardContent sx={{ p: 1.5, "&:last-child": { pb: 1.5 } }}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1 }}>
@@ -93,16 +93,9 @@ function GroupTableRow({ row, groupComplete }: { row: GroupRowViewModel; groupCo
               <Typography
                 variant="caption"
                 component="span"
-                sx={{ display: { xs: "none", md: "inline" }, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+                sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block" }}
               >
                 {row.team.name}
-              </Typography>
-              <Typography
-                variant="caption"
-                component="span"
-                sx={{ display: { xs: "inline", md: "none" } }}
-              >
-                {row.team.shortName}
               </Typography>
             </Box>
           </Stack>

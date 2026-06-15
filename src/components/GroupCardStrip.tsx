@@ -16,42 +16,19 @@ export default function GroupCardStrip({ groups }: GroupCardStripProps): JSX.Ele
 
   return (
     <Box
-      tabIndex={0}
-      role="region"
-      aria-label="Group tables, horizontally scrollable — use left and right arrow keys or swipe to navigate"
       sx={{
-        overflowX: "auto",
-        scrollSnapType: "x mandatory",
-        WebkitOverflowScrolling: "touch",
-        outline: "none",
-        "&:focus-visible": {
-          outline: "2px solid",
-          outlineColor: "primary.main",
-          outlineOffset: "2px",
-        },
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 2,
       }}
     >
-      <Box
-        sx={{
-          display: "inline-flex",
-          flexDirection: "row",
-          gap: 2,
-          pb: 1,
-          minWidth: "max-content",
-        }}
-      >
-        {GROUP_IDS.map((id) => {
-          const group = groupsById.get(id);
-          if (group !== undefined) {
-            return (
-              <Box key={id} sx={{ scrollSnapAlign: "start" }}>
-                <GroupCard group={group} />
-              </Box>
-            );
-          }
-          return <GroupPlaceholder key={id} groupId={id} />;
-        })}
-      </Box>
+      {GROUP_IDS.map((id) => {
+        const group = groupsById.get(id);
+        if (group !== undefined) {
+          return <GroupCard key={id} group={group} />;
+        }
+        return <GroupPlaceholder key={id} groupId={id} />;
+      })}
     </Box>
   );
 }
@@ -59,11 +36,7 @@ export default function GroupCardStrip({ groups }: GroupCardStripProps): JSX.Ele
 function GroupPlaceholder({ groupId }: { groupId: string }): JSX.Element {
   return (
     <Card
-      sx={{
-        width: { xs: "88vw", md: 320 },
-        flexShrink: 0,
-        scrollSnapAlign: "start",
-      }}
+      sx={{ flex: "1 1 280px", maxWidth: 360 }}
       aria-label={`Group ${groupId} — data unavailable`}
     >
       <CardContent
