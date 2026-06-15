@@ -3,6 +3,33 @@ import { ESPN_SCOREBOARD_URL } from "./request-plan";
 import { EspnScoreboardClient } from "./scoreboard-client";
 
 describe("EspnScoreboardClient", () => {
+  it("binds the default global fetch to avoid illegal invocation", async () => {
+    const originalFetch = globalThis.fetch;
+    vi.stubGlobal(
+      "fetch",
+      function (
+        this: typeof globalThis,
+        _input: RequestInfo | URL,
+        _init?: RequestInit,
+      ) {
+        if (this !== globalThis) {
+          throw new TypeError("Illegal invocation");
+        }
+
+        return Promise.resolve(
+          new Response(JSON.stringify({ events: [] }), { status: 200 }),
+        );
+      },
+    );
+
+    try {
+      const client = new EspnScoreboardClient();
+      await expect(client.getScoreboards()).resolves.toEqual([{ events: [] }]);
+    } finally {
+      vi.stubGlobal("fetch", originalFetch);
+    }
+  });
+
   it("passes AbortSignal and validates every fetched payload", async () => {
     const signal = new AbortController().signal;
     const rawPayload = { events: [], unknownField: "stripped" };
