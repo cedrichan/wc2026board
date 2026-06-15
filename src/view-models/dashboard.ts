@@ -8,7 +8,6 @@ import {
   type GroupStandings,
   type Match,
   type MatchClock,
-  type MatchEvent,
   type MatchEventType,
   type MatchScore,
   type NormalizedMatchStatus,
