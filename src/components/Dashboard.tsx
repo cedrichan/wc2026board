@@ -15,6 +15,7 @@ import DashboardFooter from "./DashboardFooter";
 import DashboardHeader from "./DashboardHeader";
 import GroupCardStripSkeleton from "./GroupCardSkeleton";
 import GroupCardStrip from "./GroupCardStrip";
+import MatchTicker from "./MatchTicker";
 import OutageAlert from "./OutageAlert";
 import RulesDisclosure from "./RulesDisclosure";
 import ThirdPlaceTable from "./ThirdPlaceTable";
@@ -87,6 +88,12 @@ export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
           onRefresh={data.refresh}
           isRefreshing={data.isRefreshing}
         />
+      )}
+
+      {viewModel !== null && (
+        <Box component="section" sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <MatchTicker ticker={viewModel.ticker} />
+        </Box>
       )}
 
       <Box component="main" sx={{ flex: 1 }}>

@@ -190,9 +190,41 @@ export interface ThirdPlaceTableViewModel {
   accessibleName: string;
 }
 
+export interface MatchTickerTeamViewModel {
+  id: string;
+  shortName: string;
+  flagEmoji: string;
+  flagAlt: string;
+}
+
+export interface MatchTickerItemViewModel {
+  id: string;
+  matchNumber: number;
+  contextLabel: string;
+  kickoffUtc: string;
+  kickoffLabel: string;
+  status: NormalizedMatchStatus;
+  isLive: boolean;
+  isFinished: boolean;
+  clockLabel?: string;
+  home: MatchTickerTeamViewModel | null;
+  away: MatchTickerTeamViewModel | null;
+  homeScore: number | null;
+  awayScore: number | null;
+  penaltiesLabel?: string;
+  accessibleName: string;
+}
+
+export interface MatchTickerViewModel {
+  id: "match-ticker";
+  items: readonly MatchTickerItemViewModel[];
+  anchorId: string | null;
+}
+
 export interface DashboardViewModel {
   id: "dashboard";
   header: HeaderViewModel;
+  ticker: MatchTickerViewModel;
   bracket: readonly BracketRoundViewModel[];
   groups: readonly GroupViewModel[];
   thirdPlace: ThirdPlaceTableViewModel;
@@ -218,6 +250,16 @@ const ROUND_LABELS: Record<TournamentRound, string> = {
   QUARTER_FINAL: "Quarter-finals",
   SEMI_FINAL: "Semi-finals",
   THIRD_PLACE: "Third-place match",
+  FINAL: "Final",
+};
+
+const TICKER_ROUND_LABELS: Record<TournamentRound, string> = {
+  GROUP_STAGE: "Group",
+  ROUND_OF_32: "R32",
+  ROUND_OF_16: "R16",
+  QUARTER_FINAL: "QF",
+  SEMI_FINAL: "SF",
+  THIRD_PLACE: "3rd place",
   FINAL: "Final",
 };
 
@@ -253,6 +295,7 @@ export function buildDashboardViewModel(
   return {
     id: "dashboard",
     header: buildHeader(input.snapshot, liveMatches, options),
+    ticker: buildMatchTicker(input.snapshot, teamsById, options),
     bracket: KNOCKOUT_ROUNDS.map((round) => ({
       id: `bracket-round-${round.toLowerCase()}`,
       round,
@@ -661,4 +704,86 @@ function relativeUpdatedLabel(iso: string, now: Date): string {
   if (minutes < 60) return `Updated ${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
   const hours = Math.floor(minutes / 60);
   return `Updated ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+}
+
+function buildMatchTicker(
+  snapshot: TournamentSnapshot,
+  teamsById: ReadonlyMap<string, Team>,
+  options: DashboardFormatOptions,
+): MatchTickerViewModel {
+  const sorted = [...snapshot.matches].sort((a, b) => a.kickoffUtc.localeCompare(b.kickoffUtc));
+  const items = sorted.map((match) => buildTickerItem(match, teamsById, options));
+
+  // Anchor: earliest live match, otherwise the last finished match
+  const firstLive = items.find((item) => item.isLive);
+  const lastFinished = [...items].reverse().find((item) => item.isFinished);
+  const anchorId = firstLive?.id ?? lastFinished?.id ?? null;
+
+  return { id: "match-ticker", items, anchorId };
+}
+
+function buildTickerItem(
+  match: Match,
+  teamsById: ReadonlyMap<string, Team>,
+  options: DashboardFormatOptions,
+): MatchTickerItemViewModel {
+  const isLive = LIVE_STATUSES.has(match.status);
+  const isFinished = FINISHED_STATUSES.has(match.status);
+  const isScheduled = !isLive && !isFinished;
+
+  const home = match.homeTeamId !== undefined ? buildTickerTeam(teamsById.get(match.homeTeamId)) : null;
+  const away = match.awayTeamId !== undefined ? buildTickerTeam(teamsById.get(match.awayTeamId)) : null;
+
+  const normalTime = normalizeScore(match.normalTime);
+  const extraTime = normalizeScore(match.extraTime);
+  const total = addScores(normalTime, extraTime);
+  const homeScore = isScheduled ? null : total.home;
+  const awayScore = isScheduled ? null : total.away;
+
+  const penalties = normalizeScore(match.penalties);
+  const penaltiesPresent = penalties.home !== null || penalties.away !== null;
+  const penaltiesLabel = penaltiesPresent
+    ? `${match.status === "PENALTY_SHOOTOUT" ? "PEN" : "Pens"} ${scoreLabel(penalties)}`
+    : match.status === "PENALTY_SHOOTOUT" || match.status === "FINISHED_AFTER_PENALTIES"
+      ? "Pens —"
+      : undefined;
+
+  const contextLabel = match.round === "GROUP_STAGE" && match.group !== undefined
+    ? `Group ${match.group}`
+    : TICKER_ROUND_LABELS[match.round];
+
+  const clockLabel = buildClockLabel(match.status, match.elapsedMinutes);
+  const homeName = home?.shortName ?? "TBD";
+  const awayName = away?.shortName ?? "TBD";
+  const scoreStr = homeScore === null ? "vs" : `${homeScore}–${awayScore}`;
+
+  return {
+    id: `match-${match.matchNumber}`,
+    matchNumber: match.matchNumber,
+    contextLabel,
+    kickoffUtc: match.kickoffUtc,
+    kickoffLabel: formatDateTime(match.kickoffUtc, options),
+    status: match.status,
+    isLive,
+    isFinished,
+    clockLabel,
+    home,
+    away,
+    homeScore,
+    awayScore,
+    penaltiesLabel,
+    accessibleName: `${contextLabel}, ${homeName} ${scoreStr} ${awayName}, ${STATUS_LABELS[match.status]}${clockLabel === undefined ? "" : ` ${clockLabel}`}`,
+  };
+}
+
+function buildTickerTeam(team: Team | undefined): MatchTickerTeamViewModel {
+  if (team === undefined) {
+    return { id: "unknown", shortName: "TBD", flagEmoji: flagEmojiForFifaCode(undefined), flagAlt: "Unknown flag" };
+  }
+  return {
+    id: team.id,
+    shortName: team.shortName,
+    flagEmoji: flagEmojiForFifaCode(team.fifaCode),
+    flagAlt: `${team.name} flag`,
+  };
 }
