@@ -37,7 +37,7 @@ export default function DashboardHeader({ header, isRefreshing, onRefresh }: Das
               component="h1"
               sx={{ fontWeight: 700, letterSpacing: 0.5, whiteSpace: "nowrap" }}
             >
-              World Cup 2026
+              World Cup 2026 Dashboard
             </Typography>
             <Typography variant="body2" sx={{ opacity: 0.85, whiteSpace: "nowrap" }}>
               {header.stage.label}

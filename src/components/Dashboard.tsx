@@ -219,7 +219,7 @@ function PendingHeader({
             component="h1"
             sx={{ fontWeight: 700, letterSpacing: 0.5 }}
           >
-            World Cup 2026
+            World Cup 2026 Dashboard
           </Typography>
           <Box sx={{ flex: 1 }} />
           <Typography variant="body2" sx={{ opacity: 0.85, whiteSpace: "nowrap" }}>
