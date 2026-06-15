@@ -8,7 +8,6 @@ import {
   type GroupStandings,
   type Match,
   type MatchClock,
-  type MatchEvent,
   type MatchEventType,
   type MatchScore,
   type NormalizedMatchStatus,
@@ -850,7 +849,7 @@ function formatDateTime(iso: string, options: DashboardFormatOptions): string {
   }).format(new Date(iso));
 }
 
-function relativeUpdatedLabel(iso: string, now: Date): string {
+export function relativeUpdatedLabel(iso: string, now: Date): string {
   const seconds = Math.max(0, Math.floor((now.getTime() - new Date(iso).getTime()) / 1000));
   if (seconds < 60) return `Updated ${seconds} seconds ago`;
   const minutes = Math.floor(seconds / 60);
