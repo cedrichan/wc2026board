@@ -60,44 +60,47 @@ export default function EventLog({ log }: EventLogProps): JSX.Element {
 }
 
 function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element {
+  const isGoal = entry.type === "GOAL" || entry.type === "OWN_GOAL" || entry.type === "PENALTY_GOAL";
+  const isLifecycle = entry.type === "KICKOFF" || entry.type === "HALF_TIME" || entry.type === "FULL_TIME";
+
   return (
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "3.5rem 1fr",
-        alignItems: "start",
+        gridTemplateColumns: "auto auto 1fr",
+        alignItems: "center",
         gap: 1.5,
         px: 1.5,
-        py: 1,
+        py: 0.75,
         bgcolor: entry.isLive ? "action.hover" : undefined,
       }}
     >
-      {/* Event timestamp (match clock) */}
+      {/* Countries involved */}
+      <Typography variant="body2" sx={{ whiteSpace: "nowrap" }}>
+        <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
+        {entry.home.fifaCode}
+        {" vs "}
+        <span aria-hidden="true">{entry.away.flagEmoji}</span>{" "}
+        {entry.away.fifaCode}
+      </Typography>
+
+      {/* Match time */}
       <Typography
         variant="caption"
         color="text.disabled"
-        sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", pt: 0.3 }}
+        sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
       >
         {entry.clockDisplay}
       </Typography>
 
-      {/* Match info */}
-      <Box>
-        <Typography variant="body2" sx={{ fontWeight: entry.isLive ? 600 : 400 }}>
-          {entry.icon}{" "}
-          <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
-          {entry.home.fifaCode}
-          {" vs "}
-          <span aria-hidden="true">{entry.away.flagEmoji}</span>{" "}
-          {entry.away.fifaCode}
-        </Typography>
-        <Typography
-          variant="caption"
-          color={entry.isLive ? "error.main" : "text.secondary"}
-        >
-          {entry.label} · {entry.matchStatusLabel}
-        </Typography>
-      </Box>
+      {/* Description */}
+      <Typography
+        variant="body2"
+        color={isLifecycle ? "text.disabled" : entry.isLive ? "error.main" : "text.secondary"}
+        sx={{ fontWeight: isGoal ? 600 : 400 }}
+      >
+        {entry.description}
+      </Typography>
     </Box>
   );
 }

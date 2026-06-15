@@ -8,6 +8,7 @@ import {
   type GroupStandings,
   type Match,
   type MatchClock,
+  type MatchEvent,
   type MatchEventType,
   type MatchScore,
   type NormalizedMatchStatus,
@@ -228,17 +229,16 @@ export interface EventLogParticipant {
   flagEmoji: string;
 }
 
+export type EventLogEntryType = MatchEventType | "KICKOFF" | "HALF_TIME" | "FULL_TIME";
+
 export interface EventLogEntryViewModel {
   id: string;
   sortKey: number;
   clockDisplay: string;
-  type: MatchEventType;
-  icon: string;
-  label: string;
+  type: EventLogEntryType;
   home: EventLogParticipant;
   away: EventLogParticipant;
-  scoreLabel: string;
-  matchStatusLabel: string;
+  description: string;
   isLive: boolean;
 }
 
@@ -715,44 +715,29 @@ function selectRound(matches: readonly Match[], direction: "lowest" | "highest")
 
 const EVENT_LOG_SIZE = 30;
 
-const EVENT_ICONS: Record<MatchEventType, string> = {
-  GOAL: "⚽",
-  OWN_GOAL: "⚽",
-  PENALTY_GOAL: "⚽",
-  YELLOW_CARD: "🟨",
-  RED_CARD: "🟥",
-  YELLOW_RED_CARD: "🟨🟥",
-};
-
-const EVENT_LABELS: Record<MatchEventType, string> = {
-  GOAL: "Goal",
-  OWN_GOAL: "Own goal",
-  PENALTY_GOAL: "Penalty",
-  YELLOW_CARD: "Yellow card",
-  RED_CARD: "Red card",
-  YELLOW_RED_CARD: "2nd yellow",
-};
+// Statuses where the match hasn't meaningfully started (skip lifecycle events)
+const SKIP_STATUSES = new Set<NormalizedMatchStatus>([
+  "SCHEDULED", "PRE_MATCH", "POSTPONED", "CANCELLED", "UNKNOWN",
+]);
 
 function matchScoreLabel(match: Match): string {
   const total = addScores(normalizeScore(match.normalTime), normalizeScore(match.extraTime));
   return total.home === null || total.away === null ? "—" : `${total.home}–${total.away}`;
 }
 
-function matchStatusLabel(match: Match): string {
-  const status = match.status;
-  const score = matchScoreLabel(match);
-  if (LIVE_STATUSES.has(status)) {
-    const clock = match.clock?.displayValue ?? (match.elapsedMinutes !== undefined ? `${match.elapsedMinutes}′` : undefined);
-    return `Live ${score}${clock !== undefined ? ` (${clock})` : ""}`;
-  }
-  if (status === "FINISHED") return `FT ${score}`;
-  if (status === "FINISHED_AFTER_EXTRA_TIME") return `AET ${score}`;
-  if (status === "FINISHED_AFTER_PENALTIES") {
-    const pens = normalizeScore(match.penalties);
-    const penStr = pens.home !== null && pens.away !== null ? ` (pens ${pens.home}–${pens.away})` : "";
-    return `FT ${score}${penStr}`;
-  }
-  return score;
+function inGameDescription(type: MatchEventType, teamFifaCode: string | undefined, playerName: string | undefined): string {
+  const base: Record<MatchEventType, string> = {
+    GOAL: "Goal",
+    OWN_GOAL: "Own goal",
+    PENALTY_GOAL: "Penalty",
+    YELLOW_CARD: "Yellow card",
+    RED_CARD: "Red card",
+    YELLOW_RED_CARD: "2nd yellow",
+  };
+  const parts = [base[type]];
+  if (teamFifaCode) parts.push(teamFifaCode);
+  if (playerName) parts.push(playerName);
+  return parts.join(" · ");
 }
 
 function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMap<string, Team>): EventLogParticipant {
@@ -770,28 +755,74 @@ function buildEventLog(
   const entries: EventLogEntryViewModel[] = [];
 
   for (const match of matches) {
-    if (!match.events || match.events.length === 0) continue;
+    if (SKIP_STATUSES.has(match.status)) continue;
+
     const isLive = LIVE_STATUSES.has(match.status);
+    const isFinished = FINISHED_STATUSES.has(match.status);
     const home = buildEventParticipant(match.homeTeamId, teamsById);
     const away = buildEventParticipant(match.awayTeamId, teamsById);
-    const scoreLabel = matchScoreLabel(match);
-    const statusLabel = matchStatusLabel(match);
     const kickoffMs = new Date(match.kickoffUtc).getTime();
+    const score = matchScoreLabel(match);
 
-    for (const event of match.events) {
+    // Kick off
+    entries.push({
+      id: `event-log-${match.matchNumber}-kickoff`,
+      sortKey: kickoffMs,
+      clockDisplay: "KO",
+      type: "KICKOFF",
+      home, away,
+      description: "Kick off",
+      isLive,
+    });
+
+    // In-game events (goals, cards)
+    for (const event of match.events ?? []) {
       const clockSeconds = event.clockSeconds ?? 0;
+      const teamFifaCode = event.teamId !== undefined ? teamsById.get(event.teamId)?.fifaCode : undefined;
       entries.push({
         id: `event-log-${match.matchNumber}-${event.id ?? clockSeconds}-${event.type}`,
         sortKey: kickoffMs + clockSeconds * 1000,
         clockDisplay: event.clockDisplay ?? `${Math.floor(clockSeconds / 60)}′`,
         type: event.type,
-        icon: EVENT_ICONS[event.type],
-        label: EVENT_LABELS[event.type],
-        home,
-        away,
-        scoreLabel,
-        matchStatusLabel: statusLabel,
+        home, away,
+        description: inGameDescription(event.type, teamFifaCode, event.primaryPlayerName),
         isLive,
+      });
+    }
+
+    // Half time (if we're past the first half)
+    if (match.status !== "FIRST_HALF") {
+      entries.push({
+        id: `event-log-${match.matchNumber}-halftime`,
+        sortKey: kickoffMs + 45 * 60 * 1000,
+        clockDisplay: "HT",
+        type: "HALF_TIME",
+        home, away,
+        description: `Half time · ${score}`,
+        isLive,
+      });
+    }
+
+    // Full time
+    if (isFinished) {
+      let ftDescription: string;
+      if (match.status === "FINISHED_AFTER_EXTRA_TIME") {
+        ftDescription = `Full time (AET) · ${score}`;
+      } else if (match.status === "FINISHED_AFTER_PENALTIES") {
+        const pens = normalizeScore(match.penalties);
+        const penStr = pens.home !== null && pens.away !== null ? ` · ${pens.home}–${pens.away} pens` : "";
+        ftDescription = `Full time · ${score}${penStr}`;
+      } else {
+        ftDescription = `Full time · ${score}`;
+      }
+      entries.push({
+        id: `event-log-${match.matchNumber}-fulltime`,
+        sortKey: kickoffMs + 90 * 60 * 1000,
+        clockDisplay: "FT",
+        type: "FULL_TIME",
+        home, away,
+        description: ftDescription,
+        isLive: false,
       });
     }
   }
@@ -819,7 +850,7 @@ function formatDateTime(iso: string, options: DashboardFormatOptions): string {
   }).format(new Date(iso));
 }
 
-export function relativeUpdatedLabel(iso: string, now: Date): string {
+function relativeUpdatedLabel(iso: string, now: Date): string {
   const seconds = Math.max(0, Math.floor((now.getTime() - new Date(iso).getTime()) / 1000));
   if (seconds < 60) return `Updated ${seconds} seconds ago`;
   const minutes = Math.floor(seconds / 60);
