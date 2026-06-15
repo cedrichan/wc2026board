@@ -36,6 +36,33 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     );
   });
 
+  it("extracts disciplinary events from completed matches and marks coverage COMPLETE", () => {
+    const result = mapEspnScoreboardToNormalizationInput(
+      parseEspnScoreboard(observedScoreboard),
+    );
+    const openingMatch = result.matches.find((match) => match.id === "760415");
+
+    expect(openingMatch?.conductCoverage).toBe("COMPLETE");
+    expect(openingMatch?.disciplinaryEvents).toEqual([
+      { teamId: "467", playerId: "256691", cardType: "YELLOW", minute: 16 },
+      { teamId: "203", playerId: "303577", cardType: "YELLOW", minute: 22 },
+      { teamId: "467", playerId: "228595", cardType: "RED_DIRECT", minute: 49 },
+      { teamId: "467", playerId: "266125", cardType: "YELLOW", minute: 73 },
+      { teamId: "467", playerId: "157046", cardType: "RED_DIRECT", minute: 83 },
+      { teamId: "203", playerId: "224323", cardType: "RED_DIRECT", minute: 90 },
+    ]);
+  });
+
+  it("marks conduct UNKNOWN for incomplete (non-finished) matches", () => {
+    const result = mapEspnScoreboardToNormalizationInput(
+      parseEspnScoreboard(rangeScoreboard),
+    );
+    const scheduledMatch = result.matches.find((match) => match.id === "760487");
+
+    expect(scheduledMatch?.conductCoverage).toBe("UNKNOWN");
+    expect(scheduledMatch?.disciplinaryEvents).toEqual([]);
+  });
+
   it("maps knockout placeholders and the final onto local match numbers", () => {
     const result = mapEspnScoreboardToNormalizationInput(
       parseEspnScoreboard(rangeScoreboard),

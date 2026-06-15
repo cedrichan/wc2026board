@@ -9,6 +9,7 @@ import { parseEspnScoreboard } from "./schema";
 import type {
   ConductCoverage,
   EspnCompetitorInput,
+  EspnDisciplinaryEventInput,
   EspnMatchInput,
   EspnScoreboardInput,
   EspnTeamInput,
@@ -106,10 +107,35 @@ function mapCompetitor(
   };
 }
 
-function conductCoverageForMatch(): ConductCoverage {
-  // The captured scoreboard investigation explicitly did not validate complete
-  // conduct coverage, so runtime mapping must remain conservative here.
-  return "UNKNOWN";
+function mapDisciplinaryEvents(
+  competition: EspnCompetition,
+): { events: EspnDisciplinaryEventInput[]; coverage: ConductCoverage } {
+  if (competition.status.type.completed !== true) {
+    return { events: [], coverage: "UNKNOWN" };
+  }
+
+  const events: EspnDisciplinaryEventInput[] = [];
+  for (const detail of competition.details ?? []) {
+    const yellow = detail.yellowCard === true;
+    const red = detail.redCard === true;
+    if (!yellow && !red) continue;
+
+    // ESPN doesn't distinguish direct from indirect reds; treat all as RED_DIRECT.
+    // Yellow + red flags both true indicates a yellow-plus-direct-red incident.
+    const cardType = yellow && red ? "YELLOW_PLUS_DIRECT_RED" : yellow ? "YELLOW" : "RED_DIRECT";
+    const athlete = detail.athletesInvolved?.[0];
+    events.push({
+      teamId: detail.team?.id,
+      playerId: athlete?.id,
+      playerName: athlete?.displayName ?? athlete?.shortName,
+      cardType,
+      minute: typeof detail.clock?.value === "number"
+        ? Math.floor(detail.clock.value / 60)
+        : undefined,
+    });
+  }
+
+  return { events, coverage: "COMPLETE" };
 }
 
 function mapEvent(event: EspnEvent): EspnMatchInput {
@@ -123,6 +149,7 @@ function mapEvent(event: EspnEvent): EspnMatchInput {
   const matchNumber = MATCH_NUMBER_BY_SCHEDULE.get(
     scheduleKey(round, kickoffUtc, venueName) ?? "",
   );
+  const conduct = competition ? mapDisciplinaryEvents(competition) : { events: [], coverage: "UNKNOWN" as ConductCoverage };
 
   return {
     id: event.id,
@@ -148,7 +175,8 @@ function mapEvent(event: EspnEvent): EspnMatchInput {
     competitors: competition?.competitors.map((competitor) =>
       mapCompetitor(competitor, group),
     ),
-    conductCoverage: conductCoverageForMatch(),
+    disciplinaryEvents: conduct.events,
+    conductCoverage: conduct.coverage,
   };
 }
 
