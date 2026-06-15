@@ -38,6 +38,23 @@ export type DisciplinaryCoverage =
   | "INCOMPLETE"   // some events may be missing
   | "UNAVAILABLE"; // source provides no disciplinary data for this match
 
+export type MatchEventType =
+  | "GOAL"
+  | "OWN_GOAL"
+  | "PENALTY_GOAL"
+  | "YELLOW_CARD"
+  | "RED_CARD"
+  | "YELLOW_RED_CARD";
+
+export interface MatchEvent {
+  id?: string;
+  type: MatchEventType;
+  clockSeconds?: number;
+  clockDisplay?: string;
+  teamId?: string;
+  primaryPlayerName?: string;
+}
+
 export interface Match {
   // Source-system identifier; not sequential
   id: string;
@@ -68,6 +85,8 @@ export interface Match {
   disciplinaryEvents?: DisciplinaryEvent[];
   // Reliability indicator for disciplinaryEvents; absent if coverage is unknown
   disciplinaryCoverage?: DisciplinaryCoverage;
+  // Goals, cards, and other notable in-match events from the source
+  events?: MatchEvent[];
   // ISO 8601 timestamp from upstream source; absent if not reported
   updatedAt?: string;
 }

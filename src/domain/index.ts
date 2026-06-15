@@ -17,6 +17,8 @@ export type {
   CardType,
   DisciplinaryEvent,
   DisciplinaryCoverage,
+  MatchEventType,
+  MatchEvent,
   Match,
 } from "./match";
 

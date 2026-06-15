@@ -10,6 +10,7 @@ import type {
   ConductCoverage,
   EspnCompetitorInput,
   EspnDisciplinaryEventInput,
+  EspnMatchEventInput,
   EspnMatchInput,
   EspnScoreboardInput,
   EspnTeamInput,
@@ -138,6 +139,22 @@ function mapDisciplinaryEvents(
   return { events, coverage: "COMPLETE" };
 }
 
+function mapMatchEvents(competition: EspnCompetition): EspnMatchEventInput[] {
+  return (competition.details ?? []).map((detail): EspnMatchEventInput => ({
+    id: detail.id,
+    clockSeconds: detail.clock?.value,
+    clockDisplay: detail.clock?.displayValue,
+    teamId: detail.team?.id,
+    primaryPlayerName: detail.athletesInvolved?.[0]?.displayName ?? detail.athletesInvolved?.[0]?.shortName,
+    scoringPlay: detail.scoringPlay,
+    yellowCard: detail.yellowCard,
+    redCard: detail.redCard,
+    penaltyKick: detail.penaltyKick,
+    ownGoal: detail.ownGoal,
+    shootout: detail.shootout,
+  }));
+}
+
 function mapEvent(event: EspnEvent): EspnMatchInput {
   const competition = event.competitions[0];
   const round = resolveRound(event);
@@ -177,6 +194,7 @@ function mapEvent(event: EspnEvent): EspnMatchInput {
     ),
     disciplinaryEvents: conduct.events,
     conductCoverage: conduct.coverage,
+    matchEvents: competition ? mapMatchEvents(competition) : [],
   };
 }
 

@@ -5,6 +5,8 @@ import type {
   DisciplinaryEvent,
   GroupId,
   Match,
+  MatchEvent,
+  MatchEventType,
   MatchScore,
   PartialTeam,
   TournamentRound,
@@ -42,6 +44,20 @@ export interface EspnDisciplinaryEventInput {
   minute?: number | null;
 }
 
+export interface EspnMatchEventInput {
+  id?: string | null;
+  clockSeconds?: number | null;
+  clockDisplay?: string | null;
+  teamId?: string | null;
+  primaryPlayerName?: string | null;
+  scoringPlay?: boolean | null;
+  yellowCard?: boolean | null;
+  redCard?: boolean | null;
+  penaltyKick?: boolean | null;
+  ownGoal?: boolean | null;
+  shootout?: boolean | null;
+}
+
 export interface EspnMatchInput {
   id?: string | null;
   matchNumber?: number | null;
@@ -55,6 +71,7 @@ export interface EspnMatchInput {
   competitors?: EspnCompetitorInput[] | null;
   disciplinaryEvents?: EspnDisciplinaryEventInput[] | null;
   conductCoverage?: ConductCoverage | null;
+  matchEvents?: EspnMatchEventInput[] | null;
 }
 
 export interface EspnScoreboardInput {
@@ -177,6 +194,38 @@ function normalizeDisciplinaryEvents(
   return events;
 }
 
+function classifyMatchEventType(input: EspnMatchEventInput): MatchEventType | undefined {
+  if (input.shootout) return undefined; // too noisy; suppress shootout entries
+  if (input.scoringPlay) {
+    if (input.ownGoal) return "OWN_GOAL";
+    if (input.penaltyKick) return "PENALTY_GOAL";
+    return "GOAL";
+  }
+  if (input.yellowCard && input.redCard) return "YELLOW_RED_CARD";
+  if (input.yellowCard) return "YELLOW_CARD";
+  if (input.redCard) return "RED_CARD";
+  return undefined;
+}
+
+function normalizeMatchEvents(input: EspnMatchInput): MatchEvent[] | undefined {
+  const raw = input.matchEvents;
+  if (!raw || raw.length === 0) return undefined;
+  const events: MatchEvent[] = [];
+  for (const ev of raw) {
+    const type = classifyMatchEventType(ev);
+    if (!type) continue;
+    events.push({
+      ...(ev.id ? { id: ev.id } : {}),
+      type,
+      ...(typeof ev.clockSeconds === "number" && ev.clockSeconds >= 0 ? { clockSeconds: ev.clockSeconds } : {}),
+      ...(ev.clockDisplay ? { clockDisplay: ev.clockDisplay } : {}),
+      ...(ev.teamId ? { teamId: ev.teamId } : {}),
+      ...(ev.primaryPlayerName ? { primaryPlayerName: ev.primaryPlayerName } : {}),
+    });
+  }
+  return events.length > 0 ? events : undefined;
+}
+
 function normalizeMatch(input: EspnMatchInput, diagnostics: DataDiagnostics): Match | undefined {
   const id = providerId(input.id);
   if (!id) {
@@ -224,6 +273,7 @@ function normalizeMatch(input: EspnMatchInput, diagnostics: DataDiagnostics): Ma
     ? [home, away].find((competitor) => competitor?.winner === true)
     : undefined;
   const disciplinaryEvents = normalizeDisciplinaryEvents(input, id, diagnostics);
+  const matchEvents = normalizeMatchEvents(input);
   const venue = sanitizeProviderText(input.venue);
   const city = sanitizeProviderText(input.city);
   if (!venue) diagnostics.missingFields.push(`matches[${id}].venue`);
@@ -254,6 +304,7 @@ function normalizeMatch(input: EspnMatchInput, diagnostics: DataDiagnostics): Ma
           ? "INCOMPLETE"
           : "UNAVAILABLE"
     ) satisfies DisciplinaryCoverage,
+    ...(matchEvents ? { events: matchEvents } : {}),
     ...(normalizeIsoTimestamp(input.updatedAt) ? { updatedAt: normalizeIsoTimestamp(input.updatedAt) } : {}),
   };
 }

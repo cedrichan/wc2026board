@@ -1,7 +1,6 @@
 import { BRACKET_TOPOLOGY } from "../data/bracket-topology";
 import {
   FINISHED_STATUSES,
-  INTERRUPTED_STATUSES,
   LIVE_STATUSES,
   type BracketMatchDefinition,
   type BracketProjectionMatch as DomainBracketProjectionMatch,
@@ -9,6 +8,8 @@ import {
   type GroupStandings,
   type Match,
   type MatchClock,
+  type MatchEvent,
+  type MatchEventType,
   type MatchScore,
   type NormalizedMatchStatus,
   type ParticipantSlot,
@@ -230,14 +231,15 @@ export interface EventLogParticipant {
 
 export interface EventLogEntryViewModel {
   id: string;
-  // Unix ms used only for sorting; not displayed
   sortKey: number;
-  kickoffUtc: string;
-  kickoffLabel: string;
+  clockDisplay: string;
+  type: MatchEventType;
+  icon: string;
+  label: string;
   home: EventLogParticipant;
   away: EventLogParticipant;
-  matchLabel: string;
-  statusLabel: string;
+  scoreLabel: string;
+  matchStatusLabel: string;
   isLive: boolean;
 }
 
@@ -339,7 +341,7 @@ export function buildDashboardViewModel(
     })),
     groups: buildGroups(input.groupStandings, input.snapshot.matches, teamsById, input.thirdPlaceRanking),
     thirdPlace: buildThirdPlace(input.thirdPlaceRanking, teamsById),
-    eventLog: buildEventLog(input.snapshot.matches, teamsById, options),
+    eventLog: buildEventLog(input.snapshot.matches, teamsById),
   };
 }
 
@@ -712,52 +714,46 @@ function selectRound(matches: readonly Match[], direction: "lowest" | "highest")
   })[0];
 }
 
-const EVENT_LOG_SIZE = 20;
+const EVENT_LOG_SIZE = 30;
 
-function eventSortKey(match: Match, now: Date): number {
-  if (LIVE_STATUSES.has(match.status)) {
-    // Live matches bubble to the top; use `now` so they sort ahead of any finished match.
-    return now.getTime();
-  }
-  if (FINISHED_STATUSES.has(match.status) || INTERRUPTED_STATUSES.has(match.status)) {
-    // Prefer the source-reported update time; fall back to kickoff + 2 h estimate.
-    return match.updatedAt !== undefined
-      ? new Date(match.updatedAt).getTime()
-      : new Date(match.kickoffUtc).getTime() + 2 * 60 * 60 * 1000;
-  }
-  // PRE_MATCH, SCHEDULED: sort by kickoff ascending (largest negative → furthest future)
-  return new Date(match.kickoffUtc).getTime();
+const EVENT_ICONS: Record<MatchEventType, string> = {
+  GOAL: "⚽",
+  OWN_GOAL: "⚽",
+  PENALTY_GOAL: "⚽",
+  YELLOW_CARD: "🟨",
+  RED_CARD: "🟥",
+  YELLOW_RED_CARD: "🟨🟥",
+};
+
+const EVENT_LABELS: Record<MatchEventType, string> = {
+  GOAL: "Goal",
+  OWN_GOAL: "Own goal",
+  PENALTY_GOAL: "Penalty",
+  YELLOW_CARD: "Yellow card",
+  RED_CARD: "Red card",
+  YELLOW_RED_CARD: "2nd yellow",
+};
+
+function matchScoreLabel(match: Match): string {
+  const total = addScores(normalizeScore(match.normalTime), normalizeScore(match.extraTime));
+  return total.home === null || total.away === null ? "—" : `${total.home}–${total.away}`;
 }
 
-function eventStatusLabel(match: Match): string {
+function matchStatusLabel(match: Match): string {
   const status = match.status;
-  const total = addScores(normalizeScore(match.normalTime), normalizeScore(match.extraTime));
-  const hasScore = total.home !== null && total.away !== null;
-  const scoreStr = hasScore ? ` ${total.home}–${total.away}` : "";
-
-  if (status === "FIRST_HALF" || status === "SECOND_HALF" || status === "EXTRA_TIME") {
+  const score = matchScoreLabel(match);
+  if (LIVE_STATUSES.has(status)) {
     const clock = match.clock?.displayValue ?? (match.elapsedMinutes !== undefined ? `${match.elapsedMinutes}′` : undefined);
-    return `Live${scoreStr}${clock !== undefined ? ` (${clock})` : ""}`;
+    return `Live ${score}${clock !== undefined ? ` (${clock})` : ""}`;
   }
-  if (status === "HALF_TIME") return `HT${scoreStr}`;
-  if (status === "EXTRA_TIME_BREAK") return `ET break${scoreStr}`;
-  if (status === "PENALTY_SHOOTOUT") {
-    const pens = normalizeScore(match.penalties);
-    const penStr = pens.home !== null && pens.away !== null ? ` (pens ${pens.home}–${pens.away})` : "";
-    return `Pens${scoreStr}${penStr}`;
-  }
-  if (status === "FINISHED") return `FT${scoreStr}`;
-  if (status === "FINISHED_AFTER_EXTRA_TIME") return `AET${scoreStr}`;
+  if (status === "FINISHED") return `FT ${score}`;
+  if (status === "FINISHED_AFTER_EXTRA_TIME") return `AET ${score}`;
   if (status === "FINISHED_AFTER_PENALTIES") {
     const pens = normalizeScore(match.penalties);
     const penStr = pens.home !== null && pens.away !== null ? ` (pens ${pens.home}–${pens.away})` : "";
-    return `FT${scoreStr}${penStr}`;
+    return `FT ${score}${penStr}`;
   }
-  if (status === "PRE_MATCH") return "Pre-match";
-  if (status === "POSTPONED") return "Postponed";
-  if (status === "SUSPENDED") return "Suspended";
-  if (status === "CANCELLED") return "Cancelled";
-  return "Scheduled";
+  return score;
 }
 
 function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMap<string, Team>): EventLogParticipant {
@@ -771,42 +767,44 @@ function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMa
 function buildEventLog(
   matches: readonly Match[],
   teamsById: ReadonlyMap<string, Team>,
-  options: DashboardFormatOptions,
 ): EventLogViewModel {
-  const entries: EventLogEntryViewModel[] = matches
-    .filter((match) => !UPCOMING_STATUSES.has(match.status))
-    .filter((match) => match.homeTeamId !== undefined || match.awayTeamId !== undefined)
-    .map((match): EventLogEntryViewModel => ({
-      id: `event-log-match-${match.matchNumber}`,
-      sortKey: eventSortKey(match, options.now),
-      kickoffUtc: match.kickoffUtc,
-      kickoffLabel: formatEventTime(match.kickoffUtc, options),
-      home: buildEventParticipant(match.homeTeamId, teamsById),
-      away: buildEventParticipant(match.awayTeamId, teamsById),
-      matchLabel: `M${match.matchNumber}`,
-      statusLabel: eventStatusLabel(match),
-      isLive: LIVE_STATUSES.has(match.status),
-    }))
-    .sort((a, b) => b.sortKey - a.sortKey)
-    .slice(0, EVENT_LOG_SIZE);
+  const entries: EventLogEntryViewModel[] = [];
+
+  for (const match of matches) {
+    if (!match.events || match.events.length === 0) continue;
+    const isLive = LIVE_STATUSES.has(match.status);
+    const home = buildEventParticipant(match.homeTeamId, teamsById);
+    const away = buildEventParticipant(match.awayTeamId, teamsById);
+    const scoreLabel = matchScoreLabel(match);
+    const statusLabel = matchStatusLabel(match);
+    const kickoffMs = new Date(match.kickoffUtc).getTime();
+
+    for (const event of match.events) {
+      const clockSeconds = event.clockSeconds ?? 0;
+      entries.push({
+        id: `event-log-${match.matchNumber}-${event.id ?? clockSeconds}-${event.type}`,
+        sortKey: kickoffMs + clockSeconds * 1000,
+        clockDisplay: event.clockDisplay ?? `${Math.floor(clockSeconds / 60)}′`,
+        type: event.type,
+        icon: EVENT_ICONS[event.type],
+        label: EVENT_LABELS[event.type],
+        home,
+        away,
+        scoreLabel,
+        matchStatusLabel: statusLabel,
+        isLive,
+      });
+    }
+  }
+
+  entries.sort((a, b) => b.sortKey - a.sortKey);
+  entries.splice(EVENT_LOG_SIZE);
 
   return {
     id: "event-log",
     entries,
     hasLive: entries.some((entry) => entry.isLive),
   };
-}
-
-function formatEventTime(iso: string, options: DashboardFormatOptions): string {
-  const timeZone = options.timeDisplayMode === "UTC" ? "UTC" : options.localTimeZone;
-  return new Intl.DateTimeFormat(options.locale, {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    ...(timeZone === undefined ? {} : { timeZone }),
-    timeZoneName: "short",
-  }).format(new Date(iso));
 }
 
 function formatDateTime(iso: string, options: DashboardFormatOptions): string {

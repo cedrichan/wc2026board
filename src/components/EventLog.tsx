@@ -45,7 +45,7 @@ export default function EventLog({ log }: EventLogProps): JSX.Element {
             color="text.disabled"
             sx={{ p: 2, textAlign: "center" }}
           >
-            No matches in progress
+            No match events yet
           </Typography>
         ) : (
           <Stack divider={<Box sx={{ borderTop: 1, borderColor: "divider" }} />}>
@@ -64,7 +64,7 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "9rem 1fr",
+        gridTemplateColumns: "3.5rem 1fr",
         alignItems: "start",
         gap: 1.5,
         px: 1.5,
@@ -72,29 +72,30 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
         bgcolor: entry.isLive ? "action.hover" : undefined,
       }}
     >
-      {/* Event timestamp */}
+      {/* Event timestamp (match clock) */}
       <Typography
         variant="caption"
         color="text.disabled"
         sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", pt: 0.3 }}
       >
-        {entry.kickoffLabel}
+        {entry.clockDisplay}
       </Typography>
 
       {/* Match info */}
       <Box>
         <Typography variant="body2" sx={{ fontWeight: entry.isLive ? 600 : 400 }}>
+          {entry.icon}{" "}
           <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
-          <span>{entry.home.fifaCode}</span>
+          {entry.home.fifaCode}
           {" vs "}
           <span aria-hidden="true">{entry.away.flagEmoji}</span>{" "}
-          <span>{entry.away.fifaCode}</span>
+          {entry.away.fifaCode}
         </Typography>
         <Typography
           variant="caption"
           color={entry.isLive ? "error.main" : "text.secondary"}
         >
-          {entry.statusLabel}
+          {entry.label} · {entry.matchStatusLabel}
         </Typography>
       </Box>
     </Box>
