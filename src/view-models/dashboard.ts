@@ -264,7 +264,7 @@ export function buildDashboardViewModel(
         ),
       ),
     })),
-    groups: buildGroups(input.groupStandings, input.snapshot.matches, teamsById),
+    groups: buildGroups(input.groupStandings, input.snapshot.matches, teamsById, input.thirdPlaceRanking),
     thirdPlace: buildThirdPlace(input.thirdPlaceRanking, teamsById),
   };
 }
@@ -437,11 +437,13 @@ function buildGroups(
   standings: readonly GroupStandings[],
   matches: readonly Match[],
   teamsById: ReadonlyMap<string, Team>,
+  thirdPlaceRanking: ThirdPlaceRanking,
 ): GroupViewModel[] {
+  const thirdPlaceByTeam = new Map(thirdPlaceRanking.rows.map((r) => [r.teamId, r.qualifying]));
   const standingsByGroup = new Map(standings.map((group) => [group.groupId, group]));
   const liveGroups = new Set(matches.filter((match) => LIVE_STATUSES.has(match.status)).map((match) => match.group));
   return GROUP_IDS.map((groupId) => {
-    const rows = (standingsByGroup.get(groupId)?.rows ?? []).map((row) => buildGroupRow(groupId, row, teamsById));
+    const rows = (standingsByGroup.get(groupId)?.rows ?? []).map((row) => buildGroupRow(groupId, row, teamsById, thirdPlaceByTeam));
     const live = liveGroups.has(groupId);
     return {
       id: `group-${groupId.toLowerCase()}`,
@@ -455,9 +457,20 @@ function buildGroups(
   });
 }
 
-function buildGroupRow(groupId: GroupId, row: StandingRow, teamsById: ReadonlyMap<string, Team>): GroupRowViewModel {
+function buildGroupRow(
+  groupId: GroupId,
+  row: StandingRow,
+  teamsById: ReadonlyMap<string, Team>,
+  thirdPlaceByTeam: ReadonlyMap<string, boolean | null>,
+): GroupRowViewModel {
   const team = buildTeamOrMissing(row.teamId, teamsById);
-  const qualificationLabel = groupQualificationLabel(row);
+  let qualification = row.qualification;
+  if (qualification === "THIRD_PLACE_QUALIFIER") {
+    const qualifying = thirdPlaceByTeam.get(row.teamId);
+    if (qualifying === false) qualification = "OUTSIDE";
+    else if (qualifying === null) qualification = "UNRESOLVED";
+  }
+  const qualificationLabel = groupQualificationLabel({ ...row, qualification });
   const explanation = row.provisional
     ? `Provisional placement${row.tiebreakerUsed === undefined ? "" : `; active tiebreaker: ${row.tiebreakerUsed}`}`
     : row.tiebreakerUsed === undefined ? undefined : `Placed using ${row.tiebreakerUsed}`;
@@ -475,7 +488,7 @@ function buildGroupRow(groupId: GroupId, row: StandingRow, teamsById: ReadonlyMa
     goalDifference: row.goalDifference,
     goalDifferenceLabel: signedNumber(row.goalDifference),
     points: row.points,
-    qualification: row.qualification,
+    qualification,
     qualificationLabel,
     provisional: row.provisional,
     explanation,
