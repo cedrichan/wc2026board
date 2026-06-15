@@ -774,6 +774,7 @@ function buildEventLog(
   options: DashboardFormatOptions,
 ): EventLogViewModel {
   const entries: EventLogEntryViewModel[] = matches
+    .filter((match) => !UPCOMING_STATUSES.has(match.status))
     .filter((match) => match.homeTeamId !== undefined || match.awayTeamId !== undefined)
     .map((match): EventLogEntryViewModel => ({
       id: `event-log-match-${match.matchNumber}`,

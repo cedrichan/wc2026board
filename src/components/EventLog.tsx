@@ -34,7 +34,7 @@ export default function EventLog({ log }: EventLogProps): JSX.Element {
       <Paper
         variant="outlined"
         sx={{
-          maxHeight: 260,
+          maxHeight: 400,
           overflowY: "auto",
           overflowX: "hidden",
         }}
@@ -45,7 +45,7 @@ export default function EventLog({ log }: EventLogProps): JSX.Element {
             color="text.disabled"
             sx={{ p: 2, textAlign: "center" }}
           >
-            No match activity yet
+            No matches in progress
           </Typography>
         ) : (
           <Stack divider={<Box sx={{ borderTop: 1, borderColor: "divider" }} />}>
@@ -64,40 +64,39 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: { xs: "1fr", sm: "auto 1fr auto" },
-        alignItems: "center",
-        gap: { xs: 0.25, sm: 1.5 },
+        gridTemplateColumns: "9rem 1fr",
+        alignItems: "start",
+        gap: 1.5,
         px: 1.5,
-        py: 0.75,
+        py: 1,
         bgcolor: entry.isLive ? "action.hover" : undefined,
       }}
     >
-      {/* Timestamp */}
+      {/* Event timestamp */}
       <Typography
         variant="caption"
         color="text.disabled"
-        sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
+        sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", pt: 0.3 }}
       >
         {entry.kickoffLabel}
       </Typography>
 
-      {/* Match participants */}
-      <Typography variant="body2" sx={{ fontWeight: entry.isLive ? 600 : 400 }}>
-        <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
-        <span>{entry.home.fifaCode}</span>
-        {" vs "}
-        <span aria-hidden="true">{entry.away.flagEmoji}</span>{" "}
-        <span>{entry.away.fifaCode}</span>
-      </Typography>
-
-      {/* Status / score */}
-      <Typography
-        variant="body2"
-        color={entry.isLive ? "error.main" : "text.secondary"}
-        sx={{ whiteSpace: "nowrap", textAlign: { sm: "right" } }}
-      >
-        {entry.statusLabel}
-      </Typography>
+      {/* Match info */}
+      <Box>
+        <Typography variant="body2" sx={{ fontWeight: entry.isLive ? 600 : 400 }}>
+          <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
+          <span>{entry.home.fifaCode}</span>
+          {" vs "}
+          <span aria-hidden="true">{entry.away.flagEmoji}</span>{" "}
+          <span>{entry.away.fifaCode}</span>
+        </Typography>
+        <Typography
+          variant="caption"
+          color={entry.isLive ? "error.main" : "text.secondary"}
+        >
+          {entry.statusLabel}
+        </Typography>
+      </Box>
     </Box>
   );
 }
