@@ -63,8 +63,10 @@ function TickerCard({ item }: TickerCardProps): JSX.Element {
         width: CARD_WIDTH,
         flexShrink: 0,
         scrollSnapAlign: "start",
+        opacity: item.isFinished ? 0.6 : 1,
         borderLeft: item.isLive ? "3px solid" : "3px solid transparent",
         borderColor: item.isLive ? "error.main" : "transparent",
+        transition: "opacity 160ms ease",
       }}
     >
       <Box sx={{ p: 0.75 }}>
