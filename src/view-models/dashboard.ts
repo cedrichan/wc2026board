@@ -226,6 +226,7 @@ export interface MatchTickerViewModel {
 export interface EventLogParticipant {
   fifaCode: string;
   flagEmoji: string;
+  shortName: string;
 }
 
 export type EventLogEntryType = MatchEventType | "KICKOFF" | "HALF_TIME" | "FULL_TIME";
@@ -713,6 +714,9 @@ function selectRound(matches: readonly Match[], direction: "lowest" | "highest")
 }
 
 const EVENT_LOG_SIZE = 30;
+const FIRST_HALF_SECONDS = 45 * 60;
+const FIRST_HALF_STOPPAGE_WINDOW_SECONDS = 15 * 60;
+const FULL_TIME_BUFFER_SECONDS = 1;
 
 // Statuses where the match hasn't meaningfully started (skip lifecycle events)
 const SKIP_STATUSES = new Set<NormalizedMatchStatus>([
@@ -724,19 +728,48 @@ function matchScoreLabel(match: Match): string {
   return total.home === null || total.away === null ? "—" : `${total.home}–${total.away}`;
 }
 
-function inGameDescription(type: MatchEventType, teamFifaCode: string | undefined, playerName: string | undefined): string {
-  const base: Record<MatchEventType, string> = {
-    GOAL: "Goal",
-    OWN_GOAL: "Own goal",
-    PENALTY_GOAL: "Penalty",
-    YELLOW_CARD: "Yellow card",
-    RED_CARD: "Red card",
-    YELLOW_RED_CARD: "2nd yellow",
-  };
-  const parts = [base[type]];
-  if (teamFifaCode) parts.push(teamFifaCode);
-  if (playerName) parts.push(playerName);
-  return parts.join(" · ");
+function halftimeSortOffset(match: Match): number {
+  const firstHalfEventSeconds = (match.events ?? [])
+    .map((event) => event.clockSeconds ?? 0)
+    .filter((seconds) => seconds <= FIRST_HALF_SECONDS + FIRST_HALF_STOPPAGE_WINDOW_SECONDS);
+
+  return Math.max(FIRST_HALF_SECONDS, ...firstHalfEventSeconds) + 1;
+}
+
+function fulltimeSortOffset(match: Match): number {
+  const eventSeconds = (match.events ?? []).map((event) => event.clockSeconds ?? 0);
+  return Math.max(90 * 60, ...eventSeconds) + FULL_TIME_BUFFER_SECONDS;
+}
+
+function eventSubject(
+  playerName: string | undefined,
+  participant: Pick<EventLogParticipant, "flagEmoji" | "shortName"> | undefined,
+): string {
+  const teamLabel = participant === undefined ? "the team" : `${participant.flagEmoji} ${participant.shortName}`;
+  if (playerName) return `${playerName} of ${teamLabel}`;
+  return `${teamLabel}`;
+}
+
+function inGameDescription(
+  type: MatchEventType,
+  participant: Pick<EventLogParticipant, "flagEmoji" | "shortName"> | undefined,
+  playerName: string | undefined,
+): string {
+  const subject = eventSubject(playerName, participant);
+  switch (type) {
+    case "GOAL":
+      return `${subject} scores a goal.`;
+    case "OWN_GOAL":
+      return `${subject} scores an own goal.`;
+    case "PENALTY_GOAL":
+      return `${subject} scores a penalty.`;
+    case "YELLOW_CARD":
+      return `${subject} receives a yellow card.`;
+    case "RED_CARD":
+      return `${subject} receives a red card.`;
+    case "YELLOW_RED_CARD":
+      return `${subject} is sent off for a second yellow card.`;
+  }
 }
 
 function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMap<string, Team>): EventLogParticipant {
@@ -744,6 +777,7 @@ function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMa
   return {
     fifaCode: team?.fifaCode ?? "—",
     flagEmoji: flagEmojiForFifaCode(team?.fifaCode),
+    shortName: team?.shortName ?? team?.fifaCode ?? "Unknown team",
   };
 }
 
@@ -777,14 +811,21 @@ function buildEventLog(
     // In-game events (goals, cards)
     for (const event of match.events ?? []) {
       const clockSeconds = event.clockSeconds ?? 0;
-      const teamFifaCode = event.teamId !== undefined ? teamsById.get(event.teamId)?.fifaCode : undefined;
+      const participant =
+        event.teamId === match.homeTeamId
+          ? home
+          : event.teamId === match.awayTeamId
+            ? away
+            : event.teamId !== undefined
+              ? buildEventParticipant(event.teamId, teamsById)
+              : undefined;
       entries.push({
         id: `event-log-${match.matchNumber}-${event.id ?? clockSeconds}-${event.type}`,
         sortKey: kickoffMs + clockSeconds * 1000,
         clockDisplay: event.clockDisplay ?? `${Math.floor(clockSeconds / 60)}′`,
         type: event.type,
         home, away,
-        description: inGameDescription(event.type, teamFifaCode, event.primaryPlayerName),
+        description: inGameDescription(event.type, participant, event.primaryPlayerName),
         isLive,
       });
     }
@@ -793,7 +834,7 @@ function buildEventLog(
     if (match.status !== "FIRST_HALF") {
       entries.push({
         id: `event-log-${match.matchNumber}-halftime`,
-        sortKey: kickoffMs + 45 * 60 * 1000,
+        sortKey: kickoffMs + halftimeSortOffset(match) * 1000,
         clockDisplay: "HT",
         type: "HALF_TIME",
         home, away,
@@ -816,7 +857,7 @@ function buildEventLog(
       }
       entries.push({
         id: `event-log-${match.matchNumber}-fulltime`,
-        sortKey: kickoffMs + 90 * 60 * 1000,
+        sortKey: kickoffMs + fulltimeSortOffset(match) * 1000,
         clockDisplay: "FT",
         type: "FULL_TIME",
         home, away,

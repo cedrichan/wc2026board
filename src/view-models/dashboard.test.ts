@@ -340,4 +340,132 @@ describe("buildDashboardViewModel", () => {
     expect(match.kickoffLabel).toContain("11:00 AM");
     expect(match.kickoffLabel).toContain("PDT");
   });
+
+  it("writes natural-language recent event descriptions", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "group-live",
+          matchNumber: 1,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "SECOND_HALF",
+          elapsedMinutes: 67,
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-2",
+          normalTime: { home: 1, away: 0 },
+          events: [
+            {
+              id: "goal-1",
+              type: "GOAL",
+              teamId: "team-A-1",
+              primaryPlayerName: "Alex Morgan",
+              clockSeconds: 720,
+              clockDisplay: "12′",
+            },
+            {
+              id: "red-1",
+              type: "RED_CARD",
+              teamId: "team-A-2",
+              primaryPlayerName: "Sam Player",
+              clockSeconds: 3900,
+              clockDisplay: "65′",
+            },
+          ],
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-goal-1-GOAL"))
+      .toMatchObject({
+        description: "Alex Morgan of 🏳️ A1 scores a goal.",
+      });
+    expect(model.eventLog.entries.find((entry) => entry.id === "event-log-1-red-1-RED_CARD"))
+      .toMatchObject({
+        description: "Sam Player of 🏳️ A2 receives a red card.",
+      });
+  });
+
+  it("orders half-time and full-time after stoppage-time events", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "match-1",
+          matchNumber: 1,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "FINISHED",
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-2",
+          normalTime: { home: 2, away: 1 },
+          events: [
+            {
+              id: "first-half-stoppage",
+              type: "YELLOW_CARD",
+              teamId: "team-A-1",
+              clockSeconds: 47 * 60,
+              clockDisplay: "45′+2",
+            },
+            {
+              id: "second-half-stoppage",
+              type: "GOAL",
+              teamId: "team-A-2",
+              clockSeconds: 93 * 60,
+              clockDisplay: "90′+3",
+            },
+          ],
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    const entryIds = model.eventLog.entries.map((entry) => entry.id);
+    expect(entryIds.indexOf("event-log-1-halftime")).toBeLessThan(
+      entryIds.indexOf("event-log-1-first-half-stoppage-YELLOW_CARD"),
+    );
+    expect(entryIds.indexOf("event-log-1-fulltime")).toBeLessThan(
+      entryIds.indexOf("event-log-1-second-half-stoppage-GOAL"),
+    );
+  });
+
+  it("orders full-time after extra-time stoppage events", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "match-1",
+          matchNumber: 1,
+          round: "ROUND_OF_16",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "FINISHED_AFTER_EXTRA_TIME",
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-2",
+          normalTime: { home: 1, away: 1 },
+          extraTime: { home: 1, away: 0 },
+          winnerTeamId: "team-A-1",
+          events: [
+            {
+              id: "et-stoppage-goal",
+              type: "GOAL",
+              teamId: "team-A-1",
+              clockSeconds: 121 * 60,
+              clockDisplay: "120′+1",
+              primaryPlayerName: "Alex Morgan",
+            },
+          ],
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    const entryIds = model.eventLog.entries.map((entry) => entry.id);
+    expect(entryIds.indexOf("event-log-1-fulltime")).toBeLessThan(
+      entryIds.indexOf("event-log-1-et-stoppage-goal-GOAL"),
+    );
+  });
 });

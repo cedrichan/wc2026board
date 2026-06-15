@@ -9,6 +9,8 @@ interface EventLogProps {
   log: EventLogViewModel;
 }
 
+const EVENT_LOG_COLUMNS = "minmax(7.5rem, 12rem) 4rem minmax(5.5rem, 7.5rem) minmax(0, 1fr)";
+
 export default function EventLog({ log }: EventLogProps): JSX.Element {
   return (
     <Box
@@ -62,21 +64,30 @@ export default function EventLog({ log }: EventLogProps): JSX.Element {
 function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element {
   const isGoal = entry.type === "GOAL" || entry.type === "OWN_GOAL" || entry.type === "PENALTY_GOAL";
   const isLifecycle = entry.type === "KICKOFF" || entry.type === "HALF_TIME" || entry.type === "FULL_TIME";
+  const typeLabel = formatEventType(entry.type);
 
   return (
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "auto auto 1fr",
         alignItems: "center",
         gap: 1.5,
         px: 1.5,
         py: 0.75,
         bgcolor: entry.isLive ? "action.hover" : undefined,
       }}
+      style={{ gridTemplateColumns: EVENT_LOG_COLUMNS }}
     >
       {/* Countries involved */}
-      <Typography variant="body2" sx={{ whiteSpace: "nowrap" }}>
+      <Typography
+        variant="body2"
+        sx={{
+          minWidth: 0,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }}
+      >
         <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
         {entry.home.fifaCode}
         {" vs "}
@@ -93,14 +104,53 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
         {entry.clockDisplay}
       </Typography>
 
+      <Typography
+        variant="caption"
+        color={isLifecycle ? "text.disabled" : "text.secondary"}
+        sx={{
+          minWidth: 0,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          fontWeight: 700,
+          letterSpacing: 0.6,
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {typeLabel}
+      </Typography>
+
       {/* Description */}
       <Typography
         variant="body2"
         color={isLifecycle ? "text.disabled" : entry.isLive ? "error.main" : "text.secondary"}
-        sx={{ fontWeight: isGoal ? 600 : 400 }}
+        sx={{ minWidth: 0, fontWeight: isGoal ? 600 : 400 }}
       >
         {entry.description}
       </Typography>
     </Box>
   );
+}
+
+function formatEventType(type: EventLogEntryViewModel["type"]): string {
+  switch (type) {
+    case "GOAL":
+      return "Goal";
+    case "OWN_GOAL":
+      return "Own goal";
+    case "PENALTY_GOAL":
+      return "Penalty";
+    case "YELLOW_CARD":
+      return "Yellow";
+    case "RED_CARD":
+      return "Red";
+    case "YELLOW_RED_CARD":
+      return "2nd yellow";
+    case "KICKOFF":
+      return "Kickoff";
+    case "HALF_TIME":
+      return "Half";
+    case "FULL_TIME":
+      return "Full time";
+  }
 }
