@@ -78,12 +78,22 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
         <TableCell sx={dataCellSx}>
           <Stack direction="row" alignItems="center" spacing={0.75}>
             <TeamFlag team={row.team} />
-            <Typography
-              variant="caption"
-              sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 120 }}
-            >
-              {row.team.shortName}
-            </Typography>
+            <Box sx={{ minWidth: 0 }}>
+              <Typography
+                variant="caption"
+                component="span"
+                sx={{ display: { xs: "none", md: "inline" }, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+              >
+                {row.team.name}
+              </Typography>
+              <Typography
+                variant="caption"
+                component="span"
+                sx={{ display: { xs: "inline", md: "none" } }}
+              >
+                {row.team.shortName}
+              </Typography>
+            </Box>
           </Stack>
         </TableCell>
         <TableCell align="right" sx={dataCellSx}>{row.played}</TableCell>
