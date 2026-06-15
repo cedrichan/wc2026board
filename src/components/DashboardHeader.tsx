@@ -1,0 +1,95 @@
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import CircularProgress from "@mui/material/CircularProgress";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import type { HeaderViewModel } from "../view-models/dashboard";
+
+interface DashboardHeaderProps {
+  header: HeaderViewModel;
+  isRefreshing: boolean;
+  onRefresh: () => void;
+}
+
+export default function DashboardHeader({ header, isRefreshing, onRefresh }: DashboardHeaderProps): JSX.Element {
+  return (
+    <AppBar position="static" component="header">
+      <Toolbar>
+        <Stack direction="row" alignItems="center" spacing={1} sx={{ width: "100%" }}>
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ flexWrap: "wrap" }}>
+            <Typography
+              variant="h6"
+              component="h1"
+              sx={{ fontWeight: 700, letterSpacing: 0.5, whiteSpace: "nowrap" }}
+            >
+              World Cup 2026
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.85, whiteSpace: "nowrap" }}>
+              {header.stage.label}
+            </Typography>
+            {header.live.isLive && (
+              <Chip
+                label={header.live.label}
+                size="small"
+                aria-label={header.live.accessibleLabel}
+                sx={{ bgcolor: "success.main", color: "success.contrastText" }}
+              />
+            )}
+            {header.stale && (
+              <Chip
+                label={header.staleLabel ?? "Data may be stale"}
+                size="small"
+                color="warning"
+              />
+            )}
+          </Stack>
+
+          <Box sx={{ flex: 1 }} />
+
+          <Typography
+            variant="body2"
+            aria-label={header.updatedAccessibleLabel}
+            sx={{ opacity: 0.85, whiteSpace: "nowrap" }}
+          >
+            {header.updatedLabel}
+          </Typography>
+
+          <IconButton
+            onClick={onRefresh}
+            disabled={isRefreshing}
+            aria-label={isRefreshing ? "Refreshing data" : "Refresh data"}
+            color="inherit"
+            sx={{ minWidth: 44, minHeight: 44 }}
+          >
+            {isRefreshing ? (
+              <CircularProgress size={20} color="inherit" />
+            ) : (
+              <RefreshIcon />
+            )}
+          </IconButton>
+        </Stack>
+      </Toolbar>
+
+      {header.warnings.length > 0 && (
+        <Box
+          component="span"
+          aria-live="polite"
+          sx={{
+            position: "absolute",
+            width: 1,
+            height: 1,
+            overflow: "hidden",
+            clip: "rect(0,0,0,0)",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {header.warnings.join(". ")}
+        </Box>
+      )}
+    </AppBar>
+  );
+}
