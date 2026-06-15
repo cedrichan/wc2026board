@@ -1,4 +1,3 @@
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -136,11 +135,13 @@ function qualificationStyle(qualification: GroupRowViewModel["qualification"]): 
 
 function TeamFlag({ team }: { team: TeamViewModel }): JSX.Element {
   return (
-    <Avatar
-      sx={{ width: 20, height: 20, fontSize: "0.8rem" }}
+    <Box
+      component="span"
+      sx={{ width: 20, height: 20, fontSize: "0.8rem", display: "inline-flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
       aria-label={team.flagAlt}
+      role="img"
     >
       {team.flagEmoji}
-    </Avatar>
+    </Box>
   );
 }

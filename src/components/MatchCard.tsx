@@ -1,4 +1,3 @@
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -159,12 +158,14 @@ function ParticipantFlag({ participant }: { participant: ParticipantViewModel })
 
 function TeamFlag({ team }: { team: TeamViewModel | undefined }): JSX.Element {
   return (
-    <Avatar
-      sx={{ width: 20, height: 20, fontSize: "0.8rem" }}
+    <Box
+      component="span"
+      sx={{ width: 20, height: 20, fontSize: "0.8rem", display: "inline-flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
       aria-label={team?.flagAlt ?? "Unknown flag"}
+      role="img"
     >
       {team?.flagEmoji ?? VIEW_SYMBOLS.fallbackFlag.value}
-    </Avatar>
+    </Box>
   );
 }
 

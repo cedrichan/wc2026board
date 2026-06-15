@@ -1,4 +1,3 @@
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -131,11 +130,13 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
 
 function TeamFlag({ team }: { team: TeamViewModel }): JSX.Element {
   return (
-    <Avatar
-      sx={{ width: 18, height: 18, fontSize: "0.7rem" }}
+    <Box
+      component="span"
+      sx={{ width: 18, height: 18, fontSize: "0.7rem", display: "inline-flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
       aria-label={team.flagAlt}
+      role="img"
     >
       {team.flagEmoji}
-    </Avatar>
+    </Box>
   );
 }
