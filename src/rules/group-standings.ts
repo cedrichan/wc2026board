@@ -519,6 +519,14 @@ export function calculateGroupStandings(
 
   ranked.sort((a, b) => a.position - b.position);
 
+  // Provisional means a tiebreaker could not be resolved after all group matches
+  // finished. If the group is still in progress, uncertainty is "projected" —
+  // handled by the bracket layer — not a true unresolved tiebreaker.
+  const expectedMatchCount = (teams.length * (teams.length - 1)) / 2;
+  const groupComplete =
+    groupMatches.length === expectedMatchCount &&
+    groupMatches.every((m) => FINISHED_STATUSES.has(m.status));
+
   // Compute conduct scores for all teams (for display in StandingRow)
   const conductMap = new Map<string, { score: number; incomplete: boolean }>(
     teams.map((t) => [t.id, computeConductScore(t.id, groupMatches)])
@@ -527,6 +535,7 @@ export function calculateGroupStandings(
   const rows: StandingRow[] = ranked.map((r) => {
     const totals = totalsMap.get(r.teamId)!;
     const conduct = conductMap.get(r.teamId)!;
+    const provisional = groupComplete && r.provisional;
     return {
       teamId: r.teamId,
       position: r.position,
@@ -539,9 +548,9 @@ export function calculateGroupStandings(
       goalDifference: totals.goalsFor - totals.goalsAgainst,
       points: totals.points,
       conductScore: conduct.incomplete ? undefined : conduct.score,
-      qualification: deriveQualification(r.position, r.provisional),
+      qualification: deriveQualification(r.position, provisional),
       tiebreakerUsed: r.tiebreakerUsed,
-      provisional: r.provisional,
+      provisional,
     };
   });
 

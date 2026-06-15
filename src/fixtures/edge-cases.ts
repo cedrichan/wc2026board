@@ -9,7 +9,7 @@
  *   - unknown-status: UNKNOWN status
  *   - missing-flags: some teams missing flagUrl
  *   - missing-venue: some matches missing venue/city
- *   - incomplete-conduct: UnresolvedTiebreaker in diagnostics, provisional: true on StandingRow
+ *   - incomplete-conduct: UnresolvedTiebreaker in diagnostics; group still in progress so standings are projected
  */
 import type { TournamentSnapshot } from "../domain";
 
@@ -339,7 +339,9 @@ export const missingVenue: TournamentSnapshot = {
 
 /**
  * incomplete-conduct — at least one UnresolvedTiebreaker in diagnostics because
- * conduct scores are unavailable; affected standings rows carry provisional: true.
+ * conduct scores are unavailable. The group is still in progress (2 of 6 matches
+ * played), so standings are projected rather than provisional; provisional applies
+ * only once all group matches are finished and a tiebreaker still cannot be resolved.
  */
 export const incompleteConductFixture: TournamentSnapshot = {
   generatedAt: "2026-06-24T22:00:00Z",

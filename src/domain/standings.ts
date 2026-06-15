@@ -8,7 +8,7 @@ export type QualificationStatus =
 
 export interface StandingRow {
   teamId: string;
-  // 1–4 within the group; provisional while matches remain
+  // 1–4 within the group
   position: number;
   played: number;
   wins: number;
@@ -23,7 +23,9 @@ export interface StandingRow {
   qualification: QualificationStatus;
   // Human-readable name of the criterion that broke a tie to determine this position
   tiebreakerUsed?: string;
-  // True until all group-stage matches for this team are finished
+  // True when all group matches are finished but a tiebreaker cannot be resolved
+  // by any available criterion. While the group is still in progress, positions
+  // are projected (not provisional) — that distinction is handled at the bracket layer.
   provisional: boolean;
 }
 
@@ -47,7 +49,9 @@ export interface ThirdPlaceRankingRow {
   points: number;
   // null means an unresolved tied set spans the qualification boundary
   qualifying: boolean | null;
-  // True while not all group matches in this team's group are finished
+  // True when the underlying group standings position is provisional (unresolvable
+  // tiebreaker after all group matches finish), or when this rank itself cannot be
+  // resolved by any available criterion.
   provisional: boolean;
   // Human-readable name of the criterion that determined this rank
   tiebreakerUsed?: string;
