@@ -26,9 +26,6 @@ export default function RulesDisclosure(): JSX.Element {
       <Typography variant="caption" color="text.secondary" component="p" sx={{ m: 0 }}>
         Projected standings, third-place ranking, and bracket are calculated
         locally from live ESPN scores using FIFA rules — not official results.
-        Uncertain placements are marked Provisional/Unresolved. ESPN is the only
-        data source; there is no automatic fallback. Stale data is labeled when
-        ESPN can&rsquo;t be reached.
       </Typography>
     </Box>
   );
