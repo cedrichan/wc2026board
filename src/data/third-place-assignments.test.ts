@@ -10,7 +10,7 @@
  * Competition Regulations Annex C. See annex-c-provenance.md for instructions.
  */
 
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   findThirdPlaceAssignment,
   thirdPlaceAssignments,

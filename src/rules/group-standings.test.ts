@@ -178,58 +178,6 @@ describe("B011 — head-to-head tiebreaker", () => {
     // t1: beats t2 (3) + beats t4 (3) + loses to t3 (0) = 6pts
     // t2: beats t3 (3) + beats t4 (3) + loses to t1 (0) = 6pts ← tied!
     // H2H {t1, t2}: t1 beat t2 → t1 gets 3 H2H pts, t2 gets 0 → separated by H2H points
-    const teams2 = [team("t1", "T1"), team("t2", "T2"), team("t3", "T3"), team("t4", "T4")];
-    const matches2: Match[] = [
-      finishedMatch("t1", "t2", 1, 0), // t1 beats t2 — H2H separation
-      finishedMatch("t1", "t4", 1, 0), // t1 wins → 6pts
-      finishedMatch("t3", "t1", 1, 0), // t3 beats t1
-      finishedMatch("t2", "t3", 1, 0), // t2 wins
-      finishedMatch("t2", "t4", 1, 0), // t2 wins → 6pts
-      finishedMatch("t3", "t4", 1, 0), // t3 wins
-    ];
-    // t1: W vs t2 (3), W vs t4 (3), L vs t3 (0) = 6pts
-    // t2: W vs t3 (3), W vs t4 (3), L vs t1 (0) = 6pts
-    // t3: W vs t1 (3), W vs t4 (3), L vs t2 (0) = 6pts  ← three-way tie at 6pts!
-    // t4: 0pts
-    // H2H among {t1,t2,t3}: t1 beat t2 (3pts), t2 beat t3 (3pts), t3 beat t1 (3pts) → all 3 H2H pts
-    // H2H GD: t1 +1-1=0, t2 +1-1=0, t3 +1-1=0 → also equal
-    // H2H GF: all 1 → equal
-    // Overall GD: t1 = +1+1-1 = +1; t2 = +1+1-1 = +1; t3 = +1+1-1 = +1 → equal
-    // This is UNRESOLVED, not what we want. Need a simpler 2-team tie.
-
-    // Simpler: just 2 teams in a group, they draw → both 1pt, tie resolved later
-    // Or: use 3 teams where only 2 are tied by points and H2H separates them
-    const teams3 = [team("t1", "T1"), team("t2", "T2"), team("t3", "T3")];
-    const matches3: Match[] = [
-      // t1 beats t2 (H2H), t2 beats t3, t3 beats t1 is circular...
-      // Instead: t1 beats t2 and t3; t2 beats t3; t3 does nothing → t1=6pts, t2/t3 differ
-      // For t1 & t2 tied on same points with H2H separation:
-      // t1 beats t3 (3pts), t2 beats t3 (3pts), t1 beats t2 (H2H) → t1=6pts, t2=3pts → NOT tied
-      // We need only 2 teams in total, or a specific construction:
-      // t1: beats t2 (3), draws t3 (1) = 4pts; t2: beats t3 (3), loses t1 (0), draws ???
-      // Simple 2-team: both finish with the same points; t1 beat t2
-      finishedMatch("t1", "t2", 2, 0), // t1 beats t2
-      finishedMatch("t2", "t3", 2, 0), // t2 beats t3
-      finishedMatch("t3", "t1", 2, 0), // t3 beats t1
-    ];
-    // t1: W vs t2 (3), L vs t3 = 3pts; t2: W vs t3 (3), L vs t1 = 3pts; t3: W vs t1 (3), L vs t2 = 3pts
-    // H2H among {t1,t2,t3}: t1→3pts, t2→3pts, t3→3pts → circular, all H2H equal
-    // H2H GD: t1=+2-2=0, t2=+2-2=0, t3=+2-2=0 → H2H GF: 2,2,2 → equal → overall GD: all 0 → UNRESOLVED
-    // This is the UNRESOLVED case with 3 teams in a cycle.
-    // Let's instead test a clean 2-team scenario in isolation:
-    const teams2only = [team("t1", "T1"), team("t2", "T2")];
-    // Each team plays the other team — but needs same overall points
-    // This only works if they draw (1 each), which means H2H is also a draw.
-    // The only way t1 beats t2 H2H and they're tied is if there are other matches.
-    // With 2 teams there's only 1 match — draw gives same points, win gives different points.
-    // So we need 3+ teams for this test.
-    //
-    // Let's use a 4-team scenario where t1 and t2 are tied on points (not t3),
-    // and their mutual H2H separates them.
-    // t1: beats t2 (3), beats t4 (3), loses to t3 (0) = 6pts
-    // t2: loses t1 (0), beats t4 (3), beats t3 (3) = 6pts
-    // t3: beats t1 (3), loses t2 (0), draws t4 (1) = 4pts
-    // t4: loses t1 (0), loses t2 (0), draws t3 (1) = 1pt
     const teams4 = [team("t1", "T1"), team("t2", "T2"), team("t3", "T3"), team("t4", "T4")];
     const matches4: Match[] = [
       finishedMatch("t1", "t2", 1, 0), // t1 beats t2 — H2H key match
@@ -275,35 +223,7 @@ describe("B012 — three-way tie with subset reapplication (scenario 3)", () => 
     // t1, t2, t3 all tied on overall points. In H2H:
     // t1 beat t2, t1 beat t3 → t1 separates by H2H points (6pts in H2H)
     // t2 beat t3 → t2 ahead of t3 in subset H2H
-    const teams = [team("t1", "T1"), team("t2", "T2"), team("t3", "T3"), team("t4", "T4")];
-    const matches: Match[] = [
-      // H2H among t1/t2/t3: t1 beats both, t2 beats t3
-      finishedMatch("t1", "t2", 2, 0), // t1 wins H2H
-      finishedMatch("t1", "t3", 2, 0), // t1 wins H2H
-      finishedMatch("t2", "t3", 2, 0), // t2 beats t3 in H2H
-      // Matches vs t4 to equalize overall points: all three beat t4 once, lose once to t4
-      finishedMatch("t1", "t4", 0, 1), // t1 loses
-      finishedMatch("t2", "t4", 0, 1), // t2 loses
-      finishedMatch("t3", "t4", 0, 1), // t3 loses (actually t4 wins)
-    ];
-    // t1: 2W (vs t2, t3) + 1L (vs t4) = 6pts; GF: 4, GA: 1 → GD+3
-    // t2: 1W (vs t3) + 1L (vs t1) + 1L (vs t4) = 3pts
-    // t3: 0W + 3L = 0pts; t4: 3W = 9pts
-    // This doesn't give a three-way tie. Let me restructure.
-
-    // Better: complete round-robin where t1/t2/t3 all finish on same points
     const teams2 = [team("t1", "T1"), team("t2", "T2"), team("t3", "T3")];
-    const matches2: Match[] = [
-      // t1 beats t2 (3pts), t2 beats t3 (3pts), t3 beats t1 (3pts) → all 3pts overall
-      // H2H among {t1,t2,t3}: same 3pts each → H2H GD: t1=+1-1=0, t2=+1-1=0, t3=+1-1=0
-      // This is a true three-way tie with circular results - won't separate by H2H
-      // So instead: t1 beats t2 by 2, t2 beats t3 by 2, t3 beats t1 by 1
-      finishedMatch("t1", "t2", 2, 0), // t1→3pts, GD in H2H: t1+2, t2-2
-      finishedMatch("t2", "t3", 2, 0), // t2→3pts, GD: t2+2, t3-2
-      finishedMatch("t3", "t1", 2, 0), // t3→3pts, GD: t3+2, t1-2
-    ];
-    // All 3pts, H2H GD all 0 (each +2 then -2), H2H GF all 2 → still tied
-    // Let's use a scenario where h2h DOES separate one:
     const matches3: Match[] = [
       finishedMatch("t1", "t2", 3, 0), // t1 beats t2 big → H2H: t1 6pts, t2 0pts, t3 0pts initially
       finishedMatch("t2", "t3", 2, 0), // t2 beats t3
@@ -430,7 +350,6 @@ describe("B014 — FIFA ranking tiebreaker", () => {
     // "fake-edition" doesn't exist in the loader, so it's skipped.
     // Only "2026-04" is tried but "UNKNOWN" code isn't there → UNRESOLVED.
     const teams2 = [team("arg", "ARG"), team("unk", "UNKNOWN_CODE")];
-    const matches = allDrawMatches("arg", "unk", "arg"); // only ARG vs UNK matters
     const m = finishedMatch("arg", "unk", 1, 1, { disciplinaryEvents: [] });
     const standings = calculateGroupStandings("A", teams2, [m], ["2026-04"]);
     // UNKNOWN_CODE missing from 2026-04 → edition skipped → UNRESOLVED

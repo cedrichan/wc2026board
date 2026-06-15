@@ -9,7 +9,7 @@ import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import CheckIcon from "@mui/icons-material/Check";
-import type { BracketMatchViewModel, ParticipantViewModel, ScoreViewModel, TeamViewModel } from "../view-models/dashboard";
+import type { BracketMatchViewModel, ParticipantViewModel, TeamViewModel } from "../view-models/dashboard";
 
 const CARD_WIDTH = 200;
 
