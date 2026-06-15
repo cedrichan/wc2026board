@@ -8,6 +8,7 @@ export interface TournamentQueryState {
   isLoading: boolean;
   isError: boolean;
   error: Error | null;
+  refetch: () => void;
 }
 
 export function useTournamentData(
@@ -33,5 +34,10 @@ export function useTournamentData(
     isLoading: query.isLoading,
     isError: query.isError,
     error: query.error,
+    // TanStack Query dedupes an in-flight refetch, so manual refresh while an
+    // automatic retry is pending cannot create an overlapping request.
+    refetch: () => {
+      void query.refetch();
+    },
   };
 }

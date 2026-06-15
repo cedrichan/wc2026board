@@ -20,6 +20,8 @@ export interface DashboardDataState {
   staleLabel: string | undefined;
   warnings: readonly string[];
   error: Error | null;
+  /** Manually trigger an ESPN refresh; deduped against in-flight requests. */
+  refresh: () => void;
 }
 
 function isFullyValid(snapshot: TournamentSnapshot): boolean {
@@ -83,7 +85,8 @@ export function useDashboardData(
     isRefreshing: status === "refreshing",
     fetchedAt,
     staleLabel,
-    warnings: [],
+    warnings: snapshot?.diagnostics.warnings ?? [],
     error: query.error,
+    refresh: query.refetch,
   };
 }

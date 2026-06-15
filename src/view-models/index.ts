@@ -3,6 +3,8 @@ export {
   deriveTournamentStage,
 } from "./dashboard";
 
+export { composeDashboardViewModel } from "./compose";
+
 export type {
   BracketMatchViewModel,
   BracketProjectionMatch,
