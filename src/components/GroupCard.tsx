@@ -46,7 +46,7 @@ export default function GroupCard({ group }: GroupCardProps): JSX.Element {
           </TableHead>
           <TableBody>
             {group.rows.map((row) => (
-              <GroupTableRow key={row.id} row={row} />
+              <GroupTableRow key={row.id} row={row} groupComplete={group.complete} />
             ))}
           </TableBody>
         </Table>
@@ -55,8 +55,8 @@ export default function GroupCard({ group }: GroupCardProps): JSX.Element {
   );
 }
 
-function GroupTableRow({ row }: { row: GroupRowViewModel }): JSX.Element {
-  const { borderColor, posIndicator } = qualificationStyle(row.qualification);
+function GroupTableRow({ row, groupComplete }: { row: GroupRowViewModel; groupComplete: boolean }): JSX.Element {
+  const { borderColor, posIndicator } = qualificationStyle(row.qualification, groupComplete);
   const tooltipTitle = `GF: ${row.goalsFor}, GA: ${row.goalsAgainst}${row.explanation !== undefined ? ` · ${row.explanation}` : ""}`;
 
   return (
@@ -117,15 +117,15 @@ function GroupTableRow({ row }: { row: GroupRowViewModel }): JSX.Element {
   );
 }
 
-function qualificationStyle(qualification: GroupRowViewModel["qualification"]): {
+function qualificationStyle(qualification: GroupRowViewModel["qualification"], groupComplete: boolean): {
   borderColor: string;
   posIndicator?: string;
 } {
   switch (qualification) {
     case "DIRECT":
-      return { borderColor: "success.main", posIndicator: VIEW_SYMBOLS.groupQualificationIndicators.DIRECT.value };
+      return { borderColor: "success.main", posIndicator: groupComplete ? VIEW_SYMBOLS.groupQualificationIndicators.DIRECT.value : undefined };
     case "THIRD_PLACE_QUALIFIER":
-      return { borderColor: "info.main", posIndicator: VIEW_SYMBOLS.groupQualificationIndicators.THIRD_PLACE_QUALIFIER.value };
+      return { borderColor: "info.main", posIndicator: groupComplete ? VIEW_SYMBOLS.groupQualificationIndicators.THIRD_PLACE_QUALIFIER.value : undefined };
     case "OUTSIDE":
       return { borderColor: "transparent" };
     case "UNRESOLVED":

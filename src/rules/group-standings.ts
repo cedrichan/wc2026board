@@ -554,7 +554,7 @@ export function calculateGroupStandings(
     };
   });
 
-  return { groupId, rows };
+  return { groupId, rows, complete: groupComplete };
 }
 
 // ─── Qualification assignment ─────────────────────────────────────────────────

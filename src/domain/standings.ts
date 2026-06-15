@@ -33,6 +33,8 @@ export interface GroupStandings {
   groupId: GroupId;
   // Ordered by position ascending (1st place first)
   rows: StandingRow[];
+  // True when every match in the group has a finished status
+  complete: boolean;
 }
 
 export interface ThirdPlaceRankingRow {

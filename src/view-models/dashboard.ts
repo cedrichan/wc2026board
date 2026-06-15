@@ -153,6 +153,9 @@ export interface GroupViewModel {
   label: string;
   live: boolean;
   liveLabel?: "Live";
+  // True when every group match has a finished status; Q/Q3 indicators are only
+  // shown in the UI once this is true.
+  complete: boolean;
   rows: readonly GroupRowViewModel[];
   accessibleName: string;
 }
@@ -443,14 +446,17 @@ function buildGroups(
   const standingsByGroup = new Map(standings.map((group) => [group.groupId, group]));
   const liveGroups = new Set(matches.filter((match) => LIVE_STATUSES.has(match.status)).map((match) => match.group));
   return GROUP_IDS.map((groupId) => {
-    const rows = (standingsByGroup.get(groupId)?.rows ?? []).map((row) => buildGroupRow(groupId, row, teamsById, thirdPlaceByTeam));
+    const standing = standingsByGroup.get(groupId);
+    const rows = (standing?.rows ?? []).map((row) => buildGroupRow(groupId, row, teamsById, thirdPlaceByTeam));
     const live = liveGroups.has(groupId);
+    const complete = standing?.complete ?? false;
     return {
       id: `group-${groupId.toLowerCase()}`,
       groupId,
       label: `Group ${groupId}`,
       live,
       liveLabel: live ? "Live" : undefined,
+      complete,
       rows,
       accessibleName: `Group ${groupId}${live ? ", live matches in progress" : ""}`,
     };

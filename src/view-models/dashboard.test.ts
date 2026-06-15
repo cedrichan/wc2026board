@@ -29,6 +29,7 @@ function team(group: GroupId, position: number): Team {
 function standings(): GroupStandings[] {
   return GROUPS.map((groupId) => ({
     groupId,
+    complete: true,
     rows: [1, 2, 3, 4].map((position) => ({
       teamId: `team-${groupId}-${position}`,
       position,
