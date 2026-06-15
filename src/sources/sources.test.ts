@@ -128,6 +128,45 @@ describe("FixtureFileDataSource", () => {
 });
 
 // ---------------------------------------------------------------------------
+// RuntimeDataSource
+// ---------------------------------------------------------------------------
+
+describe("createRuntimeDataSource", () => {
+  beforeEach(() => {
+    vi.resetModules();
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+  });
+
+  it("uses the fixture-backed source in development", async () => {
+    vi.stubEnv("DEV", true);
+    const { createRuntimeDataSource } = await import("./runtime-data-source");
+
+    const snapshot = await createRuntimeDataSource().getSnapshot();
+
+    expect(snapshot.tournamentId).toBe("fifa.world.2026");
+    expect(snapshot.matches.length).toBeGreaterThan(0);
+  });
+
+  it("uses the ESPN runtime source in production and issues a fetch", async () => {
+    vi.stubEnv("DEV", false);
+    const { default: observedScoreboard } = await import("./espn/__fixtures__/scoreboard-observed-states-20260614.json");
+    const fetch = vi.fn<typeof globalThis.fetch>().mockResolvedValue(
+      new Response(JSON.stringify(observedScoreboard), { status: 200 }),
+    );
+    vi.stubGlobal("fetch", fetch);
+
+    const { createRuntimeDataSource } = await import("./runtime-data-source");
+    const source = createRuntimeDataSource();
+    const snapshot = await source.getSnapshot();
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(snapshot.matches.length).toBeGreaterThan(0);
+    expect(snapshot.matches[0]?.matchNumber).toBe(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Fixture content assertions
 // ---------------------------------------------------------------------------
 

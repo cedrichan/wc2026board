@@ -2,6 +2,8 @@ import type { TournamentDataSource } from "../domain";
 import { FixtureFileDataSource } from "./fixture-file";
 import { liveGroupSecond } from "../fixtures/live-group";
 import { scheduled } from "../fixtures/group-stage";
+import { EspnScoreboardDataSource } from "./espn";
+import { mapEspnScoreboardToNormalizationInput } from "./espn/runtime-mapper";
 
 /**
  * Selects the runtime TournamentDataSource for the application.
@@ -10,13 +12,10 @@ import { scheduled } from "../fixtures/group-stage";
  * `snapshot -> rules engine -> view models -> UI` pipeline can be exercised
  * without a live network dependency.
  *
- * In production the sole runtime provider is ESPN. Mapping a validated ESPN
- * scoreboard payload into the normalization input (FIFA match numbers, group
- * letters, disciplinary events) is implemented in the dedicated ESPN adapter
- * task (B045); until that lands, this factory returns a source that reports the
- * live feed as unavailable rather than serving fabricated data. The dashboard
- * then renders its structured "live data temporarily unavailable" state and
- * never falls back to another provider.
+ * In production the sole runtime provider is ESPN. Match-number resolution is
+ * driven by a local schedule index derived from the captured 104-fixture range,
+ * so the runtime feed still maps onto the local bracket topology without
+ * consulting another provider.
  */
 export function createRuntimeDataSource(): TournamentDataSource {
   if (import.meta.env.DEV) {
@@ -26,10 +25,7 @@ export function createRuntimeDataSource(): TournamentDataSource {
     );
   }
 
-  return {
-    getSnapshot: () =>
-      Promise.reject(
-        new Error("ESPN runtime data source is not yet configured."),
-      ),
-  };
+  return new EspnScoreboardDataSource({
+    mapToNormalizationInput: mapEspnScoreboardToNormalizationInput,
+  });
 }
