@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -10,8 +9,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import type { ThirdPlaceRowViewModel, ThirdPlaceTableViewModel, TeamViewModel } from "../view-models/dashboard";
+import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 interface ThirdPlaceTableProps {
   thirdPlace: ThirdPlaceTableViewModel;
@@ -26,7 +25,7 @@ export default function ThirdPlaceTable({ thirdPlace }: ThirdPlaceTableProps): J
         </Typography>
         {!thirdPlace.boundaryResolved && (
           <Typography variant="caption" color="warning.main" sx={{ fontStyle: "italic" }}>
-            Qualification boundary unresolved
+            {VIEW_SYMBOLS.qualificationBoundaryUnresolved.value}
           </Typography>
         )}
       </Stack>
@@ -62,6 +61,7 @@ const dataCellSx = { fontSize: "0.75rem", py: 0.5, px: 1 };
 function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
   const isQualifying = row.qualifying === true;
   const isOutside = row.qualifying === false;
+  const InfoOutlinedIcon = VIEW_ICONS.info.value;
 
   const statusColor = isQualifying ? "success.main" : isOutside ? "text.secondary" : "warning.main";
 
@@ -130,22 +130,12 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
 }
 
 function TeamFlag({ team }: { team: TeamViewModel }): JSX.Element {
-  const [imgError, setImgError] = useState(false);
-
-  if (team.flagUrl === undefined || imgError) {
-    return (
-      <Avatar sx={{ width: 18, height: 18, fontSize: "0.5rem" }} aria-hidden="true">
-        {team.fifaCode.slice(0, 3)}
-      </Avatar>
-    );
-  }
-
   return (
     <Avatar
-      src={team.flagUrl}
-      alt={team.flagAlt}
-      sx={{ width: 18, height: 18 }}
-      imgProps={{ onError: () => setImgError(true) }}
-    />
+      sx={{ width: 18, height: 18, fontSize: "0.7rem" }}
+      aria-label={team.flagAlt}
+    >
+      {team.flagEmoji}
+    </Avatar>
   );
 }

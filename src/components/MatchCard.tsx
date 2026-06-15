@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -8,8 +7,8 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import CheckIcon from "@mui/icons-material/Check";
 import type { BracketMatchViewModel, ParticipantViewModel, TeamViewModel } from "../view-models/dashboard";
+import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 const CARD_WIDTH = 200;
 
@@ -121,6 +120,7 @@ interface ParticipantRowProps {
 
 function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JSX.Element {
   const isAhead = isLive && participant.currentlyAhead;
+  const CheckIcon = VIEW_ICONS.advancing.value;
 
   return (
     <Stack
@@ -158,24 +158,13 @@ function ParticipantFlag({ participant }: { participant: ParticipantViewModel })
 }
 
 function TeamFlag({ team }: { team: TeamViewModel | undefined }): JSX.Element {
-  const [imgError, setImgError] = useState(false);
-  const initials = team?.fifaCode ?? "?";
-
-  if (team?.flagUrl === undefined || imgError) {
-    return (
-      <Avatar sx={{ width: 20, height: 20, fontSize: "0.55rem" }} aria-hidden="true">
-        {initials.slice(0, 3)}
-      </Avatar>
-    );
-  }
-
   return (
     <Avatar
-      src={team.flagUrl}
-      alt={team.flagAlt}
-      sx={{ width: 20, height: 20 }}
-      imgProps={{ onError: () => setImgError(true) }}
-    />
+      sx={{ width: 20, height: 20, fontSize: "0.8rem" }}
+      aria-label={team?.flagAlt ?? "Unknown flag"}
+    >
+      {team?.flagEmoji ?? VIEW_SYMBOLS.fallbackFlag.value}
+    </Avatar>
   );
 }
 
@@ -203,7 +192,7 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
       {label}
       {isUnresolved && (
         <Typography component="span" variant="caption" color="text.secondary">
-          {" "}(?)
+          {" "}{VIEW_SYMBOLS.unresolvedSuffix.value}
         </Typography>
       )}
     </Typography>
@@ -217,7 +206,7 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
             {nameEl}
           </Box>
         </Tooltip>
-        <Chip label="Projected" size="small" variant="outlined" sx={{ height: 14, fontSize: "0.6rem", flexShrink: 0 }} />
+        <Chip label={VIEW_SYMBOLS.projectedChip.value} size="small" variant="outlined" sx={{ height: 14, fontSize: "0.6rem", flexShrink: 0 }} />
       </Stack>
     );
   }

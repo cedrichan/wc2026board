@@ -9,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import BracketSection from "./BracketSection";
 import BracketSkeleton from "./BracketSkeleton";
 import DashboardFooter from "./DashboardFooter";
@@ -23,6 +22,7 @@ import { useDashboardData } from "../hooks/useDashboardData";
 import { composeDashboardViewModel } from "../view-models";
 import type { DashboardFormatOptions, DashboardViewModel } from "../view-models";
 import type { TournamentDataSource } from "../domain";
+import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 interface DashboardProps {
   dataSource: TournamentDataSource;
@@ -167,12 +167,11 @@ function OutageFallback({
         role="alert"
         action={
           <Button color="inherit" size="small" onClick={onRefresh} disabled={isRefreshing}>
-            Retry
+            {VIEW_SYMBOLS.actions.retry.value}
           </Button>
         }
       >
-        Live data is temporarily unavailable. Retrying automatically — the
-        dashboard does not switch to another provider.
+        {VIEW_SYMBOLS.statuses.liveDataUnavailableRetrying.value}
       </Alert>
       <LoadingFallback />
     </>
@@ -198,6 +197,8 @@ function PendingHeader({
   onRefresh: () => void;
   isLoading: boolean;
 }): JSX.Element {
+  const RefreshIcon = VIEW_ICONS.refresh.value;
+
   return (
     <AppBar position="static" component="header">
       <Toolbar>
@@ -211,11 +212,11 @@ function PendingHeader({
           </Typography>
           <Box sx={{ flex: 1 }} />
           <Typography variant="body2" sx={{ opacity: 0.85, whiteSpace: "nowrap" }}>
-            {isLoading ? "Loading…" : "Updating…"}
+            {isLoading ? VIEW_SYMBOLS.statuses.loading.value : VIEW_SYMBOLS.statuses.updating.value}
           </Typography>
           <IconButton
             onClick={onRefresh}
-            aria-label="Refresh data"
+            aria-label={VIEW_SYMBOLS.actions.refreshData.value}
             color="inherit"
             sx={{ minWidth: 44, minHeight: 44 }}
           >

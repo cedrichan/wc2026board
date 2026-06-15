@@ -2,6 +2,7 @@ import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import type { DashboardDataStatus } from "../hooks/useDashboardData";
+import { VIEW_SYMBOLS } from "./view-symbols";
 
 interface OutageAlertProps {
   status: DashboardDataStatus;
@@ -17,7 +18,7 @@ export default function OutageAlert({ status, staleLabel, onRefresh, isRefreshin
         severity="error"
         action={
           <Button color="inherit" size="small" onClick={onRefresh} disabled={isRefreshing}>
-            Retry
+            {VIEW_SYMBOLS.actions.retry.value}
           </Button>
         }
         sx={{ borderRadius: 0 }}
@@ -25,7 +26,7 @@ export default function OutageAlert({ status, staleLabel, onRefresh, isRefreshin
         aria-live="assertive"
       >
         <Typography variant="body2">
-          Live data temporarily unavailable. Showing last cached data.
+          {VIEW_SYMBOLS.statuses.liveDataUnavailableCached.value}
           {staleLabel !== undefined && ` (${staleLabel})`}
         </Typography>
       </Alert>
@@ -38,7 +39,7 @@ export default function OutageAlert({ status, staleLabel, onRefresh, isRefreshin
         severity="warning"
         action={
           <Button color="inherit" size="small" onClick={onRefresh} disabled={isRefreshing}>
-            Refresh
+            {VIEW_SYMBOLS.actions.refresh.value}
           </Button>
         }
         sx={{ borderRadius: 0 }}

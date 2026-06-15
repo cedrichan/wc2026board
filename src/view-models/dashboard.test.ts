@@ -23,7 +23,6 @@ function team(group: GroupId, position: number): Team {
     name: `Team ${group}${position}`,
     shortName: `${group}${position}`,
     group,
-    flagUrl: position === 4 ? "javascript:alert(1)" : `https://flags.example/${group}${position}.svg`,
   };
 }
 
@@ -173,7 +172,7 @@ describe("buildDashboardViewModel", () => {
       qualificationLabel: "Provisional: Qualifying third-place team",
       explanation: "Provisional placement; active tiebreaker: conduct score",
     });
-    expect(model.groups[0].rows[3].team.flagUrl).toBeUndefined();
+    expect(model.groups[0].rows[3].team.flagEmoji).toBe("🏳️");
     expect(model.thirdPlace.rows).toHaveLength(12);
     expect(model.thirdPlace.rows[7]).toMatchObject({
       id: "third-place-team-team-H-3",

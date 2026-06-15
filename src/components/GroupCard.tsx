@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -13,6 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import type { GroupRowViewModel, GroupViewModel, TeamViewModel } from "../view-models/dashboard";
+import { VIEW_SYMBOLS } from "./view-symbols";
 
 interface GroupCardProps {
   group: GroupViewModel;
@@ -30,7 +30,7 @@ export default function GroupCard({ group }: GroupCardProps): JSX.Element {
             {group.label}
           </Typography>
           {group.live && (
-            <Chip label="Live" size="small" color="error" />
+            <Chip label={VIEW_SYMBOLS.liveChip.value} size="small" color="error" />
           )}
         </Stack>
 
@@ -124,33 +124,23 @@ function qualificationStyle(qualification: GroupRowViewModel["qualification"]): 
 } {
   switch (qualification) {
     case "DIRECT":
-      return { borderColor: "success.main", posIndicator: "Q" };
+      return { borderColor: "success.main", posIndicator: VIEW_SYMBOLS.groupQualificationIndicators.DIRECT.value };
     case "THIRD_PLACE_QUALIFIER":
-      return { borderColor: "info.main", posIndicator: "Q3" };
+      return { borderColor: "info.main", posIndicator: VIEW_SYMBOLS.groupQualificationIndicators.THIRD_PLACE_QUALIFIER.value };
     case "OUTSIDE":
       return { borderColor: "transparent" };
     case "UNRESOLVED":
-      return { borderColor: "warning.main", posIndicator: "?" };
+      return { borderColor: "warning.main", posIndicator: VIEW_SYMBOLS.groupQualificationIndicators.UNRESOLVED.value };
   }
 }
 
 function TeamFlag({ team }: { team: TeamViewModel }): JSX.Element {
-  const [imgError, setImgError] = useState(false);
-
-  if (team.flagUrl === undefined || imgError) {
-    return (
-      <Avatar sx={{ width: 20, height: 20, fontSize: "0.55rem" }} aria-hidden="true">
-        {team.fifaCode.slice(0, 3)}
-      </Avatar>
-    );
-  }
-
   return (
     <Avatar
-      src={team.flagUrl}
-      alt={team.flagAlt}
-      sx={{ width: 20, height: 20 }}
-      imgProps={{ onError: () => setImgError(true) }}
-    />
+      sx={{ width: 20, height: 20, fontSize: "0.8rem" }}
+      aria-label={team.flagAlt}
+    >
+      {team.flagEmoji}
+    </Avatar>
   );
 }

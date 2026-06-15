@@ -4,6 +4,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import BracketLayout from "./BracketLayout";
 import type { BracketRoundViewModel } from "../view-models/dashboard";
+import { VIEW_SYMBOLS } from "./view-symbols";
 
 type KnockoutRound =
   | "ROUND_OF_32"
@@ -23,12 +24,12 @@ const ROUND_ORDER: readonly KnockoutRound[] = [
 ];
 
 const SHORT_LABELS: Record<KnockoutRound, string> = {
-  ROUND_OF_32: "R32",
-  ROUND_OF_16: "R16",
-  QUARTER_FINAL: "QF",
-  SEMI_FINAL: "SF",
-  THIRD_PLACE: "3rd",
-  FINAL: "Final",
+  ROUND_OF_32: VIEW_SYMBOLS.bracketRoundShortLabels.ROUND_OF_32.value,
+  ROUND_OF_16: VIEW_SYMBOLS.bracketRoundShortLabels.ROUND_OF_16.value,
+  QUARTER_FINAL: VIEW_SYMBOLS.bracketRoundShortLabels.QUARTER_FINAL.value,
+  SEMI_FINAL: VIEW_SYMBOLS.bracketRoundShortLabels.SEMI_FINAL.value,
+  THIRD_PLACE: VIEW_SYMBOLS.bracketRoundShortLabels.THIRD_PLACE.value,
+  FINAL: VIEW_SYMBOLS.bracketRoundShortLabels.FINAL.value,
 };
 
 const LIVE_STATUSES = new Set([

@@ -17,6 +17,7 @@ import {
   type TournamentRound,
   type TournamentSnapshot,
 } from "../domain";
+import { flagEmojiForFifaCode } from "./flag-emoji";
 
 export type TimeDisplayMode = "LOCAL" | "UTC";
 
@@ -41,7 +42,7 @@ export interface TeamViewModel {
   name: string;
   shortName: string;
   fifaCode: string;
-  flagUrl?: string;
+  flagEmoji: string;
   flagAlt: string;
 }
 
@@ -537,7 +538,7 @@ function buildTeam(team: Team): TeamViewModel {
     name: team.name,
     shortName: team.shortName,
     fifaCode: team.fifaCode,
-    flagUrl: safeHttpsUrl(team.flagUrl),
+    flagEmoji: flagEmojiForFifaCode(team.fifaCode),
     flagAlt: `${team.name} flag`,
   };
 }
@@ -545,18 +546,8 @@ function buildTeam(team: Team): TeamViewModel {
 function buildTeamOrMissing(teamId: string, teamsById: ReadonlyMap<string, Team>): TeamViewModel {
   const team = teamsById.get(teamId);
   return team === undefined
-    ? { id: teamId, name: "Team unavailable", shortName: "—", fifaCode: "—", flagAlt: "" }
+    ? { id: teamId, name: "Team unavailable", shortName: "—", fifaCode: "—", flagEmoji: flagEmojiForFifaCode(undefined), flagAlt: "Unknown flag" }
     : buildTeam(team);
-}
-
-function safeHttpsUrl(value: string | undefined): string | undefined {
-  if (value === undefined) return undefined;
-  try {
-    const url = new URL(value);
-    return url.protocol === "https:" ? url.href : undefined;
-  } catch {
-    return undefined;
-  }
 }
 
 function normalizeScore(score: MatchScore | undefined): MatchScore {

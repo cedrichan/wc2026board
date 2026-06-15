@@ -6,8 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import type { HeaderViewModel } from "../view-models/dashboard";
+import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 interface DashboardHeaderProps {
   header: HeaderViewModel;
@@ -16,6 +16,8 @@ interface DashboardHeaderProps {
 }
 
 export default function DashboardHeader({ header, isRefreshing, onRefresh }: DashboardHeaderProps): JSX.Element {
+  const RefreshIcon = VIEW_ICONS.refresh.value;
+
   return (
     <AppBar position="static" component="header">
       <Toolbar>
@@ -41,7 +43,7 @@ export default function DashboardHeader({ header, isRefreshing, onRefresh }: Das
             )}
             {header.stale && (
               <Chip
-                label={header.staleLabel ?? "Data may be stale"}
+                label={header.staleLabel ?? VIEW_SYMBOLS.staleDataChip.value}
                 size="small"
                 color="warning"
               />
@@ -61,7 +63,7 @@ export default function DashboardHeader({ header, isRefreshing, onRefresh }: Das
           <IconButton
             onClick={onRefresh}
             disabled={isRefreshing}
-            aria-label={isRefreshing ? "Refreshing data" : "Refresh data"}
+            aria-label={isRefreshing ? VIEW_SYMBOLS.actions.refreshingData.value : VIEW_SYMBOLS.actions.refreshData.value}
             color="inherit"
             sx={{ minWidth: 44, minHeight: 44 }}
           >
