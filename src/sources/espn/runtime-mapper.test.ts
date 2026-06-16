@@ -70,9 +70,12 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     const roundOf32 = result.matches.find((match) => match.id === "760487");
     const final = result.matches[result.matches.length - 1];
 
+    // Event 760487 is Group C winner vs Group F runner-up = FIFA M76.
+    // It kicks off before M74 and M75, so ESPN's fixture places it at array
+    // position 74 — the old eventIndex+1 logic would have returned 74 here.
     expect(roundOf32).toMatchObject({
       id: "760487",
-      matchNumber: 74,
+      matchNumber: 76,
       round: "ROUND_OF_32",
       kickoffUtc: "2026-06-29T17:00Z",
       venue: "NRG Stadium",

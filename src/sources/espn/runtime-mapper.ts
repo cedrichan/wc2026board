@@ -15,6 +15,8 @@ import type {
   EspnScoreboardInput,
   EspnTeamInput,
 } from "./normalize";
+import { BRACKET_TOPOLOGY } from "../../data/bracket-topology";
+import type { SlotSource } from "../../domain/bracket";
 
 const GROUP_NOTE_PATTERN = /\bGroup\s+([A-L])\b/i;
 
@@ -53,6 +55,59 @@ function scheduleKey(
   return `${round}|${kickoffUtc}|${venueName.trim()}`;
 }
 
+// Maps "homeCode|awayCode" → FIFA match number for every Round of 32 fixture.
+//
+// The pre-captured schedule fixture lists events in kickoff-time order, which
+// does not always match FIFA match-number order in the knockout stage. For
+// example, M76 (Group C winner vs Group F runner-up) kicks off before M74 and
+// M75, so it appears at array index 73 in the fixture — which would produce
+// the wrong match number (74) if we relied on position alone.
+//
+// Round of 32 is the only round affected: ESPN's placeholder team abbreviations
+// ("1C", "2F", "3RD", etc.) are unique per match and can be cross-referenced
+// against the bracket topology to recover the correct FIFA match number. In R16
+// and beyond all entries share identical placeholder codes ("RD32 vs RD32",
+// "RD16 W1 vs RD16 W2", …) so team codes cannot disambiguate them; however,
+// those rounds are verified to be in FIFA match-number order in the fixture, so
+// the array-position fallback remains correct there.
+function buildR32MatchIndex(): ReadonlyMap<string, number> {
+  const index = new Map<string, number>();
+
+  function sourceToCode(source: SlotSource): string | undefined {
+    switch (source.type) {
+      case "GROUP_WINNER":    return `1${source.group}`;
+      case "GROUP_RUNNER_UP": return `2${source.group}`;
+      case "THIRD_PLACE":     return "3RD";
+      default:                return undefined;
+    }
+  }
+
+  for (const match of BRACKET_TOPOLOGY) {
+    if (match.round !== "ROUND_OF_32") continue;
+    const homeCode = sourceToCode(match.homeSource);
+    const awayCode = sourceToCode(match.awaySource);
+    if (homeCode !== undefined && awayCode !== undefined) {
+      index.set(`${homeCode}|${awayCode}`, match.matchNumber);
+    }
+  }
+
+  return index;
+}
+
+const R32_MATCH_NUMBER_BY_TEAM_CODES = buildR32MatchIndex();
+
+// Returns the correct FIFA match number for a Round of 32 competition by
+// matching the home and away placeholder abbreviations against the bracket
+// topology. Returns undefined if the competitors or their codes are missing.
+function resolveR32MatchNumber(competition: EspnCompetition): number | undefined {
+  const home = competition.competitors.find((c) => c.homeAway === "home");
+  const away = competition.competitors.find((c) => c.homeAway === "away");
+  const homeCode = home?.team?.abbreviation;
+  const awayCode = away?.team?.abbreviation;
+  if (!homeCode || !awayCode) return undefined;
+  return R32_MATCH_NUMBER_BY_TEAM_CODES.get(`${homeCode}|${awayCode}`);
+}
+
 function buildScheduleIndex(): ReadonlyMap<string, number> {
   const index = new Map<string, number>();
 
@@ -60,14 +115,20 @@ function buildScheduleIndex(): ReadonlyMap<string, number> {
     const competition = event.competitions[0];
     if (!competition) return;
 
-    const key = scheduleKey(
-      resolveRound(event),
-      kickoff(event, competition),
-      competition.venue?.fullName,
-    );
+    const round = resolveRound(event);
+    const key = scheduleKey(round, kickoff(event, competition), competition.venue?.fullName);
+    if (!key) return;
 
-    if (key) {
-      index.set(key, eventIndex + 1);
+    // R32: derive match number from team codes rather than array position,
+    // because the fixture is in kickoff order but R32 match numbers are not.
+    // All other rounds: array position (1-indexed) equals FIFA match number.
+    const matchNumber =
+      round === "ROUND_OF_32"
+        ? resolveR32MatchNumber(competition)
+        : eventIndex + 1;
+
+    if (matchNumber !== undefined) {
+      index.set(key, matchNumber);
     }
   });
 
