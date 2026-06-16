@@ -37,6 +37,7 @@ export default function ThirdPlaceTable({ thirdPlace }: ThirdPlaceTableProps): J
               <TableCell scope="col" sx={headerCellSx}>Group</TableCell>
               <TableCell scope="col" sx={headerCellSx}>Team</TableCell>
               <TableCell scope="col" align="right" sx={headerCellSx}>P</TableCell>
+              <TableCell scope="col" align="right" sx={headerCellSx}>Pts</TableCell>
               <TableCell scope="col" align="right" sx={headerCellSx}>GD</TableCell>
               <TableCell scope="col" align="right" sx={headerCellSx}>GF</TableCell>
               <TableCell scope="col" align="right" sx={{ ...headerCellSx, display: { xs: "none", sm: "table-cell" } }}>Conduct</TableCell>
@@ -97,6 +98,7 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
           </Stack>
         </TableCell>
         <TableCell align="right" sx={dataCellSx}>{row.played}</TableCell>
+        <TableCell align="right" sx={dataCellSx}>{row.points}</TableCell>
         <TableCell align="right" sx={dataCellSx}>{row.goalDifferenceLabel}</TableCell>
         <TableCell align="right" sx={dataCellSx}>{row.goalsFor}</TableCell>
         <TableCell
@@ -125,7 +127,7 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
       {row.qualificationLineAfter && (
         <TableRow aria-hidden="true">
           <TableCell
-            colSpan={8}
+            colSpan={9}
             sx={{
               p: 0,
               borderBottom: "2px solid",
