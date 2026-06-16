@@ -815,12 +815,12 @@ function scorelineForEvent(
   if (!isScoringEvent(event.type)) return undefined;
 
   if (event.teamId === match.homeTeamId) {
-    runningScore.home = event.scoreValue ?? ((runningScore.home ?? 0) + 1);
+    runningScore.home = (runningScore.home ?? 0) + 1;
     return scoreLabel(runningScore);
   }
 
   if (event.teamId === match.awayTeamId) {
-    runningScore.away = event.scoreValue ?? ((runningScore.away ?? 0) + 1);
+    runningScore.away = (runningScore.away ?? 0) + 1;
     return scoreLabel(runningScore);
   }
 
