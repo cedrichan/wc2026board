@@ -250,6 +250,40 @@ export interface EventLogViewModel {
   hasLive: boolean;
 }
 
+export interface TeamTooltipProjectionViewModel {
+  // True when the team can be placed in a concrete Round-of-32 slot.
+  determined: boolean;
+  // Only meaningful when determined; mirrors the bracket's projected/confirmed split.
+  confirmed: boolean;
+  // "Projected" or "Confirmed" chip shown alongside a determined slot.
+  statusLabel?: "Projected" | "Confirmed";
+  matchLabel?: string;
+  opponentLabel?: string;
+  // Shown instead of a slot when the Round-of-32 placement cannot be derived yet.
+  placeholderLabel?: string;
+  accessibleLabel: string;
+}
+
+export interface TeamTooltipViewModel {
+  id: string;
+  teamId: string;
+  team: TeamViewModel;
+  groupLabel: string;
+  position: number;
+  positionLabel: string;
+  played: number;
+  recordLabel: string;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalDifferenceLabel: string;
+  points: number;
+  // Slot-specific qualification source/unresolved reason, when the trigger is a
+  // bracket participant (e.g. "Projected winner of Group E").
+  note?: string;
+  projection: TeamTooltipProjectionViewModel;
+  accessibleName: string;
+}
+
 export interface DashboardViewModel {
   id: "dashboard";
   header: HeaderViewModel;
@@ -258,6 +292,9 @@ export interface DashboardViewModel {
   groups: readonly GroupViewModel[];
   thirdPlace: ThirdPlaceTableViewModel;
   eventLog: EventLogViewModel;
+  // Compact per-team standing + projected R32 path, keyed by team id, for the
+  // team-detail tooltip (B049). Derived entirely from the data above.
+  teamTooltips: readonly TeamTooltipViewModel[];
 }
 
 const GROUP_IDS: readonly GroupId[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
@@ -322,27 +359,31 @@ export function buildDashboardViewModel(
   );
   const liveMatches = input.snapshot.matches.filter((match) => LIVE_STATUSES.has(match.status));
 
+  const bracket: BracketRoundViewModel[] = KNOCKOUT_ROUNDS.map((round) => ({
+    id: `bracket-round-${round.toLowerCase()}`,
+    round,
+    label: ROUND_LABELS[round],
+    matches: BRACKET_TOPOLOGY.filter((definition) => definition.round === round).map((definition) =>
+      buildBracketMatch(
+        definition,
+        matchesByNumber.get(definition.matchNumber),
+        projectionsByNumber.get(definition.matchNumber),
+        teamsById,
+        options,
+      ),
+    ),
+  }));
+  const groups = buildGroups(input.groupStandings, input.snapshot.matches, teamsById, input.thirdPlaceRanking);
+
   return {
     id: "dashboard",
     header: buildHeader(input.snapshot, liveMatches, options),
     ticker: buildMatchTicker(input.snapshot, teamsById, options),
-    bracket: KNOCKOUT_ROUNDS.map((round) => ({
-      id: `bracket-round-${round.toLowerCase()}`,
-      round,
-      label: ROUND_LABELS[round],
-      matches: BRACKET_TOPOLOGY.filter((definition) => definition.round === round).map((definition) =>
-        buildBracketMatch(
-          definition,
-          matchesByNumber.get(definition.matchNumber),
-          projectionsByNumber.get(definition.matchNumber),
-          teamsById,
-          options,
-        ),
-      ),
-    })),
-    groups: buildGroups(input.groupStandings, input.snapshot.matches, teamsById, input.thirdPlaceRanking),
+    bracket,
+    groups,
     thirdPlace: buildThirdPlace(input.thirdPlaceRanking, teamsById),
     eventLog: buildEventLog(input.snapshot.matches, teamsById),
+    teamTooltips: buildTeamTooltips(groups, bracket),
   };
 }
 
@@ -574,6 +615,124 @@ function buildGroupRow(
     explanation,
     accessibleName: `${row.position}. ${team.name}, ${row.points} points, goal difference ${signedNumber(row.goalDifference)}, ${qualificationLabel}${explanation === undefined ? "" : `, ${explanation}`}`,
   };
+}
+
+interface R32Projection {
+  matchLabel: string;
+  opponentLabel: string;
+  confirmed: boolean;
+}
+
+// Builds the per-team tooltip view models from the already-composed group rows
+// and bracket. Each identified team gets its current standing plus the
+// Round-of-32 slot it is projected into (or a placeholder when undeterminable).
+function buildTeamTooltips(
+  groups: readonly GroupViewModel[],
+  bracket: readonly BracketRoundViewModel[],
+): TeamTooltipViewModel[] {
+  const round32 = bracket.find((round) => round.round === "ROUND_OF_32");
+  const projectionByTeam = new Map<string, R32Projection>();
+  for (const match of round32?.matches ?? []) {
+    indexR32Participant(match, match.home, match.away, projectionByTeam);
+    indexR32Participant(match, match.away, match.home, projectionByTeam);
+  }
+
+  return groups.flatMap((group) =>
+    group.rows
+      // Skip rows whose team could not be resolved (rendered as "Team unavailable").
+      .filter((row) => isResolvedTeam(row.team))
+      .map((row) => buildTeamTooltip(group, row, projectionByTeam.get(row.team.id))),
+  );
+}
+
+function isResolvedTeam(team: TeamViewModel): boolean {
+  return team.fifaCode !== "—";
+}
+
+function indexR32Participant(
+  match: BracketMatchViewModel,
+  participant: ParticipantViewModel,
+  opponent: ParticipantViewModel,
+  out: Map<string, R32Projection>,
+): void {
+  const teamId = participant.team?.id;
+  if (teamId === undefined || out.has(teamId)) return;
+  out.set(teamId, {
+    matchLabel: match.matchLabel,
+    opponentLabel: opponent.label,
+    confirmed: participant.state === "CONFIRMED",
+  });
+}
+
+function buildTeamTooltip(
+  group: GroupViewModel,
+  row: GroupRowViewModel,
+  projection: R32Projection | undefined,
+): TeamTooltipViewModel {
+  const projectionVm = buildTooltipProjection(row, projection);
+  const positionLabel = ordinalLabel(row.position);
+  return {
+    id: `team-tooltip-${row.team.id}`,
+    teamId: row.team.id,
+    team: row.team,
+    groupLabel: group.label,
+    position: row.position,
+    positionLabel,
+    played: row.played,
+    recordLabel: row.recordLabel,
+    goalsFor: row.goalsFor,
+    goalsAgainst: row.goalsAgainst,
+    goalDifferenceLabel: row.goalDifferenceLabel,
+    points: row.points,
+    projection: projectionVm,
+    accessibleName: [
+      row.team.name,
+      `${positionLabel} in ${group.label}`,
+      `${row.points} ${row.points === 1 ? "point" : "points"}`,
+      `record ${row.recordLabel}`,
+      `goal difference ${row.goalDifferenceLabel}`,
+      `${row.goalsFor} for, ${row.goalsAgainst} against`,
+      projectionVm.accessibleLabel,
+    ].join(", "),
+  };
+}
+
+function buildTooltipProjection(
+  row: GroupRowViewModel,
+  projection: R32Projection | undefined,
+): TeamTooltipProjectionViewModel {
+  if (projection === undefined) {
+    const placeholderLabel =
+      row.qualification === "OUTSIDE" ? "Not in the Round of 32" : "Round-of-32 slot to be determined";
+    return {
+      determined: false,
+      confirmed: false,
+      placeholderLabel,
+      accessibleLabel: `Round of 32: ${placeholderLabel}`,
+    };
+  }
+  const statusLabel = projection.confirmed ? "Confirmed" : "Projected";
+  return {
+    determined: true,
+    confirmed: projection.confirmed,
+    statusLabel,
+    matchLabel: projection.matchLabel,
+    opponentLabel: projection.opponentLabel,
+    accessibleLabel: `${statusLabel} Round of 32: ${projection.matchLabel} versus ${projection.opponentLabel}`,
+  };
+}
+
+function ordinalLabel(position: number): string {
+  switch (position) {
+    case 1:
+      return "1st";
+    case 2:
+      return "2nd";
+    case 3:
+      return "3rd";
+    default:
+      return `${position}th`;
+  }
 }
 
 function buildThirdPlace(ranking: ThirdPlaceRanking, teamsById: ReadonlyMap<string, Team>): ThirdPlaceTableViewModel {

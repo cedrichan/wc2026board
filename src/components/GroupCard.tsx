@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -11,6 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import type { GroupRowViewModel, GroupViewModel, TeamViewModel } from "../view-models/dashboard";
+import { TeamTooltip } from "./TeamTooltip";
 import { VIEW_SYMBOLS } from "./view-symbols";
 
 interface GroupCardProps {
@@ -57,55 +59,81 @@ export default function GroupCard({ group }: GroupCardProps): JSX.Element {
 
 function GroupTableRow({ row, groupComplete }: { row: GroupRowViewModel; groupComplete: boolean }): JSX.Element {
   const { borderColor, posIndicator } = qualificationStyle(row.qualification, groupComplete);
-  const tooltipTitle = `GF: ${row.goalsFor}, GA: ${row.goalsAgainst}${row.explanation !== undefined ? ` · ${row.explanation}` : ""}`;
+  // GF/GA (plus any active tiebreaker) stays on the numeric stat cells; the
+  // flag+name carries the richer team-detail tooltip instead.
+  const statTitle = `GF: ${row.goalsFor}, GA: ${row.goalsAgainst}${row.explanation !== undefined ? ` · ${row.explanation}` : ""}`;
 
   return (
-    <Tooltip title={tooltipTitle} placement="right" arrow>
-      <TableRow
-        aria-label={row.accessibleName}
-        sx={{
-          fontStyle: row.provisional ? "italic" : "normal",
-          borderLeft: "3px solid",
-          borderColor,
-          "& td": { borderBottom: "none" },
-        }}
-      >
-        <TableCell sx={{ p: 0.5, fontSize: "0.75rem" }}>
-          <Stack direction="row" alignItems="center" spacing={0.25}>
-            <span>{row.position}</span>
-            {posIndicator !== undefined && (
-              <Typography
-                component="span"
-                variant="caption"
-                sx={{ fontSize: "0.6rem", fontWeight: 700, lineHeight: 1 }}
-                aria-label={row.qualificationLabel}
-              >
-                {posIndicator}
-              </Typography>
-            )}
-          </Stack>
-        </TableCell>
+    <TableRow
+      aria-label={row.accessibleName}
+      sx={{
+        fontStyle: row.provisional ? "italic" : "normal",
+        borderLeft: "3px solid",
+        borderColor,
+        "& td": { borderBottom: "none" },
+      }}
+    >
+      <TableCell sx={{ p: 0.5, fontSize: "0.75rem" }}>
+        <Stack direction="row" alignItems="center" spacing={0.25}>
+          <span>{row.position}</span>
+          {posIndicator !== undefined && (
+            <Typography
+              component="span"
+              variant="caption"
+              sx={{ fontSize: "0.6rem", fontWeight: 700, lineHeight: 1 }}
+              aria-label={row.qualificationLabel}
+            >
+              {posIndicator}
+            </Typography>
+          )}
+        </Stack>
+      </TableCell>
 
-        <TableCell sx={{ p: 0.5 }}>
-          <Stack direction="row" alignItems="center" spacing={0.75}>
-            <TeamFlag team={row.team} />
-            <Box sx={{ minWidth: 0, maxWidth: "100px" }}>
-              <Typography
-                variant="caption"
-                component="span"
-                sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block" }}
-              >
-                {row.team.name}
-              </Typography>
-            </Box>
-          </Stack>
-        </TableCell>
+      <TableCell sx={{ p: 0.5 }}>
+        <TeamTooltip teamId={row.team.id} fallback={(children) => <TeamTrigger>{children}</TeamTrigger>}>
+          <TeamFlag team={row.team} />
+          <Box sx={{ minWidth: 0, maxWidth: "100px" }}>
+            <Typography
+              variant="caption"
+              component="span"
+              sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block" }}
+            >
+              {row.team.name}
+            </Typography>
+          </Box>
+        </TeamTooltip>
+      </TableCell>
 
-        <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem" }}>{row.played}</TableCell>
-        <TableCell align="right" sx={{ p: 0.5, fontSize: "0.7rem" }}>{row.recordLabel}</TableCell>
-        <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem" }}>{row.goalDifferenceLabel}</TableCell>
-        <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem", fontWeight: 700 }}>{row.points}</TableCell>
-      </TableRow>
+      <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem" }}>
+        <StatValue title={statTitle}>{row.played}</StatValue>
+      </TableCell>
+      <TableCell align="right" sx={{ p: 0.5, fontSize: "0.7rem" }}>
+        <StatValue title={statTitle}>{row.recordLabel}</StatValue>
+      </TableCell>
+      <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem" }}>
+        <StatValue title={statTitle}>{row.goalDifferenceLabel}</StatValue>
+      </TableCell>
+      <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem", fontWeight: 700 }}>
+        <StatValue title={statTitle}>{row.points}</StatValue>
+      </TableCell>
+    </TableRow>
+  );
+}
+
+function TeamTrigger({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <Box component="span" sx={{ display: "inline-flex", alignItems: "center", gap: 0.75, minWidth: 0 }}>
+      {children}
+    </Box>
+  );
+}
+
+function StatValue({ children, title }: { children: ReactNode; title: string }): JSX.Element {
+  return (
+    <Tooltip title={title} placement="top" arrow>
+      <Box component="span" sx={{ display: "inline-block", cursor: "help" }}>
+        {children}
+      </Box>
     </Tooltip>
   );
 }

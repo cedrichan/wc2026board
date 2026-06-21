@@ -19,6 +19,7 @@ import GroupCardStrip from "./GroupCardStrip";
 import MatchTicker from "./MatchTicker";
 import OutageAlert from "./OutageAlert";
 import RulesDisclosure from "./RulesDisclosure";
+import { TeamTooltipProvider } from "./TeamTooltip";
 import ThirdPlaceTable from "./ThirdPlaceTable";
 import { useDashboardData } from "../hooks/useDashboardData";
 import { composeDashboardViewModel } from "../view-models";
@@ -122,7 +123,7 @@ export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
 
 function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX.Element {
   return (
-    <>
+    <TeamTooltipProvider tooltips={viewModel.teamTooltips}>
       {/* Recent events log */}
       <EventLog log={viewModel.eventLog} />
 
@@ -142,7 +143,7 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
         <SectionHeading>Knockout bracket</SectionHeading>
         <BracketSection rounds={viewModel.bracket} />
       </Box>
-    </>
+    </TeamTooltipProvider>
   );
 }
 

@@ -24,6 +24,8 @@ export type {
   MatchTickerViewModel,
   ParticipantViewModel,
   ScoreViewModel,
+  TeamTooltipProjectionViewModel,
+  TeamTooltipViewModel,
   TeamViewModel,
   ThirdPlaceRowViewModel,
   ThirdPlaceTableViewModel,

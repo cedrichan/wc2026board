@@ -197,6 +197,65 @@ describe("buildDashboardViewModel", () => {
     expect(projected.away.accessibleName).toContain("Unresolved");
   });
 
+  it("builds per-team tooltips with standing and projected R32 slot", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+      bracketProjection: [{
+        matchNumber: 74,
+        round: "ROUND_OF_32",
+        homeParticipant: {
+          state: "PROJECTED",
+          teamId: "team-E-1",
+          qualificationSource: "Projected winner of Group E",
+        },
+        awayParticipant: {
+          state: "UNRESOLVED",
+          label: "3A/B/C/D/F",
+          unresolvedReason: "Annex C assignment requires definitive top-eight membership",
+        },
+      }],
+    }, OPTIONS);
+
+    // One tooltip per resolved team across all 12 groups.
+    expect(model.teamTooltips).toHaveLength(48);
+
+    const projected = model.teamTooltips.find((tooltip) => tooltip.teamId === "team-E-1")!;
+    expect(projected).toMatchObject({
+      groupLabel: "Group E",
+      position: 1,
+      positionLabel: "1st",
+      recordLabel: "3-0-0",
+      points: 8,
+      goalsFor: 4,
+      goalsAgainst: 1,
+      goalDifferenceLabel: "+3",
+    });
+    expect(projected.projection).toMatchObject({
+      determined: true,
+      confirmed: false,
+      statusLabel: "Projected",
+      matchLabel: "M74",
+      opponentLabel: "3A/B/C/D/F",
+    });
+    expect(projected.accessibleName).toContain("Projected Round of 32: M74 versus 3A/B/C/D/F");
+
+    // A fourth-placed team outside qualification gets a placeholder, not a slot.
+    const outside = model.teamTooltips.find((tooltip) => tooltip.teamId === "team-A-4")!;
+    expect(outside.projection).toMatchObject({
+      determined: false,
+      placeholderLabel: "Not in the Round of 32",
+    });
+
+    // A team without a resolved slot yet still shows a pending placeholder.
+    const pending = model.teamTooltips.find((tooltip) => tooltip.teamId === "team-A-1")!;
+    expect(pending.projection).toMatchObject({
+      determined: false,
+      placeholderLabel: "Round-of-32 slot to be determined",
+    });
+  });
+
   it("renders known provisional bracket participants like other identified teams", () => {
     const ranking = thirdPlaceRanking();
     const model = buildDashboardViewModel({

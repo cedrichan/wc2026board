@@ -1,12 +1,13 @@
+import type { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import type { BracketMatchViewModel, ParticipantViewModel, TeamViewModel } from "../view-models/dashboard";
+import { TeamTooltip } from "./TeamTooltip";
 import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 const CARD_WIDTH = 200;
@@ -135,8 +136,14 @@ function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JS
         borderColor: isAhead ? "success.main" : "transparent",
       }}
     >
-      <ParticipantFlag participant={participant} />
-      <ParticipantName participant={participant} />
+      <TeamTooltip
+        teamId={participant.team?.id}
+        note={participant.sourceExplanation}
+        fallback={(children) => <TriggerRow>{children}</TriggerRow>}
+      >
+        <ParticipantFlag participant={participant} />
+        <ParticipantName participant={participant} />
+      </TeamTooltip>
       {participant.advancing && (
         <CheckIcon sx={{ fontSize: 14, color: "success.main", flexShrink: 0 }} aria-hidden="true" />
       )}
@@ -147,6 +154,14 @@ function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JS
         </Typography>
       )}
     </Stack>
+  );
+}
+
+function TriggerRow({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <Box component="span" sx={{ display: "inline-flex", alignItems: "center", gap: 0.75, minWidth: 0 }}>
+      {children}
+    </Box>
   );
 }
 
@@ -201,13 +216,13 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
   );
 
   if (isProjectedStyle && participant.sourceExplanation !== undefined) {
+    // The qualification source is now surfaced through the team-detail tooltip
+    // (folded in as a note), so the chip alone marks the projected placement.
     return (
       <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minWidth: 0, flex: 1 }}>
-        <Tooltip title={participant.sourceExplanation} arrow>
-          <Box>
-            {nameEl}
-          </Box>
-        </Tooltip>
+        <Box sx={{ minWidth: 0 }}>
+          {nameEl}
+        </Box>
         <Chip label={VIEW_SYMBOLS.projectedChip.value} size="small" variant="outlined" sx={{ height: 14, fontSize: "0.6rem", flexShrink: 0 }} />
       </Stack>
     );
