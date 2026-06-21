@@ -2,7 +2,7 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 const CDN_PACKAGES =
-  /^(react|react-dom|@emotion\/react|@emotion\/styled|@mui\/material|@mui\/icons-material)/;
+  /^(react|react-dom|@emotion\/react|@emotion\/styled|@mui\/material|@mui\/icons-material|@tanstack\/react-query|zod)/;
 
 export default defineConfig({
   plugins: [react()],
