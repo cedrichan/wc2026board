@@ -6,6 +6,7 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { MatchTickerItemViewModel, MatchTickerViewModel } from "../view-models";
+import TeamIdentity from "./TeamIdentity";
 
 const CARD_WIDTH = 148;
 
@@ -134,29 +135,18 @@ interface TeamRowProps {
 function TeamRow({ team, score }: TeamRowProps): JSX.Element {
   return (
     <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minHeight: 20 }}>
-      {team !== null && (
-        <Box
-          component="span"
-          role="img"
-          aria-label={team.flagAlt}
-          sx={{ fontSize: "0.75rem", lineHeight: 1, width: 16, textAlign: "center", flexShrink: 0 }}
-        >
-          {team.flagEmoji}
-        </Box>
+      {team === null ? (
+        <Typography variant="caption" sx={{ fontSize: "0.7rem", flex: 1, color: "text.disabled" }}>TBD</Typography>
+      ) : (
+        <TeamIdentity team={team} flagSize={16} sx={{ flex: 1, overflow: "hidden" }}>
+          <Typography
+            variant="caption"
+            sx={{ fontSize: "0.7rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+          >
+            {team.shortName}
+          </Typography>
+        </TeamIdentity>
       )}
-      <Typography
-        variant="caption"
-        sx={{
-          fontSize: "0.7rem",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-          flex: 1,
-          color: team === null ? "text.disabled" : "text.primary",
-        }}
-      >
-        {team?.shortName ?? "TBD"}
-      </Typography>
       {score !== null && (
         <Typography
           variant="caption"

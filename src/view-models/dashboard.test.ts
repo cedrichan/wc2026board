@@ -256,6 +256,56 @@ describe("buildDashboardViewModel", () => {
     });
   });
 
+  it("lists finished team results oldest first and orients scores to the team", () => {
+    const model = buildDashboardViewModel({
+      snapshot: snapshot([
+        {
+          id: "later",
+          matchNumber: 2,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-16T18:00:00Z",
+          status: "FINISHED_AFTER_PENALTIES",
+          homeTeamId: "team-A-2",
+          awayTeamId: "team-A-1",
+          normalTime: { home: 1, away: 1 },
+          penalties: { home: 4, away: 5 },
+          winnerTeamId: "team-A-1",
+        },
+        {
+          id: "scheduled",
+          matchNumber: 3,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-18T18:00:00Z",
+          status: "SCHEDULED",
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-4",
+        },
+        {
+          id: "earlier",
+          matchNumber: 1,
+          round: "GROUP_STAGE",
+          group: "A",
+          kickoffUtc: "2026-06-14T18:00:00Z",
+          status: "FINISHED",
+          homeTeamId: "team-A-1",
+          awayTeamId: "team-A-3",
+          normalTime: { home: 2, away: 0 },
+          winnerTeamId: "team-A-1",
+        },
+      ]),
+      groupStandings: standings(),
+      thirdPlaceRanking: thirdPlaceRanking(),
+    }, OPTIONS);
+
+    const results = model.teamTooltips.find((tooltip) => tooltip.teamId === "team-A-1")!.pastMatches;
+    expect(results).toMatchObject([
+      { matchLabel: "M1", opponent: { shortName: "A3" }, scoreLabel: "2–0", outcome: "W" },
+      { matchLabel: "M2", opponent: { shortName: "A2" }, scoreLabel: "1–1", penaltiesLabel: "5–4 pens", outcome: "W" },
+    ]);
+  });
+
   it("renders known provisional bracket participants like other identified teams", () => {
     const ranking = thirdPlaceRanking();
     const model = buildDashboardViewModel({

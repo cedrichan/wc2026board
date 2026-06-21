@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { EventLogEntryViewModel, EventLogViewModel } from "../view-models/dashboard";
+import TeamIdentity from "./TeamIdentity";
 
 interface EventLogProps {
   log: EventLogViewModel;
@@ -92,8 +93,7 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
       }}
     >
       {/* Countries involved */}
-      <Typography
-        variant="body2"
+      <Box
         sx={{
           gridArea: "match",
           minWidth: 0,
@@ -102,12 +102,14 @@ function EventLogRow({ entry }: { entry: EventLogEntryViewModel }): JSX.Element 
           whiteSpace: "nowrap",
         }}
       >
-        <span aria-hidden="true">{entry.home.flagEmoji}</span>{" "}
-        {entry.home.fifaCode}
-        {" vs "}
-        <span aria-hidden="true">{entry.away.flagEmoji}</span>{" "}
-        {entry.away.fifaCode}
-      </Typography>
+        <TeamIdentity team={entry.home} flagSize={18}>
+          <Typography variant="body2" component="span">{entry.home.fifaCode}</Typography>
+        </TeamIdentity>
+        <Typography variant="body2" component="span">{" vs "}</Typography>
+        <TeamIdentity team={entry.away} flagSize={18}>
+          <Typography variant="body2" component="span">{entry.away.fifaCode}</Typography>
+        </TeamIdentity>
+      </Box>
 
       {/* Match time */}
       <Typography

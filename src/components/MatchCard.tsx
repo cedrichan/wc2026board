@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -6,8 +5,8 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import type { BracketMatchViewModel, ParticipantViewModel, TeamViewModel } from "../view-models/dashboard";
-import { TeamTooltip } from "./TeamTooltip";
+import type { BracketMatchViewModel, ParticipantViewModel } from "../view-models/dashboard";
+import TeamIdentity from "./TeamIdentity";
 import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 const CARD_WIDTH = 200;
@@ -136,14 +135,13 @@ function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JS
         borderColor: isAhead ? "success.main" : "transparent",
       }}
     >
-      <TeamTooltip
-        teamId={participant.team?.id}
-        note={participant.sourceExplanation}
-        fallback={(children) => <TriggerRow>{children}</TriggerRow>}
-      >
-        <ParticipantFlag participant={participant} />
+      {participant.team !== undefined ? (
+        <TeamIdentity team={participant.team} note={participant.sourceExplanation}>
+          <ParticipantName participant={participant} />
+        </TeamIdentity>
+      ) : (
         <ParticipantName participant={participant} />
-      </TeamTooltip>
+      )}
       {participant.advancing && (
         <CheckIcon sx={{ fontSize: 14, color: "success.main", flexShrink: 0 }} aria-hidden="true" />
       )}
@@ -154,33 +152,6 @@ function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JS
         </Typography>
       )}
     </Stack>
-  );
-}
-
-function TriggerRow({ children }: { children: ReactNode }): JSX.Element {
-  return (
-    <Box component="span" sx={{ display: "inline-flex", alignItems: "center", gap: 0.75, minWidth: 0 }}>
-      {children}
-    </Box>
-  );
-}
-
-function ParticipantFlag({ participant }: { participant: ParticipantViewModel }): JSX.Element | null {
-  if (participant.state === "PLACEHOLDER") return null;
-  const team = participant.team;
-  return <TeamFlag team={team} />;
-}
-
-function TeamFlag({ team }: { team: TeamViewModel | undefined }): JSX.Element {
-  return (
-    <Box
-      component="span"
-      sx={{ width: 20, height: 20, fontSize: "0.8rem", display: "inline-flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
-      aria-label={team?.flagAlt ?? "Unknown flag"}
-      role="img"
-    >
-      {team?.flagEmoji ?? VIEW_SYMBOLS.fallbackFlag.value}
-    </Box>
   );
 }
 

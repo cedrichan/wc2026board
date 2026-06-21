@@ -71,7 +71,8 @@ export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
   }, [snapshot]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <TeamTooltipProvider tooltips={viewModel?.teamTooltips ?? []}>
+      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {/* 1. Application header and data status */}
       {viewModel !== null ? (
         <DashboardHeader
@@ -117,13 +118,14 @@ export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
 
       {/* 6. Footer */}
       <DashboardFooter />
-    </Box>
+      </Box>
+    </TeamTooltipProvider>
   );
 }
 
 function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX.Element {
   return (
-    <TeamTooltipProvider tooltips={viewModel.teamTooltips}>
+    <>
       {/* Recent events log */}
       <EventLog log={viewModel.eventLog} />
 
@@ -143,7 +145,7 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
         <SectionHeading>Knockout bracket</SectionHeading>
         <BracketSection rounds={viewModel.bracket} />
       </Box>
-    </TeamTooltipProvider>
+    </>
   );
 }
 

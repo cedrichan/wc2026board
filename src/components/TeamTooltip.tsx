@@ -77,7 +77,7 @@ export function TeamTooltip({ teamId, note, children, fallback }: TeamTooltipPro
         // Touch uses an explicit tap to toggle (handled below); MUI's long-press
         // listener would otherwise compete with it.
         disableTouchListener
-        slotProps={{ tooltip: { sx: { maxWidth: 260 } } }}
+        slotProps={{ tooltip: { sx: { maxWidth: 300 } } }}
       >
         <Box
           component="span"
@@ -140,6 +140,43 @@ function TeamTooltipContent({
       <Typography variant="caption" sx={{ display: "block", opacity: 0.85 }}>
         P {data.played} · GF {data.goalsFor} · GA {data.goalsAgainst}
       </Typography>
+
+      <Divider sx={{ borderColor: "rgba(255,255,255,0.2)" }} />
+
+      <Typography variant="caption" sx={{ fontWeight: 700 }}>
+        Past results
+      </Typography>
+      {data.pastMatches.length === 0 ? (
+        <Typography variant="caption" sx={{ opacity: 0.85 }}>
+          No finished matches
+        </Typography>
+      ) : (
+        <Stack component="ul" spacing={0.25} sx={{ m: 0, p: 0, listStyle: "none" }}>
+          {data.pastMatches.map((match) => (
+            <Stack
+              component="li"
+              key={match.id}
+              direction="row"
+              alignItems="baseline"
+              spacing={0.5}
+              aria-label={match.accessibleName}
+            >
+              <Typography variant="caption" sx={{ minWidth: 18, fontWeight: 700 }}>
+                {match.outcome}
+              </Typography>
+              <Typography variant="caption" sx={{ minWidth: 55, opacity: 0.75 }}>
+                {match.roundLabel} · {match.matchLabel}
+              </Typography>
+              <Typography variant="caption" sx={{ flex: 1 }} noWrap>
+                {match.opponent.flagEmoji} {match.opponent.shortName}
+              </Typography>
+              <Typography variant="caption" sx={{ fontWeight: 700, whiteSpace: "nowrap" }}>
+                {match.scoreLabel}{match.penaltiesLabel === undefined ? "" : ` (${match.penaltiesLabel})`}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
+      )}
 
       {note !== undefined && (
         <Typography variant="caption" sx={{ display: "block", opacity: 0.85, fontStyle: "italic" }}>

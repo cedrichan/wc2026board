@@ -8,7 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import type { ThirdPlaceRowViewModel, ThirdPlaceTableViewModel, TeamViewModel } from "../view-models/dashboard";
+import type { ThirdPlaceRowViewModel, ThirdPlaceTableViewModel } from "../view-models/dashboard";
+import TeamIdentity from "./TeamIdentity";
 import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 interface ThirdPlaceTableProps {
@@ -77,8 +78,7 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
         <TableCell sx={dataCellSx}>{row.rank}</TableCell>
         <TableCell sx={dataCellSx}>{row.groupId}</TableCell>
         <TableCell sx={dataCellSx}>
-          <Stack direction="row" alignItems="center" spacing={0.75}>
-            <TeamFlag team={row.team} />
+          <TeamIdentity team={row.team} flagSize={18}>
             <Box sx={{ minWidth: 0 }}>
               <Typography
                 variant="caption"
@@ -95,7 +95,7 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
                 {row.team.shortName}
               </Typography>
             </Box>
-          </Stack>
+          </TeamIdentity>
         </TableCell>
         <TableCell align="right" sx={dataCellSx}>{row.played}</TableCell>
         <TableCell align="right" sx={dataCellSx}>{row.points}</TableCell>
@@ -137,18 +137,5 @@ function ThirdPlaceRow({ row }: { row: ThirdPlaceRowViewModel }): JSX.Element {
         </TableRow>
       )}
     </>
-  );
-}
-
-function TeamFlag({ team }: { team: TeamViewModel }): JSX.Element {
-  return (
-    <Box
-      component="span"
-      sx={{ width: 18, height: 18, fontSize: "0.7rem", display: "inline-flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
-      aria-label={team.flagAlt}
-      role="img"
-    >
-      {team.flagEmoji}
-    </Box>
   );
 }

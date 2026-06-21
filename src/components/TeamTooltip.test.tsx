@@ -27,6 +27,24 @@ function tooltip(overrides: Partial<TeamTooltipViewModel> = {}): TeamTooltipView
     goalsAgainst: 1,
     goalDifferenceLabel: "+5",
     points: 9,
+    pastMatches: [
+      {
+        id: "team-team-e-1-match-1",
+        matchLabel: "M1",
+        roundLabel: "Group E",
+        opponent: {
+          id: "team-e-2",
+          name: "France",
+          shortName: "FRA",
+          fifaCode: "FRA",
+          flagEmoji: "🇫🇷",
+          flagAlt: "France flag",
+        },
+        scoreLabel: "2–1",
+        outcome: "W",
+        accessibleName: "Group E, match 1, win against France, 2–1",
+      },
+    ],
     projection: {
       determined: true,
       confirmed: false,
@@ -66,6 +84,8 @@ describe("TeamTooltip", () => {
       expect(screen.getByText(/3-0-0/)).toBeInTheDocument();
     });
     expect(screen.getByText(/R32: M74 vs France/)).toBeInTheDocument();
+    expect(screen.getByText("Past results")).toBeInTheDocument();
+    expect(screen.getByText("2–1")).toBeInTheDocument();
   });
 
   it("toggles on tap and dismisses on Escape without trapping focus", async () => {

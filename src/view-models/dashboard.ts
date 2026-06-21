@@ -225,8 +225,10 @@ export interface MatchTickerViewModel {
 }
 
 export interface EventLogParticipant {
+  id: string;
   fifaCode: string;
   flagEmoji: string;
+  flagAlt: string;
   name: string;
   shortName: string;
 }
@@ -264,6 +266,17 @@ export interface TeamTooltipProjectionViewModel {
   accessibleLabel: string;
 }
 
+export interface TeamPastMatchViewModel {
+  id: string;
+  matchLabel: string;
+  roundLabel: string;
+  opponent: TeamViewModel;
+  scoreLabel: string;
+  penaltiesLabel?: string;
+  outcome: "W" | "D" | "L";
+  accessibleName: string;
+}
+
 export interface TeamTooltipViewModel {
   id: string;
   teamId: string;
@@ -277,6 +290,7 @@ export interface TeamTooltipViewModel {
   goalsAgainst: number;
   goalDifferenceLabel: string;
   points: number;
+  pastMatches: readonly TeamPastMatchViewModel[];
   // Slot-specific qualification source/unresolved reason, when the trigger is a
   // bracket participant (e.g. "Projected winner of Group E").
   note?: string;
@@ -383,7 +397,7 @@ export function buildDashboardViewModel(
     groups,
     thirdPlace: buildThirdPlace(input.thirdPlaceRanking, teamsById),
     eventLog: buildEventLog(input.snapshot.matches, teamsById),
-    teamTooltips: buildTeamTooltips(groups, bracket),
+    teamTooltips: buildTeamTooltips(groups, bracket, input.snapshot.matches, teamsById),
   };
 }
 
@@ -629,6 +643,8 @@ interface R32Projection {
 function buildTeamTooltips(
   groups: readonly GroupViewModel[],
   bracket: readonly BracketRoundViewModel[],
+  matches: readonly Match[],
+  teamsById: ReadonlyMap<string, Team>,
 ): TeamTooltipViewModel[] {
   const round32 = bracket.find((round) => round.round === "ROUND_OF_32");
   const projectionByTeam = new Map<string, R32Projection>();
@@ -641,7 +657,12 @@ function buildTeamTooltips(
     group.rows
       // Skip rows whose team could not be resolved (rendered as "Team unavailable").
       .filter((row) => isResolvedTeam(row.team))
-      .map((row) => buildTeamTooltip(group, row, projectionByTeam.get(row.team.id))),
+      .map((row) => buildTeamTooltip(
+        group,
+        row,
+        projectionByTeam.get(row.team.id),
+        buildPastMatches(row.team.id, matches, teamsById),
+      )),
   );
 }
 
@@ -668,6 +689,7 @@ function buildTeamTooltip(
   group: GroupViewModel,
   row: GroupRowViewModel,
   projection: R32Projection | undefined,
+  pastMatches: readonly TeamPastMatchViewModel[],
 ): TeamTooltipViewModel {
   const projectionVm = buildTooltipProjection(row, projection);
   const positionLabel = ordinalLabel(row.position);
@@ -684,6 +706,7 @@ function buildTeamTooltip(
     goalsAgainst: row.goalsAgainst,
     goalDifferenceLabel: row.goalDifferenceLabel,
     points: row.points,
+    pastMatches,
     projection: projectionVm,
     accessibleName: [
       row.team.name,
@@ -695,6 +718,64 @@ function buildTeamTooltip(
       projectionVm.accessibleLabel,
     ].join(", "),
   };
+}
+
+function buildPastMatches(
+  teamId: string,
+  matches: readonly Match[],
+  teamsById: ReadonlyMap<string, Team>,
+): TeamPastMatchViewModel[] {
+  return matches
+    .filter((match) =>
+      FINISHED_STATUSES.has(match.status)
+      && (match.homeTeamId === teamId || match.awayTeamId === teamId)
+      && match.homeTeamId !== undefined
+      && match.awayTeamId !== undefined
+    )
+    .sort((left, right) => left.kickoffUtc.localeCompare(right.kickoffUtc) || left.matchNumber - right.matchNumber)
+    .map((match) => {
+      const isHome = match.homeTeamId === teamId;
+      const opponentId = isHome ? match.awayTeamId! : match.homeTeamId!;
+      const opponent = buildTeamOrMissing(opponentId, teamsById);
+      const total = addScores(normalizeScore(match.normalTime), normalizeScore(match.extraTime));
+      const teamScore = isHome ? total.home : total.away;
+      const opponentScore = isHome ? total.away : total.home;
+      const scoreLabel = `${teamScore ?? "—"}–${opponentScore ?? "—"}`;
+      const penalties = normalizeScore(match.penalties);
+      const teamPenalties = isHome ? penalties.home : penalties.away;
+      const opponentPenalties = isHome ? penalties.away : penalties.home;
+      const penaltiesLabel = teamPenalties === null && opponentPenalties === null
+        ? undefined
+        : `${teamPenalties ?? "—"}–${opponentPenalties ?? "—"} pens`;
+      const outcome = match.winnerTeamId === teamId
+        ? "W"
+        : match.winnerTeamId !== undefined
+          ? "L"
+          : teamScore !== null && opponentScore !== null && teamScore !== opponentScore
+            ? teamScore > opponentScore ? "W" : "L"
+            : teamPenalties !== null && opponentPenalties !== null && teamPenalties !== opponentPenalties
+              ? teamPenalties > opponentPenalties ? "W" : "L"
+            : "D";
+      const roundLabel = match.round === "GROUP_STAGE" && match.group !== undefined
+        ? `Group ${match.group}`
+        : ROUND_LABELS[match.round];
+
+      return {
+        id: `team-${teamId}-match-${match.matchNumber}`,
+        matchLabel: `M${match.matchNumber}`,
+        roundLabel,
+        opponent,
+        scoreLabel,
+        penaltiesLabel,
+        outcome,
+        accessibleName: [
+          `${roundLabel}, match ${match.matchNumber}`,
+          `${outcome === "W" ? "win" : outcome === "L" ? "loss" : "draw"} against ${opponent.name}`,
+          scoreLabel,
+          penaltiesLabel,
+        ].filter(Boolean).join(", "),
+      };
+    });
 }
 
 function buildTooltipProjection(
@@ -937,8 +1018,10 @@ function inGameDescription(
 function buildEventParticipant(teamId: string | undefined, teamsById: ReadonlyMap<string, Team>): EventLogParticipant {
   const team = teamId !== undefined ? teamsById.get(teamId) : undefined;
   return {
+    id: team?.id ?? "unknown",
     fifaCode: team?.fifaCode ?? "—",
     flagEmoji: flagEmojiForFifaCode(team?.fifaCode),
+    flagAlt: team === undefined ? "Unknown flag" : `${team.name} flag`,
     name: team?.name ?? team?.shortName ?? team?.fifaCode ?? "Unknown team",
     shortName: team?.shortName ?? team?.fifaCode ?? "Unknown team",
   };

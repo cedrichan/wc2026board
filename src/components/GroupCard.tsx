@@ -11,8 +11,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import type { GroupRowViewModel, GroupViewModel, TeamViewModel } from "../view-models/dashboard";
-import { TeamTooltip } from "./TeamTooltip";
+import type { GroupRowViewModel, GroupViewModel } from "../view-models/dashboard";
+import TeamIdentity from "./TeamIdentity";
 import { VIEW_SYMBOLS } from "./view-symbols";
 
 interface GroupCardProps {
@@ -90,8 +90,7 @@ function GroupTableRow({ row, groupComplete }: { row: GroupRowViewModel; groupCo
       </TableCell>
 
       <TableCell sx={{ p: 0.5 }}>
-        <TeamTooltip teamId={row.team.id} fallback={(children) => <TeamTrigger>{children}</TeamTrigger>}>
-          <TeamFlag team={row.team} />
+        <TeamIdentity team={row.team}>
           <Box sx={{ minWidth: 0, maxWidth: "100px" }}>
             <Typography
               variant="caption"
@@ -101,7 +100,7 @@ function GroupTableRow({ row, groupComplete }: { row: GroupRowViewModel; groupCo
               {row.team.name}
             </Typography>
           </Box>
-        </TeamTooltip>
+        </TeamIdentity>
       </TableCell>
 
       <TableCell align="right" sx={{ p: 0.5, fontSize: "0.75rem" }}>
@@ -117,14 +116,6 @@ function GroupTableRow({ row, groupComplete }: { row: GroupRowViewModel; groupCo
         <StatValue title={statTitle}>{row.points}</StatValue>
       </TableCell>
     </TableRow>
-  );
-}
-
-function TeamTrigger({ children }: { children: ReactNode }): JSX.Element {
-  return (
-    <Box component="span" sx={{ display: "inline-flex", alignItems: "center", gap: 0.75, minWidth: 0 }}>
-      {children}
-    </Box>
   );
 }
 
@@ -152,17 +143,4 @@ function qualificationStyle(qualification: GroupRowViewModel["qualification"], g
     case "UNRESOLVED":
       return { borderColor: "warning.main", posIndicator: VIEW_SYMBOLS.groupQualificationIndicators.UNRESOLVED.value };
   }
-}
-
-function TeamFlag({ team }: { team: TeamViewModel }): JSX.Element {
-  return (
-    <Box
-      component="span"
-      sx={{ width: 20, height: 20, fontSize: "0.8rem", display: "inline-flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
-      aria-label={team.flagAlt}
-      role="img"
-    >
-      {team.flagEmoji}
-    </Box>
-  );
 }
