@@ -1,6 +1,6 @@
 # World Cup 2026 Dashboard
 
-A live, read-only single-page application that displays the full state of the FIFA World Cup 2026 tournament on one page.
+A live, read-only single-page application that displays the full state of the FIFA World Cup 2026 tournament on one page. Hosted on [wc2026board.xyz](https://wc2026board.xyz/)
 
 ## What it shows
 
