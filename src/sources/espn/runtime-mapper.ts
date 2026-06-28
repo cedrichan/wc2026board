@@ -70,6 +70,12 @@ function scheduleKey(
 // "RD16 W1 vs RD16 W2", …) so team codes cannot disambiguate them; however,
 // those rounds are verified to be in FIFA match-number order in the fixture, so
 // the array-position fallback remains correct there.
+//
+// After some groups are settled ESPN replaces placeholder home abbreviations
+// (e.g. "1E") with the actual winner's FIFA code (e.g. "GER"). The secondary
+// third-place-groups index handles that case: every third-place away slot has a
+// unique group-letter set in its display name (e.g. "Third Place Group A/B/C/D/F")
+// that matches the `groups` string in the bracket topology.
 function buildR32MatchIndex(): ReadonlyMap<string, number> {
   const index = new Map<string, number>();
 
@@ -94,18 +100,50 @@ function buildR32MatchIndex(): ReadonlyMap<string, number> {
   return index;
 }
 
+// Maps third-place group set (e.g. "A/B/C/D/F") → R32 match number.
+// Used when ESPN has already resolved the home team to a real abbreviation.
+function buildThirdPlaceGroupsIndex(): ReadonlyMap<string, number> {
+  const index = new Map<string, number>();
+  for (const match of BRACKET_TOPOLOGY) {
+    if (match.round !== "ROUND_OF_32") continue;
+    if (match.awaySource.type === "THIRD_PLACE") {
+      index.set(match.awaySource.groups, match.matchNumber);
+    }
+  }
+  return index;
+}
+
 const R32_MATCH_NUMBER_BY_TEAM_CODES = buildR32MatchIndex();
+const R32_MATCH_NUMBER_BY_THIRD_PLACE_GROUPS = buildThirdPlaceGroupsIndex();
+
+// e.g. "Third Place Group A/B/C/D/F" → "A/B/C/D/F"
+const THIRD_PLACE_NAME_PATTERN = /^Third Place Group ([A-L/]+)$/i;
 
 // Returns the correct FIFA match number for a Round of 32 competition by
 // matching the home and away placeholder abbreviations against the bracket
-// topology. Returns undefined if the competitors or their codes are missing.
+// topology. When ESPN has already resolved the home team to a real abbreviation
+// (e.g. "GER" instead of "1E"), falls back to matching on the away third-place
+// team's display name (which encodes the unique group set for that slot).
+// Returns undefined if the competitors or their codes are missing.
 function resolveR32MatchNumber(competition: EspnCompetition): number | undefined {
   const home = competition.competitors.find((c) => c.homeAway === "home");
   const away = competition.competitors.find((c) => c.homeAway === "away");
   const homeCode = home?.team?.abbreviation;
   const awayCode = away?.team?.abbreviation;
   if (!homeCode || !awayCode) return undefined;
-  return R32_MATCH_NUMBER_BY_TEAM_CODES.get(`${homeCode}|${awayCode}`);
+
+  const byCode = R32_MATCH_NUMBER_BY_TEAM_CODES.get(`${homeCode}|${awayCode}`);
+  if (byCode !== undefined) return byCode;
+
+  // Fallback: home is a real team code; identify the match by the away
+  // third-place slot's unique group set embedded in its display name.
+  if (awayCode === "3RD") {
+    const awayName = away?.team?.displayName ?? "";
+    const m = awayName.match(THIRD_PLACE_NAME_PATTERN);
+    if (m) return R32_MATCH_NUMBER_BY_THIRD_PLACE_GROUPS.get(m[1]);
+  }
+
+  return undefined;
 }
 
 function buildScheduleIndex(): ReadonlyMap<string, number> {

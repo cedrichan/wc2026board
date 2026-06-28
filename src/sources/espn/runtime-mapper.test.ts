@@ -85,4 +85,23 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
       round: "FINAL",
     });
   });
+
+  it("resolves R32 match numbers when ESPN has replaced placeholder home codes with real team abbreviations", () => {
+    const result = mapEspnScoreboardToNormalizationInput(
+      parseEspnScoreboard(rangeScoreboard),
+    );
+
+    // These three matches had their group already settled when the schedule
+    // fixture was captured, so ESPN shows the real team code (GER/MEX/USA)
+    // instead of a placeholder (1E/1A/1D). The fallback path matches them by
+    // the unique group set in the away third-place slot's display name.
+    const m74 = result.matches.find((m) => m.id === "760489");
+    expect(m74).toMatchObject({ matchNumber: 74, round: "ROUND_OF_32" });
+
+    const m79 = result.matches.find((m) => m.id === "760491");
+    expect(m79).toMatchObject({ matchNumber: 79, round: "ROUND_OF_32" });
+
+    const m81 = result.matches.find((m) => m.id === "760494");
+    expect(m81).toMatchObject({ matchNumber: 81, round: "ROUND_OF_32" });
+  });
 });
