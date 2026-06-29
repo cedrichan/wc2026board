@@ -55,6 +55,36 @@ function scheduleKey(
   return `${round}|${kickoffUtc}|${venueName.trim()}`;
 }
 
+// Static R32 schedule: "kickoffUtc|venue" → FIFA match number.
+//
+// The R32 schedule is fixed before the tournament begins. ESPN initially uses
+// bracket-position placeholder codes (e.g. "1C", "2F") as team abbreviations
+// for unplayed knockout matches, but replaces them with real team codes once
+// the group stage completes. This static lookup resolves match numbers by
+// kickoff time and venue, which never change, covering both phases.
+//
+// Derived by cross-referencing the pre-tournament ESPN fixture (git history)
+// against the official bracket topology (BRACKET_TOPOLOGY). Venue strings must
+// match the competition.venue.fullName values ESPN returns exactly.
+const ROUND_OF_32_KICKOFF_SCHEDULE: ReadonlyMap<string, number> = new Map([
+  ["2026-06-28T19:00Z|SoFi Stadium", 73],
+  ["2026-06-29T17:00Z|NRG Stadium", 76],
+  ["2026-06-29T20:30Z|Gillette Stadium", 74],
+  ["2026-06-30T01:00Z|Estadio BBVA", 75],
+  ["2026-06-30T17:00Z|AT&T Stadium", 78],
+  ["2026-06-30T21:00Z|MetLife Stadium", 77],
+  ["2026-07-01T01:00Z|Estadio Banorte", 79],
+  ["2026-07-01T16:00Z|Mercedes-Benz Stadium", 80],
+  ["2026-07-01T20:00Z|Lumen Field", 82],
+  ["2026-07-02T00:00Z|Levi's Stadium", 81],
+  ["2026-07-02T19:00Z|SoFi Stadium", 84],
+  ["2026-07-02T23:00Z|BMO Field", 83],
+  ["2026-07-03T03:00Z|BC Place", 85],
+  ["2026-07-03T18:00Z|AT&T Stadium", 88],
+  ["2026-07-03T22:00Z|Hard Rock Stadium", 86],
+  ["2026-07-04T01:30Z|GEHA Field at Arrowhead Stadium", 87],
+]);
+
 // Maps "homeCode|awayCode" → FIFA match number for every Round of 32 fixture.
 //
 // The pre-captured schedule fixture lists events in kickoff-time order, which
@@ -119,31 +149,37 @@ const R32_MATCH_NUMBER_BY_THIRD_PLACE_GROUPS = buildThirdPlaceGroupsIndex();
 // e.g. "Third Place Group A/B/C/D/F" → "A/B/C/D/F"
 const THIRD_PLACE_NAME_PATTERN = /^Third Place Group ([A-L/]+)$/i;
 
-// Returns the correct FIFA match number for a Round of 32 competition by
-// matching the home and away placeholder abbreviations against the bracket
-// topology. When ESPN has already resolved the home team to a real abbreviation
-// (e.g. "GER" instead of "1E"), falls back to matching on the away third-place
-// team's display name (which encodes the unique group set for that slot).
-// Returns undefined if the competitors or their codes are missing.
-function resolveR32MatchNumber(competition: EspnCompetition): number | undefined {
+// Returns the correct FIFA match number for a Round of 32 competition.
+// Tries three strategies in order:
+//  1. Bracket-position placeholder codes ("1C|2F") — works pre-group-stage.
+//  2. Third-place display name ("Third Place Group A/B/C/D/F") — works when
+//     ESPN replaces only the home team code with a real abbreviation.
+//  3. Static kickoff+venue schedule — works once ESPN replaces all codes with
+//     real team abbreviations after the group stage completes.
+function resolveR32MatchNumber(
+  competition: EspnCompetition,
+  kickoffUtc: string,
+): number | undefined {
   const home = competition.competitors.find((c) => c.homeAway === "home");
   const away = competition.competitors.find((c) => c.homeAway === "away");
   const homeCode = home?.team?.abbreviation;
   const awayCode = away?.team?.abbreviation;
-  if (!homeCode || !awayCode) return undefined;
 
-  const byCode = R32_MATCH_NUMBER_BY_TEAM_CODES.get(`${homeCode}|${awayCode}`);
-  if (byCode !== undefined) return byCode;
+  if (homeCode && awayCode) {
+    const byCode = R32_MATCH_NUMBER_BY_TEAM_CODES.get(`${homeCode}|${awayCode}`);
+    if (byCode !== undefined) return byCode;
 
-  // Fallback: home is a real team code; identify the match by the away
-  // third-place slot's unique group set embedded in its display name.
-  if (awayCode === "3RD") {
-    const awayName = away?.team?.displayName ?? "";
-    const m = awayName.match(THIRD_PLACE_NAME_PATTERN);
-    if (m) return R32_MATCH_NUMBER_BY_THIRD_PLACE_GROUPS.get(m[1]);
+    if (awayCode === "3RD") {
+      const awayName = away?.team?.displayName ?? "";
+      const m = awayName.match(THIRD_PLACE_NAME_PATTERN);
+      if (m) return R32_MATCH_NUMBER_BY_THIRD_PLACE_GROUPS.get(m[1]);
+    }
   }
 
-  return undefined;
+  const venueName = competition.venue?.fullName?.trim();
+  return venueName
+    ? ROUND_OF_32_KICKOFF_SCHEDULE.get(`${kickoffUtc}|${venueName}`)
+    : undefined;
 }
 
 function buildScheduleIndex(): ReadonlyMap<string, number> {
@@ -157,12 +193,13 @@ function buildScheduleIndex(): ReadonlyMap<string, number> {
     const key = scheduleKey(round, kickoff(event, competition), competition.venue?.fullName);
     if (!key) return;
 
-    // R32: derive match number from team codes rather than array position,
-    // because the fixture is in kickoff order but R32 match numbers are not.
-    // All other rounds: array position (1-indexed) equals FIFA match number.
+    // R32: derive match number from team codes or static schedule rather than
+    // array position, because the fixture is in kickoff order but R32 match
+    // numbers are not. All other rounds: array position (1-indexed) equals
+    // FIFA match number.
     const matchNumber =
       round === "ROUND_OF_32"
-        ? resolveR32MatchNumber(competition)
+        ? resolveR32MatchNumber(competition, kickoff(event, competition))
         : eventIndex + 1;
 
     if (matchNumber !== undefined) {
