@@ -129,21 +129,21 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
       {/* Recent events log */}
       <EventLog log={viewModel.eventLog} />
 
-      {/* 2. Horizontally scrolling group tables */}
+      {/* 2. Knockout bracket */}
+      <Box component="section" aria-label="Knockout bracket">
+        <SectionHeading>Knockout bracket</SectionHeading>
+        <BracketSection rounds={viewModel.bracket} />
+      </Box>
+
+      {/* 3. Horizontally scrolling group tables */}
       <Box component="section" aria-label="Group tables">
         <SectionHeading>Group tables</SectionHeading>
         <GroupCardStrip groups={viewModel.groups} />
       </Box>
 
-      {/* 3. Best third-place ranking */}
+      {/* 4. Best third-place ranking */}
       <Box component="section" aria-label="Best third-place ranking">
         <ThirdPlaceTable thirdPlace={viewModel.thirdPlace} />
-      </Box>
-
-      {/* 4. Knockout bracket */}
-      <Box component="section" aria-label="Knockout bracket">
-        <SectionHeading>Knockout bracket</SectionHeading>
-        <BracketSection rounds={viewModel.bracket} />
       </Box>
     </>
   );
@@ -152,13 +152,13 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
 function LoadingFallback(): JSX.Element {
   return (
     <>
-      <Box component="section" aria-label="Group tables">
-        <SectionHeading>Group tables</SectionHeading>
-        <GroupCardStripSkeleton />
-      </Box>
       <Box component="section" aria-label="Knockout bracket">
         <SectionHeading>Knockout bracket</SectionHeading>
         <BracketSkeleton />
+      </Box>
+      <Box component="section" aria-label="Group tables">
+        <SectionHeading>Group tables</SectionHeading>
+        <GroupCardStripSkeleton />
       </Box>
     </>
   );
