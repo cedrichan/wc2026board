@@ -54,6 +54,7 @@ export const espnCompetitorSchema = z.object({
   winner: z.boolean().optional(),
   advance: z.boolean().optional(),
   score: espnScoreSchema.optional(),
+  shootoutScore: z.number().nonnegative().optional(),
   team: espnTeamSchema.optional(),
   linescores: z.array(z.object({
     value: z.number().nullable().optional(),

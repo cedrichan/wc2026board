@@ -135,15 +135,15 @@ function DashboardContent({ viewModel }: { viewModel: DashboardViewModel }): JSX
         <BracketSection rounds={viewModel.bracket} />
       </Box>
 
-      {/* 3. Horizontally scrolling group tables */}
+      {/* 3. Best third-place ranking */}
+      <Box component="section" aria-label="Best third-place ranking">
+        <ThirdPlaceTable thirdPlace={viewModel.thirdPlace} />
+      </Box>
+
+      {/* 4. Horizontally scrolling group tables */}
       <Box component="section" aria-label="Group tables">
         <SectionHeading>Group tables</SectionHeading>
         <GroupCardStrip groups={viewModel.groups} />
-      </Box>
-
-      {/* 4. Best third-place ranking */}
-      <Box component="section" aria-label="Best third-place ranking">
-        <ThirdPlaceTable thirdPlace={viewModel.thirdPlace} />
       </Box>
     </>
   );

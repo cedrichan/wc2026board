@@ -57,7 +57,8 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     const result = mapEspnScoreboardToNormalizationInput(
       parseEspnScoreboard(rangeScoreboard),
     );
-    const scheduledMatch = result.matches.find((match) => match.id === "760487");
+    // 760490 = Norway at Ivory Coast (M77), still STATUS_SCHEDULED in the fixture
+    const scheduledMatch = result.matches.find((match) => match.id === "760490");
 
     expect(scheduledMatch?.conductCoverage).toBe("UNKNOWN");
     expect(scheduledMatch?.disciplinaryEvents).toEqual([]);
@@ -103,5 +104,16 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
 
     const m81 = result.matches.find((m) => m.id === "760494");
     expect(m81).toMatchObject({ matchNumber: 81, round: "ROUND_OF_32" });
+  });
+
+  it("maps ESPN shootoutScore to penaltyScore for completed penalty-shootout matches (M74 GER-PAR)", () => {
+    const result = mapEspnScoreboardToNormalizationInput(
+      parseEspnScoreboard(rangeScoreboard),
+    );
+    // M74: Germany vs Paraguay, 1-1 after extra time, Paraguay won 4-3 on penalties.
+    // ESPN returns competitors[].shootoutScore (integer) for STATUS_FINAL_PEN.
+    const m74 = result.matches.find((m) => m.id === "760489");
+    expect(m74?.competitors?.find((c) => c.homeAway === "home")?.penaltyScore).toBe(3); // GER
+    expect(m74?.competitors?.find((c) => c.homeAway === "away")?.penaltyScore).toBe(4); // PAR
   });
 });

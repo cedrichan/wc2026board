@@ -240,6 +240,7 @@ function mapCompetitor(
     homeAway: competitor.homeAway === "away" ? "away" : "home",
     team: mapTeam(competitor, group),
     score,
+    ...(typeof competitor.shootoutScore === "number" ? { penaltyScore: competitor.shootoutScore } : {}),
     winner: competitor.winner,
   };
 }

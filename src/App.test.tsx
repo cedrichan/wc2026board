@@ -47,14 +47,15 @@ describe("App dashboard", () => {
       name: "Rules and data source disclosure",
     });
 
-    // Sections appear in the PRD-mandated vertical order.
-    expect(groups.compareDocumentPosition(thirdPlace)).toBe(
+    // Sections appear in the PRD-mandated vertical order:
+    // bracket → third-place → groups → disclosure.
+    expect(bracket.compareDocumentPosition(thirdPlace)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
-    expect(thirdPlace.compareDocumentPosition(bracket)).toBe(
+    expect(thirdPlace.compareDocumentPosition(groups)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
-    expect(bracket.compareDocumentPosition(disclosure)).toBe(
+    expect(groups.compareDocumentPosition(disclosure)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
   });
