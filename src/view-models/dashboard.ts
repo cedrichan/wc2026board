@@ -214,7 +214,10 @@ export interface MatchTickerItemViewModel {
   away: MatchTickerTeamViewModel | null;
   homeScore: number | null;
   awayScore: number | null;
-  penaltiesLabel?: string;
+  homePenaltyScore: number | null;
+  awayPenaltyScore: number | null;
+  homeWins: boolean;
+  awayWins: boolean;
   accessibleName: string;
 }
 
@@ -1216,12 +1219,11 @@ function buildTickerItem(
   const awayScore = isScheduled ? null : total.away;
 
   const penalties = normalizeScore(match.penalties);
-  const penaltiesPresent = penalties.home !== null || penalties.away !== null;
-  const penaltiesLabel = penaltiesPresent
-    ? `${match.status === "PENALTY_SHOOTOUT" ? "PEN" : "Pens"} ${scoreLabel(penalties)}`
-    : match.status === "PENALTY_SHOOTOUT" || match.status === "FINISHED_AFTER_PENALTIES"
-      ? "Pens —"
-      : undefined;
+  const homePenaltyScore = isScheduled ? null : penalties.home;
+  const awayPenaltyScore = isScheduled ? null : penalties.away;
+
+  const homeWins = isFinished && match.winnerTeamId !== undefined && match.homeTeamId === match.winnerTeamId;
+  const awayWins = isFinished && match.winnerTeamId !== undefined && match.awayTeamId === match.winnerTeamId;
 
   const contextLabel = match.round === "GROUP_STAGE" && match.group !== undefined
     ? `Group ${match.group}`
@@ -1246,7 +1248,10 @@ function buildTickerItem(
     away,
     homeScore,
     awayScore,
-    penaltiesLabel,
+    homePenaltyScore,
+    awayPenaltyScore,
+    homeWins,
+    awayWins,
     accessibleName: `${contextLabel}, ${homeName} ${scoreStr} ${awayName}, ${STATUS_LABELS[match.status]}${clockLabel === undefined ? "" : ` ${clockLabel}`}`,
   };
 }

@@ -38,23 +38,15 @@ export default function MatchCard({ match }: MatchCardProps): JSX.Element {
           <ParticipantRow
             participant={match.home}
             score={isScheduled ? null : match.score.total.home}
+            penaltyScore={isScheduled ? null : match.score.penalties.home}
             isLive={isLive}
           />
           <ParticipantRow
             participant={match.away}
             score={isScheduled ? null : match.score.total.away}
+            penaltyScore={isScheduled ? null : match.score.penalties.away}
             isLive={isLive}
           />
-          {match.score.penaltiesLabel !== undefined && (
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              align="center"
-              sx={{ display: "block" }}
-            >
-              {match.score.penaltiesLabel}
-            </Typography>
-          )}
         </Stack>
       </CardContent>
     </Card>
@@ -114,10 +106,11 @@ function StatusChip({ status, clockLabel, isLive }: StatusChipProps): JSX.Elemen
 interface ParticipantRowProps {
   participant: ParticipantViewModel;
   score: number | null;
+  penaltyScore: number | null;
   isLive: boolean;
 }
 
-function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JSX.Element {
+function ParticipantRow({ participant, score, penaltyScore, isLive }: ParticipantRowProps): JSX.Element {
   const isAhead = isLive && participant.currentlyAhead;
   const CheckIcon = VIEW_ICONS.advancing.value;
 
@@ -147,9 +140,16 @@ function ParticipantRow({ participant, score, isLive }: ParticipantRowProps): JS
       )}
       <Box sx={{ flex: 1 }} />
       {score !== null && (
-        <Typography variant="body2" sx={{ fontWeight: 700, minWidth: 16, textAlign: "right" }}>
-          {score}
-        </Typography>
+        <Stack direction="row" alignItems="center" spacing={0.25} sx={{ flexShrink: 0 }}>
+          <Typography variant="body2" sx={{ fontWeight: 700, minWidth: 16, textAlign: "right" }}>
+            {score}
+          </Typography>
+          {penaltyScore !== null && (
+            <Typography variant="caption" color="text.secondary" sx={{ fontSize: "0.65rem" }}>
+              ({penaltyScore})
+            </Typography>
+          )}
+        </Stack>
       )}
     </Stack>
   );
@@ -168,7 +168,7 @@ function ParticipantName({ participant }: { participant: ParticipantViewModel })
     <Typography
       variant="caption"
       sx={{
-        fontWeight: isProjectedStyle ? 500 : 400,
+        fontWeight: participant.advancing ? 700 : isProjectedStyle ? 500 : 400,
         color: isPlaceholder || isSuperseded ? "text.disabled" : "text.primary",
         overflow: "hidden",
         textOverflow: "ellipsis",

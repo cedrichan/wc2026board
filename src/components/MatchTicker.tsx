@@ -74,18 +74,8 @@ function TickerCard({ item }: TickerCardProps): JSX.Element {
         <Stack spacing={0.5}>
           <CardHeader item={item} />
           <Divider />
-          <TeamRow team={item.home} score={item.homeScore} />
-          <TeamRow team={item.away} score={item.awayScore} />
-          {item.penaltiesLabel !== undefined && (
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              align="center"
-              sx={{ display: "block", fontSize: "0.6rem" }}
-            >
-              {item.penaltiesLabel}
-            </Typography>
-          )}
+          <TeamRow team={item.home} score={item.homeScore} penaltyScore={item.homePenaltyScore} isWinner={item.homeWins} />
+          <TeamRow team={item.away} score={item.awayScore} penaltyScore={item.awayPenaltyScore} isWinner={item.awayWins} />
           <Typography
             variant="caption"
             color="text.disabled"
@@ -130,9 +120,11 @@ function CardHeader({ item }: CardHeaderProps): JSX.Element {
 interface TeamRowProps {
   team: MatchTickerItemViewModel["home"];
   score: number | null;
+  penaltyScore: number | null;
+  isWinner: boolean;
 }
 
-function TeamRow({ team, score }: TeamRowProps): JSX.Element {
+function TeamRow({ team, score, penaltyScore, isWinner }: TeamRowProps): JSX.Element {
   return (
     <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minHeight: 20 }}>
       {team === null ? (
@@ -141,19 +133,26 @@ function TeamRow({ team, score }: TeamRowProps): JSX.Element {
         <TeamIdentity team={team} flagSize={16} sx={{ flex: 1, overflow: "hidden" }}>
           <Typography
             variant="caption"
-            sx={{ fontSize: "0.7rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+            sx={{ fontSize: "0.7rem", fontWeight: isWinner ? 700 : 400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
           >
             {team.shortName}
           </Typography>
         </TeamIdentity>
       )}
       {score !== null && (
-        <Typography
-          variant="caption"
-          sx={{ fontWeight: 700, fontSize: "0.75rem", minWidth: 14, textAlign: "right", flexShrink: 0 }}
-        >
-          {score}
-        </Typography>
+        <Stack direction="row" alignItems="center" spacing={0.25} sx={{ flexShrink: 0 }}>
+          <Typography
+            variant="caption"
+            sx={{ fontWeight: 700, fontSize: "0.75rem", minWidth: 14, textAlign: "right" }}
+          >
+            {score}
+          </Typography>
+          {penaltyScore !== null && (
+            <Typography variant="caption" sx={{ fontSize: "0.65rem", color: "text.secondary" }}>
+              ({penaltyScore})
+            </Typography>
+          )}
+        </Stack>
       )}
     </Stack>
   );

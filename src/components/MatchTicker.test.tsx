@@ -29,6 +29,10 @@ function buildItem(overrides: Partial<MatchTickerItemViewModel> = {}): MatchTick
     },
     homeScore: null,
     awayScore: null,
+    homePenaltyScore: null,
+    awayPenaltyScore: null,
+    homeWins: false,
+    awayWins: false,
     accessibleName: "Group A, A1 vs A2, Scheduled",
     ...overrides,
   };
