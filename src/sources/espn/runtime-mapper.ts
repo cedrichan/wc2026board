@@ -73,7 +73,7 @@ const ROUND_OF_32_KICKOFF_SCHEDULE: ReadonlyMap<string, number> = new Map([
   ["2026-06-30T01:00Z|Estadio BBVA", 75],
   ["2026-06-30T17:00Z|AT&T Stadium", 78],
   ["2026-06-30T21:00Z|MetLife Stadium", 77],
-  ["2026-07-01T01:00Z|Estadio Banorte", 79],
+  ["2026-07-01T02:00Z|Estadio Banorte", 79],
   ["2026-07-01T16:00Z|Mercedes-Benz Stadium", 80],
   ["2026-07-01T20:00Z|Lumen Field", 82],
   ["2026-07-02T00:00Z|Levi's Stadium", 81],

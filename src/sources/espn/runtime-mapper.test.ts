@@ -57,8 +57,8 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     const result = mapEspnScoreboardToNormalizationInput(
       parseEspnScoreboard(rangeScoreboard),
     );
-    // 760490 = Norway at Ivory Coast (M77), still STATUS_SCHEDULED in the fixture
-    const scheduledMatch = result.matches.find((match) => match.id === "760490");
+    // 760495 = Congo DR at England (M80), STATUS_SCHEDULED in the fixture
+    const scheduledMatch = result.matches.find((match) => match.id === "760495");
 
     expect(scheduledMatch?.conductCoverage).toBe("UNKNOWN");
     expect(scheduledMatch?.disciplinaryEvents).toEqual([]);
