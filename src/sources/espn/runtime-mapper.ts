@@ -93,13 +93,16 @@ const ROUND_OF_32_KICKOFF_SCHEDULE: ReadonlyMap<string, number> = new Map([
 // M75, so it appears at array index 73 in the fixture — which would produce
 // the wrong match number (74) if we relied on position alone.
 //
-// Round of 32 is the only round affected: ESPN's placeholder team abbreviations
-// ("1C", "2F", "3RD", etc.) are unique per match and can be cross-referenced
-// against the bracket topology to recover the correct FIFA match number. In R16
-// and beyond all entries share identical placeholder codes ("RD32 vs RD32",
-// "RD16 W1 vs RD16 W2", …) so team codes cannot disambiguate them; however,
-// those rounds are verified to be in FIFA match-number order in the fixture, so
-// the array-position fallback remains correct there.
+// R32 is the round where team-code disambiguation is possible: ESPN's
+// placeholder abbreviations ("1C", "2F", "3RD", etc.) are unique per match and
+// can be cross-referenced against the bracket topology to recover the correct
+// FIFA match number. R16 has the same kickoff-order-vs-match-number-order
+// problem (see ROUND_OF_16_KICKOFF_SCHEDULE below) but all its entries share
+// identical placeholder codes ("RD32 vs RD32", "RD16 W1 vs RD16 W2", …) so team
+// codes can't disambiguate them there — it's handled with a static kickoff+
+// venue schedule instead. Quarter-finals and beyond are verified to be in FIFA
+// match-number order in the fixture, so the array-position fallback remains
+// correct there.
 //
 // After some groups are settled ESPN replaces placeholder home abbreviations
 // (e.g. "1E") with the actual winner's FIFA code (e.g. "GER"). The secondary
@@ -182,6 +185,27 @@ function resolveR32MatchNumber(
     : undefined;
 }
 
+// Static R16 schedule: "kickoffUtc|venue" → FIFA match number.
+//
+// Like ROUND_OF_32_KICKOFF_SCHEDULE, the R16 kickoff/venue pairs are fixed
+// once the R32 fixture is set, but FIFA match-number order doesn't follow
+// kickoff order here either: M89 (Group winner from M74/M77) kicks off at
+// Lincoln Financial Field *after* M90 (from M73/M75) kicks off at NRG
+// Stadium, both on 2026-07-04. Array-position fallback would swap them.
+//
+// Derived by cross-referencing BRACKET_TOPOLOGY's winnerFeedsMatch links
+// against the R32 kickoff schedule above.
+const ROUND_OF_16_KICKOFF_SCHEDULE: ReadonlyMap<string, number> = new Map([
+  ["2026-07-04T21:00Z|Lincoln Financial Field", 89],
+  ["2026-07-04T17:00Z|NRG Stadium", 90],
+  ["2026-07-05T20:00Z|MetLife Stadium", 91],
+  ["2026-07-06T00:00Z|Estadio Banorte", 92],
+  ["2026-07-06T19:00Z|AT&T Stadium", 93],
+  ["2026-07-07T00:00Z|Lumen Field", 94],
+  ["2026-07-07T16:00Z|Mercedes-Benz Stadium", 95],
+  ["2026-07-07T20:00Z|BC Place", 96],
+]);
+
 function buildScheduleIndex(): ReadonlyMap<string, number> {
   const index = new Map<string, number>();
 
@@ -190,17 +214,24 @@ function buildScheduleIndex(): ReadonlyMap<string, number> {
     if (!competition) return;
 
     const round = resolveRound(event);
-    const key = scheduleKey(round, kickoff(event, competition), competition.venue?.fullName);
+    const kickoffUtc = kickoff(event, competition);
+    const venueName = competition.venue?.fullName?.trim();
+    const key = scheduleKey(round, kickoffUtc, competition.venue?.fullName);
     if (!key) return;
 
-    // R32: derive match number from team codes or static schedule rather than
-    // array position, because the fixture is in kickoff order but R32 match
-    // numbers are not. All other rounds: array position (1-indexed) equals
-    // FIFA match number.
-    const matchNumber =
-      round === "ROUND_OF_32"
-        ? resolveR32MatchNumber(competition, kickoff(event, competition))
-        : eventIndex + 1;
+    // R32 and R16: derive match number from a static kickoff+venue schedule
+    // (falling back to team codes for R32) rather than array position,
+    // because the fixture is in kickoff order but FIFA match numbers are
+    // not. All other rounds: array position (1-indexed) equals FIFA match
+    // number.
+    let matchNumber: number | undefined;
+    if (round === "ROUND_OF_32") {
+      matchNumber = resolveR32MatchNumber(competition, kickoffUtc);
+    } else if (round === "ROUND_OF_16" && venueName) {
+      matchNumber = ROUND_OF_16_KICKOFF_SCHEDULE.get(`${kickoffUtc}|${venueName}`);
+    } else {
+      matchNumber = eventIndex + 1;
+    }
 
     if (matchNumber !== undefined) {
       index.set(key, matchNumber);

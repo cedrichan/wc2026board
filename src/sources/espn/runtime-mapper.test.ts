@@ -106,6 +106,22 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     expect(m81).toMatchObject({ matchNumber: 81, round: "ROUND_OF_32" });
   });
 
+  it("resolves R16 match numbers when kickoff order differs from FIFA match-number order (M89/M90)", () => {
+    const result = mapEspnScoreboardToNormalizationInput(
+      parseEspnScoreboard(rangeScoreboard),
+    );
+
+    // M89 (winner of M74 vs winner of M77) kicks off at Lincoln Financial
+    // Field *after* M90 (winner of M73 vs winner of M75) kicks off at NRG
+    // Stadium, both on 2026-07-04. The fixture lists NRG first, so the old
+    // eventIndex+1 logic would have swapped them.
+    const m89 = result.matches.find((m) => m.venue === "Lincoln Financial Field" && m.round === "ROUND_OF_16");
+    expect(m89).toMatchObject({ matchNumber: 89, round: "ROUND_OF_16" });
+
+    const m90 = result.matches.find((m) => m.venue === "NRG Stadium" && m.round === "ROUND_OF_16");
+    expect(m90).toMatchObject({ matchNumber: 90, round: "ROUND_OF_16" });
+  });
+
   it("maps ESPN shootoutScore to penaltyScore for completed penalty-shootout matches (M74 GER-PAR)", () => {
     const result = mapEspnScoreboardToNormalizationInput(
       parseEspnScoreboard(rangeScoreboard),
