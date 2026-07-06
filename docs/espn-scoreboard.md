@@ -54,8 +54,16 @@ the captured fields, so the application must continue to use local bracket
 topology rather than infer match numbers from ESPN order or IDs.
 
 IDs were internally consistent between the captured range, date, and summary
-responses. That is not evidence that IDs are permanently stable; temporal ID
-stability remains a release validation item.
+responses. As of 2026-07-06, `event.id` has also proven stable *over time*:
+all 104 IDs from the 2026-06-14 capture are unchanged across five later
+fixture refreshes spanning three weeks of live tournament play, through
+score updates, status changes, and kickoff-time edits. The adapter now keys
+match-number resolution off `event.id` (see `runtime-mapper.ts`) rather than
+kickoff+venue, specifically because kickoff/venue values are not stable when
+ESPN reschedules a match but the ID is. This does not mean the FIFA match
+number is inferred from the ID's value — that mapping is still derived from
+local bracket topology — only that the ID is trusted as a stable lookup key
+within a tournament run.
 
 ## Observed fields and variability
 
@@ -143,7 +151,10 @@ kept distinct from these captures.
   polling must be measured in-browser and may require a slower non-live
   interval or conditional requests. Do not add extra date requests.
 - ESPN usage terms and public display rights remain unresolved launch risks.
-- Team and event ID stability must be checked across later captures.
+- Team and event ID stability must be checked across later captures. Event
+  ID stability has been validated across five refreshes over three weeks
+  (see above) and is now a dependency of match-number resolution; team ID
+  stability is unconfirmed and not currently depended on.
 - All unobserved statuses and optional-field absence must be validated before
   release or handled conservatively as unknown/partial data.
 - ESPN ordering, `advance`, and displayed standings are not substitutes for

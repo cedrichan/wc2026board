@@ -46,15 +46,6 @@ function kickoff(event: EspnEvent, competition: EspnCompetition): string {
   return competition.startDate ?? competition.date ?? event.date;
 }
 
-function scheduleKey(
-  round: RuntimeRound | undefined,
-  kickoffUtc: string,
-  venueName: string | undefined,
-): string | undefined {
-  if (!round || !venueName) return undefined;
-  return `${round}|${kickoffUtc}|${venueName.trim()}`;
-}
-
 // Static R32 schedule: "kickoffUtc|venue" → FIFA match number.
 //
 // The R32 schedule is fixed before the tournament begins. ESPN initially uses
@@ -199,13 +190,22 @@ const ROUND_OF_16_KICKOFF_SCHEDULE: ReadonlyMap<string, number> = new Map([
   ["2026-07-04T21:00Z|Lincoln Financial Field", 89],
   ["2026-07-04T17:00Z|NRG Stadium", 90],
   ["2026-07-05T20:00Z|MetLife Stadium", 91],
-  ["2026-07-06T00:00Z|Estadio Banorte", 92],
+  ["2026-07-06T01:00Z|Estadio Banorte", 92],
   ["2026-07-06T19:00Z|AT&T Stadium", 93],
   ["2026-07-07T00:00Z|Lumen Field", 94],
   ["2026-07-07T16:00Z|Mercedes-Benz Stadium", 95],
   ["2026-07-07T20:00Z|BC Place", 96],
 ]);
 
+// Maps ESPN's event.id → FIFA match number, built once from the frozen
+// pre-tournament fixture capture. Looking this up by event.id (rather than
+// round|kickoffUtc|venue) means a live kickoff/venue change for any match, in
+// any round, can never break match-number resolution — event.id has stayed
+// stable across every fixture refresh from the 2026-06-14 capture through the
+// present, spanning score updates, status changes, and kickoff-time edits.
+// The kickoff+venue disambiguation below only has to interpret this one
+// frozen capture, never live data, so it doesn't need to be reschedule-proof
+// itself.
 function buildScheduleIndex(): ReadonlyMap<string, number> {
   const index = new Map<string, number>();
 
@@ -216,8 +216,6 @@ function buildScheduleIndex(): ReadonlyMap<string, number> {
     const round = resolveRound(event);
     const kickoffUtc = kickoff(event, competition);
     const venueName = competition.venue?.fullName?.trim();
-    const key = scheduleKey(round, kickoffUtc, competition.venue?.fullName);
-    if (!key) return;
 
     // R32 and R16: derive match number from a static kickoff+venue schedule
     // (falling back to team codes for R32) rather than array position,
@@ -234,14 +232,14 @@ function buildScheduleIndex(): ReadonlyMap<string, number> {
     }
 
     if (matchNumber !== undefined) {
-      index.set(key, matchNumber);
+      index.set(event.id, matchNumber);
     }
   });
 
   return index;
 }
 
-const MATCH_NUMBER_BY_SCHEDULE = buildScheduleIndex();
+const MATCH_NUMBER_BY_ESPN_EVENT_ID = buildScheduleIndex();
 
 function mapTeam(
   competitor: EspnCompetitor,
@@ -332,9 +330,7 @@ function mapEvent(event: EspnEvent): EspnMatchInput {
     : undefined;
   const venueName = competition?.venue?.fullName;
   const kickoffUtc = competition ? kickoff(event, competition) : event.date;
-  const matchNumber = MATCH_NUMBER_BY_SCHEDULE.get(
-    scheduleKey(round, kickoffUtc, venueName) ?? "",
-  );
+  const matchNumber = MATCH_NUMBER_BY_ESPN_EVENT_ID.get(event.id);
   const conduct = competition ? mapDisciplinaryEvents(competition) : { events: [], coverage: "UNKNOWN" as ConductCoverage };
 
   return {

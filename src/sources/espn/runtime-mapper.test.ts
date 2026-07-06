@@ -57,8 +57,8 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     const result = mapEspnScoreboardToNormalizationInput(
       parseEspnScoreboard(rangeScoreboard),
     );
-    // 760495 = Congo DR at England (M80), STATUS_SCHEDULED in the fixture
-    const scheduledMatch = result.matches.find((match) => match.id === "760495");
+    // 760506 = Portugal at Spain (M93), STATUS_SCHEDULED in the fixture
+    const scheduledMatch = result.matches.find((match) => match.id === "760506");
 
     expect(scheduledMatch?.conductCoverage).toBe("UNKNOWN");
     expect(scheduledMatch?.disciplinaryEvents).toEqual([]);
@@ -120,6 +120,32 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
 
     const m90 = result.matches.find((m) => m.venue === "NRG Stadium" && m.round === "ROUND_OF_16");
     expect(m90).toMatchObject({ matchNumber: 90, round: "ROUND_OF_16" });
+  });
+
+  it("resolves match numbers by ESPN event.id even when a live kickoff time no longer matches the frozen fixture capture (M92 delayed 00:00Z → 01:00Z)", () => {
+    // Simulates ESPN rescheduling a match after the static fixture was
+    // captured, e.g. the real M92 (MEX-ENG) delay on 2026-07-06. Because
+    // resolution now keys off the stable event.id rather than
+    // round|kickoffUtc|venue, a live kickoff drift like this must not drop
+    // the match.
+    const delayed = structuredClone(rangeScoreboard) as typeof rangeScoreboard;
+    const m92Event = delayed.events.find((event) => event.id === "760505");
+    if (!m92Event) throw new Error("fixture missing event 760505 (M92)");
+    const delayedKickoff = "2026-07-06T05:00Z";
+    m92Event.date = delayedKickoff;
+    m92Event.competitions[0].date = delayedKickoff;
+    m92Event.competitions[0].startDate = delayedKickoff;
+
+    const result = mapEspnScoreboardToNormalizationInput(
+      parseEspnScoreboard(delayed),
+    );
+    const m92 = result.matches.find((m) => m.id === "760505");
+
+    expect(m92).toMatchObject({
+      matchNumber: 92,
+      round: "ROUND_OF_16",
+      kickoffUtc: delayedKickoff,
+    });
   });
 
   it("maps ESPN shootoutScore to penaltyScore for completed penalty-shootout matches (M74 GER-PAR)", () => {
