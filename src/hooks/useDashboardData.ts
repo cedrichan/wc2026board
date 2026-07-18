@@ -33,8 +33,9 @@ function isFullyValid(snapshot: TournamentSnapshot): boolean {
 
 export function useDashboardData(
   dataSource: TournamentDataSource,
+  initialSnapshot?: TournamentSnapshot,
 ): DashboardDataState {
-  const query = useTournamentData(dataSource);
+  const query = useTournamentData(dataSource, initialSnapshot);
   const [lastValidatedSnapshot, setLastValidatedSnapshot] =
     useState<TournamentSnapshot | null>(null);
   const [fetchedAt, setFetchedAt] = useState<Date | null>(null);
@@ -50,8 +51,10 @@ export function useDashboardData(
 
   const now = new Date();
 
-  // The snapshot to display: prefer last validated, fall back to any fetched data
-  const snapshot = lastValidatedSnapshot ?? query.data ?? null;
+  // Keep the bundled startup snapshot available if the first network request
+  // fails before TanStack Query has a successful response to cache.
+  const snapshot =
+    lastValidatedSnapshot ?? query.data ?? initialSnapshot ?? null;
 
   const staleLabel =
     snapshot !== null ? deriveStaleLabel(snapshot, now) : undefined;

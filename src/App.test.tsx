@@ -21,6 +21,19 @@ function renderApp(dataSource: TournamentDataSource) {
   );
 }
 
+function renderAppWithInitialSnapshot(dataSource: TournamentDataSource) {
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <App dataSource={dataSource} initialSnapshot={liveGroupSecond} />
+      </ThemeProvider>
+    </QueryClientProvider>,
+  );
+}
+
 function fixtureSource(): TournamentDataSource {
   return { getSnapshot: () => Promise.resolve(liveGroupSecond) };
 }
@@ -94,5 +107,16 @@ describe("App dashboard", () => {
     await userEvent.click(screen.getByRole("button", { name: /refresh data/i }));
 
     await waitFor(() => expect(getSnapshot).toHaveBeenCalledTimes(2));
+  });
+
+  it("renders bundled data while immediately fetching fresher data", async () => {
+    const getSnapshot = vi.fn(() => new Promise<never>(() => undefined));
+
+    renderAppWithInitialSnapshot({ getSnapshot });
+
+    expect(
+      screen.getByRole("region", { name: "Best third-place ranking" }),
+    ).toBeInTheDocument();
+    expect(getSnapshot).toHaveBeenCalledTimes(1);
   });
 });

@@ -24,11 +24,12 @@ import ThirdPlaceTable from "./ThirdPlaceTable";
 import { useDashboardData } from "../hooks/useDashboardData";
 import { composeDashboardViewModel } from "../view-models";
 import type { DashboardFormatOptions, DashboardViewModel } from "../view-models";
-import type { TournamentDataSource } from "../domain";
+import type { TournamentDataSource, TournamentSnapshot } from "../domain";
 import { VIEW_ICONS, VIEW_SYMBOLS } from "./view-symbols";
 
 interface DashboardProps {
   dataSource: TournamentDataSource;
+  initialSnapshot?: TournamentSnapshot;
 }
 
 function resolveLocale(): string {
@@ -45,8 +46,11 @@ function resolveTimeZone(): string | undefined {
   }
 }
 
-export default function Dashboard({ dataSource }: DashboardProps): JSX.Element {
-  const data = useDashboardData(dataSource);
+export default function Dashboard({
+  dataSource,
+  initialSnapshot,
+}: DashboardProps): JSX.Element {
+  const data = useDashboardData(dataSource, initialSnapshot);
   const { snapshot } = data;
 
   // Recompute the rules-engine view model only when the snapshot changes, so a

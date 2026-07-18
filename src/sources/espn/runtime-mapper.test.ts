@@ -57,8 +57,8 @@ describe("mapEspnScoreboardToNormalizationInput", () => {
     const result = mapEspnScoreboardToNormalizationInput(
       parseEspnScoreboard(rangeScoreboard),
     );
-    // 760506 = Portugal at Spain (M93), STATUS_SCHEDULED in the fixture
-    const scheduledMatch = result.matches.find((match) => match.id === "760506");
+    // 760516 = third-place match (M103), STATUS_SCHEDULED in the fixture
+    const scheduledMatch = result.matches.find((match) => match.id === "760516");
 
     expect(scheduledMatch?.conductCoverage).toBe("UNKNOWN");
     expect(scheduledMatch?.disciplinaryEvents).toEqual([]);

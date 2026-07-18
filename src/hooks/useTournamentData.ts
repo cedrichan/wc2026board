@@ -13,10 +13,14 @@ export interface TournamentQueryState {
 
 export function useTournamentData(
   dataSource: TournamentDataSource,
+  initialSnapshot?: TournamentSnapshot,
 ): TournamentQueryState {
   const query = useQuery({
     queryKey: ["tournament-snapshot"],
     queryFn: ({ signal }) => dataSource.getSnapshot(signal),
+    // Placeholder data renders immediately but does not populate the cache, so
+    // TanStack Query still starts the ESPN request as soon as the app mounts.
+    placeholderData: initialSnapshot,
     staleTime: Infinity,
     refetchInterval: (query) => {
       const matches = query.state.data?.matches ?? [];
